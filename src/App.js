@@ -1,24 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
+
+import {Switch, Route, Redirect} from 'react-router-dom';
+
+import Header from './components/header/header.component';
+import MainPage from './pages/main/main.page';
+import RoulettePage from './pages/roulette/roulette.page';
+import Croupier from './components/croupier/croupier.componente';
+
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <Header className='encabezado' /> 
+       <div className='contenido'>
+       <Switch>
+          <Route exact path='/' component={MainPage} />
+          <Route  path='/roulette' component={Croupier } />
+       </Switch>
+
+       </div>
+       {/* <Croupier></Croupier> */}
     </div>
   );
 }

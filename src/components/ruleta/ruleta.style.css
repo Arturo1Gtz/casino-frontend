@@ -1,0 +1,25 @@
+.ruleta{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.elemento{
+    width: 45%;
+    position: absolute;
+    overflow: hidden;
+}
+
+.giroIn{
+    transition: transform 7s ease-out;
+}
+.giroEx{
+    transition: transform 5s ease-out;
+}
+
+.singiro{
+    transition: transform none;
+}
+
+

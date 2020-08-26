@@ -1,0 +1,25 @@
+.header {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+.logoContainer{
+    height: 100%;
+    width: 70px;
+    cursor: pointer;
+    /* padding: 25; */
+    
+}
+.menuContainer{
+    height:100% ;
+    width: 50px;
+    padding: 15px;
+}
+.logo{
+    width: 220%;
+}
+.menu{
+    width: 70%;
+}

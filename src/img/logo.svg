@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="271" height="122" viewBox="0 0 271 122">
+  <defs>
+    <filter id="casino" x="0" y="0" width="271" height="108" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="6.5" result="blur"/>
+      <feFlood flood-opacity="0.741"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Gran_Torino" x="32" y="53" width="198" height="69" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur-2"/>
+      <feFlood flood-color="#010101" flood-opacity="0.478"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="logo" transform="translate(-120.5 16.5)">
+    <g transform="matrix(1, 0, 0, 1, 120.5, -16.5)" filter="url(#casino)">
+      <text id="casino-2" data-name="casino" transform="translate(19.5 71.5)" fill="#fff" font-size="57" font-family="Montserrat-SemiBold, Montserrat" font-weight="600"><tspan x="0" y="0">CASINO</tspan></text>
+    </g>
+    <g transform="matrix(1, 0, 0, 1, 120.5, -16.5)" filter="url(#Gran_Torino)">
+      <text id="Gran_Torino-2" data-name="Gran Torino" transform="translate(40.5 91.5)" fill="#f3ca59" font-size="48" font-family="King Lionel - Personal Use"><tspan x="0" y="0">Gran Torino</tspan></text>
+    </g>
+  </g>
+</svg>
