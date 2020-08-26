@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 // import {ReactComponent as Logo} from '../../img/logo.png';
 import menu from '../../img/menuIcon.svg';
 import logo from '../../img/logo.png';
+import SidebarA from '../../components/sidebar/sidebar.componente';
 
 import './header.style.css';
 
@@ -15,7 +16,9 @@ const Header =()=>{
             {/* <Logo className='logo'/> */}
         </Link>
         <div className='menuContainer'>
-            <img src={menu} alt='menu' className='menu' ></img>
+            <img src={menu} alt='menu' className='menu' 
+            
+            ></img>
         </div>
 
     </div>
