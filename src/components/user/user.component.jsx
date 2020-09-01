@@ -10,7 +10,6 @@ const User = () => {
         enterprise:'',
         balance:'10000',
         avatar:'',
-        isLogged:'',
     })
 
 }

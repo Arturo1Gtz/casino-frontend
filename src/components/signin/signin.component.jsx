@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
+/*import FormInput from '../Input/forminput.component'*/
 import './signin-style.css';
-import { Segment, Form, Header } from 'semantic-ui-react';
+import { Segment, Form, Header, Input, Button} from 'semantic-ui-react';
 
 const SignIn = () => {
     const [login, setLogin] = useState({
@@ -21,30 +22,39 @@ const SignIn = () => {
     }
 
     return (
-        <Segment inverted>
-            <Header as='h3' textAlign='center'>
-                SignIn
+        <Segment basic textAlign='center'>
+            <Header as='h2' textAlign='right' color='red' dividing>
+                Sign In
             </Header>
-            <span>Si ya estas registrado, por favor inicia sesion</span>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             <Form onSubmit={sendData}>
-                <input
+                <Input 
+                transparent
+                size='huge'
                 type="email"
-                placeholder="Email"
+                placeholder='Email'
                 required
-                onChange={handleChange}
+                handleChange={handleChange}
                 name = "email"
                 />
-                <label>
-                    Email
-                </label>
-                <input
+                <br/>
+                <br/>            
+                <Input 
+                transparent
+                size='huge'
                 type="password"
-                placeholder="Password"
+                placeholder='Contraseña'
                 required
-                onChange={handleChange}
+                handleChange={handleChange}
                 name="password"
                 />
-                <input type='submit' value='Submit Form'></input>
+                <br/>
+                <br/>
+                <Button type="subimt">Sign in</Button>
             </Form>
         </Segment>
     );
