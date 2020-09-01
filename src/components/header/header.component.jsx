@@ -9,18 +9,16 @@ import './header.style.css';
 
 const Header =()=>{
     return(
-
+        
         <div className='header'>
         <Link className='logoContainer' to="/" >
             <img src={logo} alt='logo' className='logo' ></img>
             {/* <Logo className='logo'/> */}
         </Link>
         <div className='menuContainer'>
-            <img src={menu} alt='menu' className='menu' 
-            
-            ></img>
+            <img src={menu} alt='menu' className='menu' ></img>
         </div>
-
+        
     </div>
 
 )

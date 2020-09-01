@@ -34,11 +34,11 @@ class Croupier extends React.Component{
         
         return(
             <div className={'croupier'}>
+                <Ruleta  claseEx={classRuletaEx} vueltasE={vueltasEx} claseIn={classRuletaIn} vueltasI={vueltasIn}></Ruleta>
                 {hide ? null:
                 <img src={boton} alt='boton' className='boton' onClick={calcVueltas}/>
                 }
-                <Ruleta className='ruleta' claseEx={classRuletaEx} vueltasE={vueltasEx} claseIn={classRuletaIn} vueltasI={vueltasIn}></Ruleta>
-            </div>
+            </div> 
         )
     }
 

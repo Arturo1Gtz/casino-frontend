@@ -1,12 +1,31 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {Header, Menu, Segment, Sidebar, Container} from 'semantic-ui-react';
 import SignIn from '../../components/signin/signin.component';
 
 const SidebarA = () => {
-    const [visible, setVisible] = React.useState(true)
+    const [visible, setVisible] = useState(true)
+    
+    // let sidebarRef =useRef();
+
+    // useEffect(() => {
+    //     let handler = (event)=>{
+    //         if(!sidebarRef.current.contains(event.target)){
+    //             setVisible(false);
+
+    //         }
+    //     };
+
+    //     document.addEventListener('mousedown', handler);
+    //     return()=>{
+    //         document.removeEventListener('mousedown', handler);
+    //     }
+    // });
+
+  
     
     return(
-        <Sidebar
+
+        <Sidebar 
         animation='overlay'
         direction='right'
         icon='labeled'
@@ -29,6 +48,7 @@ const SidebarA = () => {
             </Segment>
             
         </Sidebar>
+       
     );
 }
 export default SidebarA;

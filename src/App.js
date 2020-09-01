@@ -14,17 +14,20 @@ import './App.css';
 function App() {
   return (
     <div className="App">
+    <div className='margen'>
+
       <Header className='encabezado' /> 
       <div className='contenido'>
       
         <Switch>
           <Route exact path='/' component={MainPage} />
-          <Route  path='/roulette' component={Croupier } />
+          <Route  path='/ruleta' component={Croupier } />
         </Switch>
       </div>
          <SidebarA>
          </SidebarA>
          {/* <Croupier></Croupier> */}
+    </div>
     </div>
   );
 }

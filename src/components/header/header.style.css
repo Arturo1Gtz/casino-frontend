@@ -1,5 +1,5 @@
 .header {
-    height: 60px;
+    height: 40px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -14,13 +14,13 @@
 }
 .menuContainer{
     height:100% ;
-    width: 50px;
+    width: 100px;
     padding: 15px;
 }
 .logo{
-    width: 220%;
+    width: 180%;
 }
 .menu{
-    width: 70%;
+    width: 50%;
     cursor: pointer;
 }

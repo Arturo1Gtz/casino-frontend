@@ -6,12 +6,18 @@
   /* background: linear-gradient(#057547,#044329); */
   font-family: 'Montserrat';
   color: white;
+}
+.margen{
+  
+  margin: 5px 35px;
   }
 .encabezado{
-  position: absolute;
+  position: relative;
 }
 .contenido{
+  position: relative;
   height: 100vh;
+  overflow: hidden;
 }
 
 
