@@ -50,8 +50,8 @@ class ImageInput extends Component {
  
     return (
       <div className="App">
-         <Input type="file" name="avatar" onChange={this.fileChangedHandler} transparent/>
-         <Button basic onClick={this.submit} > Upload </Button>
+         <Input type="file" name="avatar" onChange={this.fileChangedHandler} />
+         <Button  onClick={this.submit} > Upload </Button>
          { $imagePreview }
       </div>
     );

@@ -1,5 +1,6 @@
 import React from 'react';
 
+import styled from 'styled-components';
 
 // import ruleta from '../../img/círculo.png';
 // import flecha from '../../img/triángulo.png';
@@ -10,15 +11,20 @@ import selector from '../../img/ruletaSelector.png';
 
 import './ruleta.style.css';
 
+const Circulo = styled.img`
+        position: absolute;
+        width: 700px;
+        transform:rotate(${props => props.vueltas}turn);
+        transition: transform ${ props => props.giro ? `${props.tamano ? 5 : 7}s ease-out`: 'none'};
+        `;
+
+
 function Ruleta(props) {
-    //Hooks
-    // const [vueltas, activateRuleta] = useState(false);
-    
     return (   
         <div className='ruleta'>    
             <img src={fondo} alt='fondo' className='elemento'/>
-            <img src ={ruletaEx} alt='ruletaEx' className={`elemento ${props.claseEx}`} style={{transform:`rotate(${props.vueltasE}deg)`}}/>
-            <img src ={ruletaIn} alt='ruletaIn' className={`elemento ${props.claseIn}`} style={{transform:`rotate(${props.vueltasI}deg)`}}/>
+            <Circulo src={ruletaEx} vueltas={props.vueltasE} giro={props.giro} tamano={true}/>
+            <Circulo src={ruletaIn} vueltas={props.vueltasI} giro={props.giro}/>
             <img src={selector} alt='selector' className='elemento selector'/>
 
             

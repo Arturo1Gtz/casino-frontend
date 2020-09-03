@@ -19,7 +19,7 @@ const Header =()=>{
                 <img src={menu} alt='menu' className='menu' onClick={() => setIsVisible(true)}
                 ></img>
             </div>
-         <SidebarA isvisible={isvisible}/>
+         <SidebarA  isvisible={isvisible} onhide={()=>setIsVisible(!isvisible)}/>
         </div>
     )
 };

@@ -1,0 +1,65 @@
+.sidebar{
+    // border: 3px solid red;
+    // overflow: hidden;
+    background-color: #1B2743;
+    .contenido{
+        width: 100%;
+        height: 100%;
+        top: 0;
+        // border: 3px solid blue;
+        position: absolute;
+        overflow:hidden;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .thanks{
+            position: absolute;
+            width: 100%;
+            height: 10%;
+            top: 10%;
+            // border: 2px solid red;
+            font-size: 150%;
+            line-height: 1.5;
+        }
+        .userIcon{
+            position: absolute;
+            width: 25%;
+            top: 20%;
+            // border: 2px solid white;
+            .icon{
+                width: 100%;
+            }
+        }
+        .formType{
+            position:absolute;
+            width: 100%;
+            top: 30%;
+            .optionForm{
+                opacity: 0.5;
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+            .active{
+                opacity: 1;
+                size: 1.2;
+            }
+        }
+        .formulario{
+            position: absolute;
+            top: 35%;
+            // border: 2px solid greenyellow;
+            height: 60%;
+            
+        }
+
+    }
+    .imagenBar{
+        // border: 3px solid black;
+        width: 100%;
+        height: 100%;
+        background-position: center;
+        background-size: cover;
+    }
+}

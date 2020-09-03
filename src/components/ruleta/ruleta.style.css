@@ -11,15 +11,4 @@
     width: 700px;
 }
 
-.giroIn{
-    transition: transform 7s ease-out;
-}
-.giroEx{
-    transition: transform 4s ease-out;
-}
-
-.singiro{
-    transition: transform none;
-}
-
 

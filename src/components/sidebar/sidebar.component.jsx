@@ -1,34 +1,39 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import {Header, Menu, Segment, Sidebar, Container, Button} from 'semantic-ui-react';
+
 import SignIn from '../signin/signin.component';
 import Register from '../register/register.component';
-import { useState } from 'react';
+
+import fondoBar from '../../img/fondobanner.jpg';
+import userIcon from '../../img/userphoto.svg';
+import './sidebar.style.scss';
 
 const SidebarA = (props) => {
-    const[isVisible, setIsvisible] = useState (true)
-    const [forms, setForm] = React.useState(true)
-    
-
-    
+    const [sesion, setSesion] = useState(true)
+        
     return(
-        <Sidebar
-        animation='overlay'
-        direction='right'
-        icon='labeled'
-        onHide={() => setIsvisible(false)}
-        vertical
-        visible={isVisible}
-        >
-            <Header 
-                as='h1'
-                textAlign='center'
-                >
-                    Bienvenido
-            </Header>
-             {
-                 forms ? <Segment basic><SignIn/><Button basic onClick= {()=> setForm(false)}>Registrarse</Button></Segment>:
-                 <Segment basic><Register/><Button basic onClick= {()=> setForm(true)}>Sign in</Button></Segment>
-             }
+        <Sidebar animation='overlay' direction='right' icon='labeled' onHide={props.onhide} vertical visible={props.isvisible} className='sidebar'>
+            <div className='imagenBar' style={{backgroundImage: `url(${fondoBar})`}}   />
+            <div className='contenido'>
+                <div className='thanks'>
+                    <span >
+                            Gracias por un año <br/> más en Smoll Pp Inc.
+                    </span>
+                </div>
+                <div className='userIcon'>
+                    <img src={userIcon} alt='userIcon' className='icon'/>
+                </div>
+                <div className='formType'>
+                     <span className={`optionForm ${sesion?'active':null}`} onClick={()=>setSesion(true)}>Inicia Sesión /</span>
+                     <span className={`optionForm ${sesion?null:'active'}`} onClick={()=>setSesion(false)}>/ Registrate</span>
+                </div>
+                <div className='formulario'>
+                {
+                    sesion ? <SignIn/>:
+                    <Register/>
+                }
+                </div>
+            </div>
         </Sidebar>
     );
     

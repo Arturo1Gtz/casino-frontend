@@ -6,6 +6,7 @@ import Header from './components/header/header.component';
 import MainPage from './pages/main/main.page';
 import RoulettePage from './pages/roulette/roulette.page';
 import Croupier from './components/croupier/croupier.componente';
+import Mesa from './components/mesa/mesa.componente';
 
 
 import './App.css';
@@ -20,7 +21,7 @@ function App() {
       
         <Switch>
           <Route exact path='/' component={MainPage} />
-          <Route  path='/ruleta' component={Croupier } />
+          <Route  path='/ruleta' component={Mesa } />
         </Switch>
       </div>
          {/* <Croupier></Croupier> */}

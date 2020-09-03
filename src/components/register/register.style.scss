@@ -1,0 +1,16 @@
+.registerCont{
+    width:100%;
+    height: 100%;
+    padding:0;
+    margin: 0;
+    .formularioR{
+        color: white;
+        display: flex;
+        flex-direction: column;
+        // border:2px solid white;
+        height: 100%;
+        justify-content: space-around;
+      
+        
+    }
+}
