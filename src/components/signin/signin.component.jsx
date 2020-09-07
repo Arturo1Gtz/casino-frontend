@@ -11,10 +11,7 @@ const SignIn = () => {
     });
 
     const handleChange = (event) =>{
-        setLogin({
-            ...login,
-            [event.target.name] : event.target.value
-        })
+        setLogin({...login, [event.target.name] : event.target.value});
     }
 
     const sendData = (event) => {
@@ -29,7 +26,7 @@ const SignIn = () => {
                           
                 <Input  size='large' type="password" placeholder='Contraseña' required handleChange={handleChange} name="password"/>
 
-                <Button type="submit">Sign in</Button>
+                <Button type="submit">Sign in</Button> 
             </Form>
         </div>
     );

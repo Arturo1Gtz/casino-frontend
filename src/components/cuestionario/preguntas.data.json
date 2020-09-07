@@ -1,0 +1,439 @@
+
+    {
+        "categoria_1": [{
+            "preguntas": {
+                "1": [{
+                    "pregunta": "pregunta 1",
+                    "respuestas": {
+                        "a": {
+                            "respuesta" : "respuesta a",
+                            "es_correcta": false
+                        },
+                        "b": {
+                            "respuesta" : "respuesta b",
+                            "es_correcta": true
+                        },
+                        "c": {
+                            "respuesta" : "respuesta c",
+                            "es_correcta": false
+                        },
+                        "d": {
+                            "respuesta" : "respuesta d",
+                            "es_correcta": false
+                        }
+                    }
+                }],
+                "2": [{
+                    "pregunta": "pregunta 2",
+                    "respuestas": {
+                        "a": {
+                            "respuesta" : "respuesta a",
+                            "es_correcta": false
+                        },
+                        "b": {
+                            "respuesta" : "respuesta b",
+                            "es_correcta": true
+                        },
+                        "c": {
+                            "respuesta" : "respuesta c",
+                            "es_correcta": false
+                        },
+                        "d": {
+                            "respuesta" : "respuesta d",
+                            "es_correcta": false
+                        }
+                    }
+                }],
+                "3": [{
+                    "pregunta": "pregunta 3",
+                    "respuestas": {
+                        "a": {
+                            "respuesta" : "respuesta a",
+                            "es_correcta": false
+                        },
+                        "b": {
+                            "respuesta" : "respuesta b",
+                            "es_correcta": true
+                        },
+                        "c": {
+                            "respuesta" : "respuesta c",
+                            "es_correcta": false
+                        },
+                        "d": {
+                            "respuesta" : "respuesta d",
+                            "es_correcta": false
+                        }
+                    }
+                }],
+                "4": [{
+                    "pregunta": "pregunta 4",
+                    "respuestas": {
+                        "a": {
+                            "respuesta" : "respuesta a",
+                            "es_correcta": false
+                        },
+                        "b": {
+                            "respuesta" : "respuesta b",
+                            "es_correcta": true
+                        },
+                        "c": {
+                            "respuesta" : "respuesta c",
+                            "es_correcta": false
+                        },
+                        "d": {
+                            "respuesta" : "respuesta d",
+                            "es_correcta": false
+                        }
+                    }
+                }],
+                "5": [{
+                    "pregunta": "pregunta 5",
+                    "respuestas": {
+                        "a": {
+                            "respuesta" : "respuesta a",
+                            "es_correcta": false
+                        },
+                        "b": {
+                            "respuesta" : "respuesta b",
+                            "es_correcta": true
+                        },
+                        "c": {
+                            "respuesta" : "respuesta c",
+                            "es_correcta": false
+                        },
+                        "d": {
+                            "respuesta" : "respuesta d",
+                            "es_correcta": false
+                        }
+                    }
+                }]
+            }
+        }],
+        "categoria_2": [{
+            "preguntas": {
+                "1": [{
+                    "pregunta": "pregunta 1",
+                    "respuestas": {
+                        "a": {
+                            "respuesta" : "respuesta a",
+                            "es_correcta": false
+                        },
+                        "b": {
+                            "respuesta" : "respuesta b",
+                            "es_correcta": true
+                        },
+                        "c": {
+                            "respuesta" : "respuesta c",
+                            "es_correcta": false
+                        },
+                        "d": {
+                            "respuesta" : "respuesta d",
+                            "es_correcta": false
+                        }
+                    }
+                }],
+                "2": [{
+                    "pregunta": "pregunta 2",
+                    "respuestas": {
+                        "a": {
+                            "respuesta" : "respuesta a",
+                            "es_correcta": false
+                        },
+                        "b": {
+                            "respuesta" : "respuesta b",
+                            "es_correcta": true
+                        },
+                        "c": {
+                            "respuesta" : "respuesta c",
+                            "es_correcta": false
+                        },
+                        "d": {
+                            "respuesta" : "respuesta d",
+                            "es_correcta": false
+                        }
+                    }
+                }],
+                "3": [{
+                    "pregunta": "pregunta 3",
+                    "respuestas": {
+                        "a": {
+                            "respuesta" : "respuesta a",
+                            "es_correcta": false
+                        },
+                        "b": {
+                            "respuesta" : "respuesta b",
+                            "es_correcta": true
+                        },
+                        "c": {
+                            "respuesta" : "respuesta c",
+                            "es_correcta": false
+                        },
+                        "d": {
+                            "respuesta" : "respuesta d",
+                            "es_correcta": false
+                        }
+                    }
+                }],
+                "4": [{
+                    "pregunta": "pregunta 4",
+                    "respuestas": {
+                        "a": {
+                            "respuesta" : "respuesta a",
+                            "es_correcta": false
+                        },
+                        "b": {
+                            "respuesta" : "respuesta b",
+                            "es_correcta": true
+                        },
+                        "c": {
+                            "respuesta" : "respuesta c",
+                            "es_correcta": false
+                        },
+                        "d": {
+                            "respuesta" : "respuesta d",
+                            "es_correcta": false
+                        }
+                    }
+                }],
+                "5": [{
+                    "pregunta": "pregunta 5",
+                    "respuestas": {
+                        "a": {
+                            "respuesta" : "respuesta a",
+                            "es_correcta": false
+                        },
+                        "b": {
+                            "respuesta" : "respuesta b",
+                            "es_correcta": true
+                        },
+                        "c": {
+                            "respuesta" : "respuesta c",
+                            "es_correcta": false
+                        },
+                        "d": {
+                            "respuesta" : "respuesta d",
+                            "es_correcta": false
+                        }
+                    }
+                }]
+            }
+        }],
+        "categoria_3": [{
+            "preguntas": {
+                "1": [{
+                    "pregunta": "pregunta 1",
+                    "respuestas": {
+                        "a": {
+                            "respuesta" : "respuesta a",
+                            "es_correcta": false
+                        },
+                        "b": {
+                            "respuesta" : "respuesta b",
+                            "es_correcta": true
+                        },
+                        "c": {
+                            "respuesta" : "respuesta c",
+                            "es_correcta": false
+                        },
+                        "d": {
+                            "respuesta" : "respuesta d",
+                            "es_correcta": false
+                        }
+                    }
+                }],
+                "2": [{
+                    "pregunta": "pregunta 2",
+                    "respuestas": {
+                        "a": {
+                            "respuesta" : "respuesta a",
+                            "es_correcta": false
+                        },
+                        "b": {
+                            "respuesta" : "respuesta b",
+                            "es_correcta": true
+                        },
+                        "c": {
+                            "respuesta" : "respuesta c",
+                            "es_correcta": false
+                        },
+                        "d": {
+                            "respuesta" : "respuesta d",
+                            "es_correcta": false
+                        }
+                    }
+                }],
+                "3": [{
+                    "pregunta": "pregunta 3",
+                    "respuestas": {
+                        "a": {
+                            "respuesta" : "respuesta a",
+                            "es_correcta": false
+                        },
+                        "b": {
+                            "respuesta" : "respuesta b",
+                            "es_correcta": true
+                        },
+                        "c": {
+                            "respuesta" : "respuesta c",
+                            "es_correcta": false
+                        },
+                        "d": {
+                            "respuesta" : "respuesta d",
+                            "es_correcta": false
+                        }
+                    }
+                }],
+                "4": [{
+                    "pregunta": "pregunta 4",
+                    "respuestas": {
+                        "a": {
+                            "respuesta" : "respuesta a",
+                            "es_correcta": false
+                        },
+                        "b": {
+                            "respuesta" : "respuesta b",
+                            "es_correcta": true
+                        },
+                        "c": {
+                            "respuesta" : "respuesta c",
+                            "es_correcta": false
+                        },
+                        "d": {
+                            "respuesta" : "respuesta d",
+                            "es_correcta": false
+                        }
+                    }
+                }],
+                "5": [{
+                    "pregunta": "pregunta 5",
+                    "respuestas": {
+                        "a": {
+                            "respuesta" : "respuesta a",
+                            "es_correcta": false
+                        },
+                        "b": {
+                            "respuesta" : "respuesta b",
+                            "es_correcta": true
+                        },
+                        "c": {
+                            "respuesta" : "respuesta c",
+                            "es_correcta": false
+                        },
+                        "d": {
+                            "respuesta" : "respuesta d",
+                            "es_correcta": false
+                        }
+                    }
+                }]
+            }
+        }],
+        "categoria_4": [{
+            "preguntas": {
+                "1": [{
+                    "pregunta": "pregunta 1",
+                    "respuestas": {
+                        "a": {
+                            "respuesta" : "respuesta a",
+                            "es_correcta": false
+                        },
+                        "b": {
+                            "respuesta" : "respuesta b",
+                            "es_correcta": true
+                        },
+                        "c": {
+                            "respuesta" : "respuesta c",
+                            "es_correcta": false
+                        },
+                        "d": {
+                            "respuesta" : "respuesta d",
+                            "es_correcta": false
+                        }
+                    }
+                }],
+                "2": [{
+                    "pregunta": "pregunta 2",
+                    "respuestas": {
+                        "a": {
+                            "respuesta" : "respuesta a",
+                            "es_correcta": false
+                        },
+                        "b": {
+                            "respuesta" : "respuesta b",
+                            "es_correcta": true
+                        },
+                        "c": {
+                            "respuesta" : "respuesta c",
+                            "es_correcta": false
+                        },
+                        "d": {
+                            "respuesta" : "respuesta d",
+                            "es_correcta": false
+                        }
+                    }
+                }],
+                "3": [{
+                    "pregunta": "pregunta 3",
+                    "respuestas": {
+                        "a": {
+                            "respuesta" : "respuesta a",
+                            "es_correcta": false
+                        },
+                        "b": {
+                            "respuesta" : "respuesta b",
+                            "es_correcta": true
+                        },
+                        "c": {
+                            "respuesta" : "respuesta c",
+                            "es_correcta": false
+                        },
+                        "d": {
+                            "respuesta" : "respuesta d",
+                            "es_correcta": false
+                        }
+                    }
+                }],
+                "4": [{
+                    "pregunta": "pregunta 4",
+                    "respuestas": {
+                        "a": {
+                            "respuesta" : "respuesta a",
+                            "es_correcta": false
+                        },
+                        "b": {
+                            "respuesta" : "respuesta b",
+                            "es_correcta": true
+                        },
+                        "c": {
+                            "respuesta" : "respuesta c",
+                            "es_correcta": false
+                        },
+                        "d": {
+                            "respuesta" : "respuesta d",
+                            "es_correcta": false
+                        }
+                    }
+                }],
+                "5": [{
+                    "pregunta": "pregunta 5",
+                    "respuestas": {
+                        "a": {
+                            "respuesta" : "respuesta a",
+                            "es_correcta": false
+                        },
+                        "b": {
+                            "respuesta" : "respuesta b",
+                            "es_correcta": true
+                        },
+                        "c": {
+                            "respuesta" : "respuesta c",
+                            "es_correcta": false
+                        },
+                        "d": {
+                            "respuesta" : "respuesta d",
+                            "es_correcta": false
+                        }
+                    }
+                }]
+            }
+        }]
+    }
