@@ -1,5 +1,8 @@
 import React from 'react';
 
+import {connect} from 'react-redux';
+import {setCurrentRespuesta} from '../../redux/resCorrecta/resCorrec.actions';
+
 import Preguntas from './preguntas.js';
 
 import './cuestionario.style.scss';
@@ -18,7 +21,10 @@ class Cuestionario extends React.Component{
         const {seccPregunta, apuesta, pregunta} = this.props;
         const seccion = this.state.preguntas[seccPregunta];
         const question = seccion.preguntas[pregunta];
-        console.log('this is it',seccPregunta, pregunta);
+        const respuesta = question.respuestas.filter(res => res.correcta === true);
+        this.props.setCurrentRespuesta(respuesta[0].respuesta);
+
+        // console.log('respuesta', respuesta[0].respuesta);
 
         return<div className='cuestionario'>
                 <div className='preguntaContainer'>
@@ -37,4 +43,8 @@ class Cuestionario extends React.Component{
     }
 };
 
-export default Cuestionario;
+const mapDipatchToProps = dispatch => ({
+    setCurrentRespuesta: respuesta => dispatch(setCurrentRespuesta(respuesta))
+}); 
+
+export default connect(null, mapDipatchToProps)(Cuestionario);
