@@ -12,7 +12,10 @@ const SignIn = () => {
     });
 
     const handleChange = (event) =>{
-        setLogin({...login, [event.target.name] : event.target.value});
+        setLogin({
+            ...login, [event.target.name] 
+            : event.target.value
+        });
     }
 
     const sendData = async (event) => {
