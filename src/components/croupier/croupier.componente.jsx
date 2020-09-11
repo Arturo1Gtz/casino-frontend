@@ -15,7 +15,8 @@ class Croupier extends React.Component{
             vueltasIn: 0,
             onGame: false,
             onGiro:false,
-            pregunta:false,
+            onPregunta:false,
+            pregunta: 0,
             seccIn: 6,
             seccEx:4,
             acSeccIn: 0,
@@ -26,7 +27,7 @@ class Croupier extends React.Component{
         const {vueltasEx, vueltasIn,onGame,onGiro,seccEx,seccIn} = this.state;
         
         const calcVueltas=()=>{
-            this.setState({onGame:true, onGiro:true,  vueltasEx:Math.random(25)*(10) + 10 ,vueltasIn:Math.random(20)*(10) + 10},() => 
+            this.setState({onGame:true, onGiro:true,  vueltasEx:Math.random() * (25- 10) + 10 ,vueltasIn:Math.random() * (25- 10) + 10},() => 
             console.log('vueltas',this.state));
         }
         const sinGiro =()=>{
@@ -35,14 +36,14 @@ class Croupier extends React.Component{
 
             const actualSeccEx = Math.floor(actualDegE*seccEx);
             const actualSeccIn = Math.floor(actualDegI*seccIn);
-            
-            this.setState({onGiro: false,  pregunta:true, vueltasEx: actualDegE, vueltasIn: actualDegI, acSeccEx: actualSeccEx, acSeccIn: actualSeccIn},() => 
+
+            this.setState({onGiro: false,  onPregunta:true, vueltasEx: actualDegE, vueltasIn: actualDegI, acSeccEx: actualSeccEx, acSeccIn: actualSeccIn, pregunta:  Math.floor(Math.random() * (4))},() => 
             console.log('simGiro',this.state));
             
 
         }
         const endGame=()=>{
-            this.setState({pregunta:false, onGame:false},()=>
+            this.setState({onPregunta:false, onGame:false},()=>
             console.log('endgame',this.state));
         }
         
@@ -60,8 +61,8 @@ class Croupier extends React.Component{
 
                     </div>
                     <div className='cuestionarioCont'>
-                        {this.state.pregunta?
-                        <Cuestionario seccPregunta={this.state.acSeccEx} apuesta={this.state.acSeccIn}> </Cuestionario>
+                        {this.state.onPregunta?
+                        <Cuestionario seccPregunta={this.state.acSeccEx} apuesta={this.state.acSeccIn} pregunta={this.state.pregunta}> </Cuestionario>
                         :null}
 
                     </div>
