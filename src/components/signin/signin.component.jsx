@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 /*import FormInput from '../Input/forminput.component'*/
 import './signin-style.scss';
-import { Segment, Form, Header, Input, Button} from 'semantic-ui-react';
+import { Form, Input, Button } from 'semantic-ui-react';
+import { signInWithGoogle, auth } from '../../firebase/firebase.utils.js'
 
 
 const SignIn = () => {
@@ -17,19 +18,25 @@ const SignIn = () => {
         })
     }
 
-    const sendData = (event) => {
+    const sendData = async (event) => {
         event.preventDefault()
-        console.log(login.email + ' ' + login.password)
+        const { email, password } = login
+        try {
+            await auth.signInWithEmailAndPassword( email, password );
+        } catch(error) {
+            console.log(error);
+        }
     }
 
     return (
         <div className='formCont '>
             <Form onSubmit={sendData} className='formularioS'>
-                <Input   size='large' type="email" placeholder='Email' required handleChange={handleChange} name = "email"/>
+                <Input   size='large' type="email" placeholder='Email' required onChange={handleChange} name = "email"/>
                           
-                <Input  size='large' type="password" placeholder='Contraseña' required handleChange={handleChange} name="password"/>
+                <Input  size='large' type="password" placeholder='Contraseña' required onChange={handleChange} name="password"/>
 
                 <Button type="submit">Sign in</Button>
+                <Button onClick = {signInWithGoogle}>{' '} Ingresar con Google{' '}</Button>
             </Form>
         </div>
     );

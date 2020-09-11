@@ -1,5 +1,5 @@
 import React,{ useState } from 'react';
-import {Header, Menu, Segment, Sidebar, Container, Button} from 'semantic-ui-react';
+import { Sidebar } from 'semantic-ui-react';
 
 import SignIn from '../signin/signin.component';
 import Register from '../register/register.component';
