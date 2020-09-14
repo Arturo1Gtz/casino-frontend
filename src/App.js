@@ -36,6 +36,7 @@ const mapDispatchToProps = dispatch => ({
   checkUserSession: () => dispatch(checkUserSession())
 });
 
-export default connect(null, 
+export default connect(
+  null, 
   mapDispatchToProps
 )(App);
