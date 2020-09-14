@@ -32,6 +32,7 @@ const App = ({ checkUserSession }) => {
   );
 }
 
+
 const mapDispatchToProps = dispatch => ({
   checkUserSession: () => dispatch(checkUserSession())
 });
