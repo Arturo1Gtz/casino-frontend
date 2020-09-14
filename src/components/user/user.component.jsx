@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { firestore } from '../../firebase/firebase.utils'
 import { useEffect } from 'react';
 
-const User = (userState) => {
+const User = () => {
     const [userData, setUserData] = useState(null);
     
     useEffect( () => {

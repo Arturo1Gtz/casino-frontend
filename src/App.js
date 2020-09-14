@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Header from './components/header/header.component';
 import MainPage from './pages/main/main.page';
 import Mesa from './components/mesa/mesa.componente';
 import './App.css';
+import { checkUserSession } from './redux/user/user.actions';
+import { connect } from 'react-redux'
 
-function App() {
+const App = ({ checkUserSession }) => {
   
+  useEffect( () => {
+    checkUserSession();
+  }, [checkUserSession]);
+
+
   return (
     <div className="App">
     <div className='margen'>
@@ -25,4 +32,10 @@ function App() {
   );
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  checkUserSession: () => dispatch(checkUserSession())
+});
+
+export default connect(
+  mapDispatchToProps
+)(App);

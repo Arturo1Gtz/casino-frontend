@@ -1,33 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 // import {ReactComponent as Logo} from '../../img/logo.png';
-import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 import menu from '../../img/menuIcon.svg';
 import logo from '../../img/logo.png';
 import SidebarA from '../../components/sidebar/sidebar.component';
 import './header.style.css';
 import SidebarUser from '../sidebar/sidebarb.component';
+import { createStructuredSelector } from 'reselect';
+import { connect } from 'react-redux';
+import { selectCurrentUser } from '../../redux/user/user.selectors'
 
-const Header = () => {
+const Header = (currentUser) => {
 
-    const [isvisible, setIsVisible] = useState(false)
-    const [userstate, setUserstate] = useState(null)
-    
-    useEffect( () => {
-        auth.onAuthStateChanged(async (userAuth) => {
-            if (userAuth) {
-                const userRef = await createUserProfileDocument(userAuth);
-                userRef.onSnapshot(snapshot => {
-                    setUserstate({
-                        id: snapshot.id,
-                        ...snapshot.data()
-                    });
-                })
-            } else {
-                setUserstate(userAuth);  
-            }
-      });
-    })
+    const [isvisible, setIsVisible] = useState(false);
 
     return(
         <div className='header'>
@@ -39,7 +24,7 @@ const Header = () => {
                 <img src={menu} alt='menu' className='menu' onClick={() => setIsVisible(true)}
                 ></img>
             </div>
-            {userstate ? 
+            {currentUser ? 
             <SidebarUser isvisible={isvisible} onhide={()=>setIsVisible(!isvisible)}></SidebarUser>
             :
             <SidebarA isvisible={isvisible} onhide={()=>setIsVisible(!isvisible)}></SidebarA>
@@ -48,4 +33,10 @@ const Header = () => {
     )
 };
 
-export default Header;
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser
+});
+
+export default connect(
+    mapStateToProps
+)(Header);
