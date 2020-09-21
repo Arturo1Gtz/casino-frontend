@@ -6,11 +6,11 @@ import logo from '../../img/logo.png';
 import SidebarA from '../../components/sidebar/sidebar.component';
 import './header.style.css';
 import SidebarUser from '../sidebar/sidebarb.component';
-import { createStructuredSelector } from 'reselect';
+//import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
-import { selectCurrentUser } from '../../redux/user/user.selectors'
+//import { selectCurrentUser } from '../../redux/user/user.selectors'
 
-const Header = (currentUser) => {
+const Header = ({currentUser}) => {
 
     const [isvisible, setIsVisible] = useState(false);
 
@@ -33,11 +33,10 @@ const Header = (currentUser) => {
     )
 };
 
-const mapStateToProps = createStructuredSelector({
-    currentUser: selectCurrentUser
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser
 });
 
 export default connect(
-    mapStateToProps,
-    null
+    mapStateToProps
 )(Header);

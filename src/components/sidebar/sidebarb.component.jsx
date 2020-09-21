@@ -3,6 +3,7 @@ import { Button, Sidebar } from 'semantic-ui-react'
 import { signOutStart } from '../../redux/user/user.actions'
 import { connect } from 'react-redux'
 import User from '../user/user.component'
+import { auth } from '../../firebase/firebase.utils'
 
 const SidebarUser = (props) => {
     
@@ -17,16 +18,11 @@ const SidebarUser = (props) => {
         >
             <div className='contenido'>
                 <User/>
-                <Button onClick={signOutStart}>Cerrar sesion</Button>
+                <Button onClick={() => auth.signOut()}>Cerrar sesion</Button>
             </div>
         </Sidebar>
     )
 }
 
-const mapDispatchToProps = dispatch => ({
-    signOutStart: () => dispatch(signOutStart())
-  });
 
-export default connect(
-    mapDispatchToProps
-)(SidebarUser);
+export default SidebarUser;
