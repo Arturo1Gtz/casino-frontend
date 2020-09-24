@@ -4,37 +4,56 @@ import Header from './components/header/header.component';
 import MainPage from './pages/main/main.page';
 import Mesa from './components/mesa/mesa.componente';
 import './App.css';
-import { checkUserSession } from './redux/user/user.actions';
+import { setCurrentUser } from './redux/user/user.actions';
 import { connect } from 'react-redux'
+import { createUserProfileDocument, auth, createUserProfileDocument2 } from './firebase/firebase.utils';
+//import { createStructuredSelector } from 'reselect';
+//import { selectCurrentUser } from './redux/user/user.selectors';
 
-const App = ({ checkUserSession }) => {
+class App extends React.Component {
   
-  useEffect( () => {
-    checkUserSession();
-  }, [checkUserSession]);
+  unsubscribeFromAuth = null;
+  componentDidMount() {
+    const { setCurrentUser } = this.props;
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if(userAuth) {
+        const userRef = await createUserProfileDocument(userAuth);
+        userRef.onSnapshot(snapShot => {
+          setCurrentUser({
+            id:snapShot.id,
+            ...snapShot.data()
+          });          
+        });
+      }
+      setCurrentUser(userAuth);
+    });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
 
 
-  return (
-    <div className="App">
-    <div className='margen'>
-
+  render() {
+    return (
+      <div className="App">
+      <div className='margen'>
       <Header className='encabezado' /> 
       <div className='contenido'>
-      
         <Switch>
           <Route exact path='/' component={MainPage} />
           <Route  path='/ruleta' component={Mesa } />
         </Switch>
       </div>
          {/* <Croupier></Croupier> */}
-    </div>
-    </div>
-  );
+      </div>
+      </div>
+    );
+  }
 }
 
-
 const mapDispatchToProps = dispatch => ({
-  checkUserSession: () => dispatch(checkUserSession())
+  setCurrentUser: user => dispatch(setCurrentUser(user))
 });
 
 export default connect(
