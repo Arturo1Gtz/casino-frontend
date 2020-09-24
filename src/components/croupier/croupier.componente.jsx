@@ -2,6 +2,7 @@ import React from 'react' ;
 
 import Ruleta from '../ruleta/ruleta.componente';
 import Cuestionario from '../cuestionario/cuestionario.componente';
+import Jugador from '../jugador/jugador.componente';
 
 import boton from '../../img/button.png';
 
@@ -65,6 +66,9 @@ class Croupier extends React.Component{
                         <Cuestionario seccPregunta={this.state.acSeccEx} apuesta={this.state.acSeccIn} pregunta={this.state.pregunta}> </Cuestionario>
                         :null}
 
+                    </div>
+                    <div className='jugadorCont'>
+                        <Jugador></Jugador>
                     </div>
                 </div>
                 {onGame ? null:

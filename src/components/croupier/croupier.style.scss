@@ -6,42 +6,56 @@
     align-items: center;
     margin: 0px;
     height: 100vh;
-    // border: 3px solid black;
+    border: 3px solid black;
     padding: 0;
+    
     .juego{
         position: absolute;
         display: flex;
         flex-direction: column;
         justify-items: center;
         justify-content: center;
-        // border: 3px solid white;
+        align-items: center;
+        border: 3px solid white;
         width: 100%;
         height: 100%;
-        top: 0;
+        top: 0;     
         padding: 0;
         margin: 0;
         .cuestionarioCont{
             position: absolute;
             top: 0;
-            // border: 3px solid red;
+            border: 3px solid red;
             width: 100%;
             height: 70%;
             justify-content: center;
             justify-content: center;
-          
+            z-index: 2;
             
         }
         .ruletaCont{
-            // border: 3px solid blue;
+            border: 3px solid blue;
+            width: 100%;
             height: 100%;
-            
+            z-index: 1;
+        }
+        .jugadorCont{
+            // position: absolute;
+            top: 65%;
+            width: 20%;
+            // align-self: flex-end
+            z-index: 3;
+            height: 90%;
+            border: 3px solid greenyellow;
+
         }
     }
 
     .boton{
+        z-index: 4;
         width: min-content;
         position: relative;
-        top: 30px;
+        // top: 20px;
         &:hover{
             cursor: pointer;
             scale: 105%;

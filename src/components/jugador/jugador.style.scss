@@ -1,0 +1,79 @@
+.jugador{
+    // border: 3px solid purple;
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .ImgCont{
+        position: absolute;
+        height: 10%;
+        margin: 0;
+        .Img{
+            margin: 0;
+            width: 50%;
+            border: 4px solid #C8B300;
+            border-radius: 50%;
+        }
+    }
+    .relleno{
+        border: 3px solid yellow;
+        height: 10%;
+        opacity: 0;
+    }
+    .tarjeta{
+        width: 100%;
+        height: 90%;
+        
+        display: flex;
+        flex-direction: column;
+        
+        align-items: center;
+        justify-content: flex-end;
+
+        border: 4px outset #C8B300;
+        background-color: rgba(50,50,50,0.9);
+        border-radius: 3em;
+        .MontoCont{
+            .Titulo{
+                font-size: 120%;
+                
+            }
+            .Monto{
+                font-size: 200%;
+                
+            }
+        }
+        .fichasCont{
+            width: 60%;
+            margin: 0.5em 0;
+            // border: 3px solid palevioletred;
+            display: flex;
+            justify-content: space-around;
+            // flex-wrap: wrap;
+            
+        }
+        .apuesta{
+            // border: 3px solid brown;
+            border: 3px outset #C8B300;
+            border-radius: 2em;
+            width: 100%;
+            height: 50%;
+            display: flex;
+            // flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            .SubTitle{
+                opacity: 0.4;
+                width: 100%;
+                font-size: 300%;
+                
+            }
+        }
+
+    }
+
+
+
+}

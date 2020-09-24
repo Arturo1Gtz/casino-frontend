@@ -37,7 +37,7 @@ const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser
 });
 
-export default connect(
+export default connect( 
     mapStateToProps,
     null
 )(Header);
