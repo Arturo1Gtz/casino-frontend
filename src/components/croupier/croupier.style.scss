@@ -1,4 +1,5 @@
 .croupier{
+    // border: 3px solid black;
     display: flex;
     flex-direction: column;
     justify-items: center;
@@ -6,17 +7,16 @@
     align-items: center;
     margin: 0px;
     height: 100vh;
-    // border: 3px solid black;
     padding: 0;
     
     .juego{
+        // border: 3px solid white;
         position: absolute;
         display: flex;
         flex-direction: column;
         justify-items: center;
         justify-content: center;
         align-items: center;
-        // border: 3px solid white;
         width: 100%;
         height: 100%;
         top: 0;     
@@ -40,13 +40,13 @@
             z-index: 1;
         }
         .jugadorCont{
-            // position: absolute;
+            // border: 3px solid greenyellow;
+            display: flex;
+            justify-content: center;
             top: 65%;
             width: 20%;
-            // align-self: flex-end
             z-index: 3;
             height: 90%;
-            // border: 3px solid greenyellow;
 
         }
     }

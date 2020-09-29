@@ -1,0 +1,64 @@
+.custom-boton {
+    min-width: 165px;
+    width: auto;
+    height: 50px;
+    letter-spacing: 0.5px;
+    line-height: 50px;
+    padding: 0 35px 0 35px;
+    font-size: 15px;
+    font-family: 'Montserrat';
+    
+    background-color: black;
+    color: white;
+    border: white;
+    border-radius: 2em;
+    text-transform: uppercase;
+    // font-weight: bolder;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    &:hover {
+      background-color: white;
+      color: black;
+      border: 1px solid black;
+    }
+
+
+    &.tarj{
+      min-width: 40%;
+      width: 40%;
+      height: 35px;
+    }
+
+    
+    &.rojo {
+      background-color: black;
+      color: red;
+      border: 2px solid red;
+      opacity: 0.5;
+      &:hover {
+        // background-color: #EB0162;
+        background-color: red;
+        opacity: 0.7;
+        color: black;
+        border: none;
+      }
+    }
+
+    &.amarillo {
+      background-color: #F5C334;
+      color: black;
+      border: 2px solid black;
+      // opacity: 0.5;
+      &:hover {
+        // background-color: #EB0162;
+        background-color: black;
+        // opacity: 0.6;
+        color: #F5C334;
+        border: 2px solid #F5C334;
+      }
+    }
+
+}
