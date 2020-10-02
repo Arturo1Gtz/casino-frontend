@@ -22,6 +22,8 @@ class Jugador extends React.Component{
         }
     }
     render(){
+        let juego = this.props.enJuego;
+        console.log(juego)
 
     const aumentaApuesta=(a)=>{
         const suma = this.state.apuesta + a;
@@ -78,7 +80,7 @@ class Jugador extends React.Component{
 
                 <div className='botonesCont'>
                     <CustomBoton type='button' onClick={limpiar} color='rojo' lugar='tarj' >limpiar</CustomBoton>
-                    <CustomBoton color='amarillo' lugar='tarj' onClick={apostar}>apostar</CustomBoton>
+                    <CustomBoton color='amarillo' lugar='tarj' onClick={juego ? null : apostar}>apostar</CustomBoton>
 
                 </div>
 

@@ -68,7 +68,7 @@ class Croupier extends React.Component{
 
                     </div>
                     <div className='jugadorCont'>
-                        <Jugador accion={juego} ></Jugador>
+                        <Jugador accion={juego} enJuego={this.state.onGame}></Jugador>
                     </div>
                 </div>
                 {/* {onGame ? null:
