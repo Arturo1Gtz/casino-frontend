@@ -68,12 +68,12 @@ class Croupier extends React.Component{
 
                     </div>
                     <div className='jugadorCont'>
-                        <Jugador></Jugador>
+                        <Jugador accion={juego} ></Jugador>
                     </div>
                 </div>
-                {onGame ? null:
+                {/* {onGame ? null:
                 <img src={boton} alt='boton' className='boton' onClick={juego}/>
-                }
+                } */}
             </div> 
         )
     }
