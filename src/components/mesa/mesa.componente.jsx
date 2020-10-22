@@ -6,6 +6,7 @@ import boton from '../../img/button.png';
 
 function Mesa(){
     const [game, setGame] = useState(false);
+    const espacioDisp = 15;
     return(
         <div>
 

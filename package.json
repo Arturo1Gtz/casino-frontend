@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "firebase": "^7.19.1",
     "node-sass": "^4.14.1",
+    "nodemon": "^2.0.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
@@ -19,13 +20,16 @@
     "reselect": "^4.0.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^1.2.1",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.1",
     "styled-components": "^5.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start & npm run start:server",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start:server": "nodemon src/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
