@@ -7,8 +7,16 @@ import Jugador from '../jugador/jugador.componente';
 import boton from '../../img/button.png';
 
 import './croupier.style.scss'
+import io from 'socket.io-client'
+const socket = io("http://localhost:3001");
+
+socket.on('message', message => {
+    console.log(message);
+});
 
 class Croupier extends React.Component{
+    
+     
     constructor (props){
         super(props);
         this.state ={

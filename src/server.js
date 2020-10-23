@@ -1,52 +1,28 @@
-const server = require("http").createServer();
+const path = require('path');
+const http = require('http');
+const express = require('express');
+const socketio = require('socket.io');
 
-const io = require("socket.io")(server, {
-    transports: ["websocket","polling"]
-});
+const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
 
-const ActivePlayers = {};
-const Spectators = {};
-io.on("connection", client => {
-    
-    client.on("jugar", jugador => {
-        const user = {
-            name: jugador.name,
-            //avatar: jugador.avatar,
-            id: client.id
-        };
-        ActivePlayers[client.id] = user;
-        io.emit("connected", user);
-        io.emit("ActivePlayers", Object.values(ActivePlayers));
+//Set static folder
+app.use(express.static(path.join(__dirname,'public')));
+
+//Run when client connects
+io.on('connection', socket => {
+    console.log('New connection');
+
+    // Broadcast when a user connects
+    socket.broadcast.emit('message', 'A user has joined');
+
+    //Runs when client disconnects
+    socket.on('disconnect', () => {
+        io.emit('message', 'A user has left')
     });
+})
 
-    client.on("espectar", espectador => {
-        const user = {
-            name: jugador.name,
-            //avatar: jugador.avatar,
-            id: client.id
-        }
-        Spectators[client.id] = user;
-        io.emit("connected", user);
-        io.emit("Spectators", Object.values(Spectators));
-    });
+const PORT = 3001 || process.env.PORT;
 
-    client.on("mandarPregunta", pregunta => {
-        io.emit("pregunta", {
-            pregunta: pregunta
-        });
-    });
-
-    client.on("desconectarAP", () => {
-        const user = ActivePlayers[client.id];
-        delete ActivePlayers[client.id];
-        io.emit("Jugador desconectado", client.id);
-    });
-
-    client.on("desconectarS", () => {
-        const user = Spectators[client.id];
-        delete Spectators[client.id];
-        io.emit("Espectador desconectado", client.id);
-    });
-});
-
-server.listen(3016);
+server.listen(PORT, () => console.log(`Server running on ${PORT}`));

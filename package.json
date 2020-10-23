@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "express": "^4.17.1",
     "firebase": "^7.19.1",
     "node-sass": "^4.14.1",
     "nodemon": "^2.0.6",
@@ -25,11 +26,11 @@
     "styled-components": "^5.1.1"
   },
   "scripts": {
-    "start": "react-scripts start & npm run start:server",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start:server": "nodemon src/server.js"
+    "server": "nodemon src/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
