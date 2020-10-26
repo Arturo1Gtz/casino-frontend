@@ -17,7 +17,7 @@ const SidebarA = (props) => {
             <div className='contenido'>
                 <div className='thanks'>
                     <span >
-                            Gracias por un año <br/> más en Smoll Pp Inc.
+                            Bienvenido al <br/> Casino Gran Torino.
                     </span>
                 </div>
                 <div className='userIcon'>

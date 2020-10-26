@@ -16,10 +16,12 @@ const MainPage = ({history})=> {
 
     return(
     <div className='mainContainer'>
-
-      <GameBanner titulo={'dados'}  imagen={fondoDados} />  
-      <GameBanner action={ruleta} titulo={'ruleta'} imagen={fondoRuleta}  />  
-      <GameBanner   titulo={'poker'} imagen={fondoPoker}/>  
+      <GameBanner action={ruleta} titulo={'Mesa 1'} imagen={fondoRuleta}  />
+      <GameBanner action={ruleta} titulo={'Mesa 2'} imagen={fondoRuleta}  />
+      <GameBanner action={ruleta} titulo={'Mesa 3'} imagen={fondoRuleta}  />
+      <GameBanner action={ruleta} titulo={'Mesa 4'} imagen={fondoRuleta}  />
+      <GameBanner action={ruleta} titulo={'Mesa 5'} imagen={fondoRuleta}  />
+      <GameBanner action={ruleta} titulo={'Mesa 6'} imagen={fondoRuleta}  />  
         
     </div>);
 };

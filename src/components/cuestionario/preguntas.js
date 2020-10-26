@@ -3,31 +3,31 @@ var Preguntas = [
         categoria: 1,
         preguntas: [
            
-            {numero: 1,pregunta: "preegunta 1", respuestas: [
+            {numero: 1,pregunta: "pregunta 1", respuestas: [
                 {respuesta: "a", correcta: false},
                 {respuesta: "b", correcta: false},
                 {respuesta: "c", correcta: true},
                 {respuesta: "d", correcta: false}
             ]},
-            {numero: 2,pregunta: "preegunta 2", respuestas: [
+            {numero: 2,pregunta: "pregunta 2", respuestas: [
                 {respuesta: "a", correcta: false},
                 {respuesta: "b", correcta: false},
                 {respuesta: "c", correcta: true},
                 {respuesta: "d", correcta: false}
             ]},
-            {numero: 3,pregunta: "preegunta 3", respuestas: [
+            {numero: 3,pregunta: "pregunta 3", respuestas: [
                 {respuesta: "a", correcta: false},
                 {respuesta: "b", correcta: false},
                 {respuesta: "c", correcta: true},
                 {respuesta: "d", correcta: false}
             ]},
-            {numero: 4,pregunta: "preegunta 4", respuestas: [
+            {numero: 4,pregunta: "pregunta 4", respuestas: [
                 {respuesta: "a", correcta: false},
                 {respuesta: "b", correcta: false},
                 {respuesta: "c", correcta: true},
                 {respuesta: "d", correcta: false}
             ]},
-            {numero: 5,pregunta: "preegunta 5", respuestas: [
+            {numero: 5,pregunta: "pregunta 5", respuestas: [
                 {respuesta: "a", correcta: false},
                 {respuesta: "b", correcta: false},
                 {respuesta: "c", correcta: true},
@@ -39,31 +39,31 @@ var Preguntas = [
         categoria: 2,
         preguntas: [
             
-            {numero: 1,pregunta: "preegunta 1", respuestas: [
+            {numero: 1,pregunta: "pregunta 1", respuestas: [
                 {respuesta: "a", correcta: false},
                 {respuesta: "b", correcta: false},
                 {respuesta: "c", correcta: true},
                 {respuesta: "d", correcta: false}
             ]},
-            {numero: 2,pregunta: "preegunta 2", respuestas: [
+            {numero: 2,pregunta: "pregunta 2", respuestas: [
                 {respuesta: "a", correcta: false},
                 {respuesta: "b", correcta: false},
                 {respuesta: "c", correcta: true},
                 {respuesta: "d", correcta: false}
             ]},
-            {numero: 3,pregunta: "preegunta 3", respuestas: [
+            {numero: 3,pregunta: "pregunta 3", respuestas: [
                 {respuesta: "a", correcta: false},
                 {respuesta: "b", correcta: false},
                 {respuesta: "c", correcta: true},
                 {respuesta: "d", correcta: false}
             ]},
-            {numero: 4,pregunta: "preegunta 4", respuestas: [
+            {numero: 4,pregunta: "pregunta 4", respuestas: [
                 {respuesta: "a", correcta: false},
                 {respuesta: "b", correcta: false},
                 {respuesta: "c", correcta: true},
                 {respuesta: "d", correcta: false}
             ]},
-            {numero: 5,pregunta: "preegunta 5", respuestas: [
+            {numero: 5,pregunta: "pregunta 5", respuestas: [
                 {respuesta: "a", correcta: false},
                 {respuesta: "b", correcta: false},
                 {respuesta: "c", correcta: true},
@@ -75,31 +75,31 @@ var Preguntas = [
         categoria: 3,
         preguntas: [
             
-            {numero: 1,pregunta: "preegunta 1", respuestas: [
+            {numero: 1,pregunta: "pregunta 1", respuestas: [
                 {respuesta: "a", correcta: false},
                 {respuesta: "b", correcta: false},
                 {respuesta: "c", correcta: true},
                 {respuesta: "d", correcta: false}
             ]},
-            {numero: 2,pregunta: "preegunta 2", respuestas: [
+            {numero: 2,pregunta: "pregunta 2", respuestas: [
                 {respuesta: "a", correcta: false},
                 {respuesta: "b", correcta: false},
                 {respuesta: "c", correcta: true},
                 {respuesta: "d", correcta: false}
             ]},
-            {numero: 3,pregunta: "preegunta 3", respuestas: [
+            {numero: 3,pregunta: "pregunta 3", respuestas: [
                 {respuesta: "a", correcta: false},
                 {respuesta: "b", correcta: false},
                 {respuesta: "c", correcta: true},
                 {respuesta: "d", correcta: false}
             ]},
-            {numero: 4,pregunta: "preegunta 4", respuestas: [
+            {numero: 4,pregunta: "pregunta 4", respuestas: [
                 {respuesta: "a", correcta: false},
                 {respuesta: "b", correcta: false},
                 {respuesta: "c", correcta: true},
                 {respuesta: "d", correcta: false}
             ]},
-            {numero: 5,pregunta: "preegunta 5", respuestas: [
+            {numero: 5,pregunta: "pregunta 5", respuestas: [
                 {respuesta: "a", correcta: false},
                 {respuesta: "b", correcta: false},
                 {respuesta: "c", correcta: true},
@@ -111,31 +111,31 @@ var Preguntas = [
         categoria: 4,
         preguntas: [
             
-            {numero: 1,pregunta: "preegunta 1", respuestas: [
+            {numero: 1,pregunta: "pregunta 1", respuestas: [
                 {respuesta: "a", correcta: false},
                 {respuesta: "b", correcta: false},
                 {respuesta: "c", correcta: true},
                 {respuesta: "d", correcta: false}
             ]},
-            {numero: 2,pregunta: "preegunta 2", respuestas: [
+            {numero: 2,pregunta: "pregunta 2", respuestas: [
                 {respuesta: "a", correcta: false},
                 {respuesta: "b", correcta: false},
                 {respuesta: "c", correcta: true},
                 {respuesta: "d", correcta: false}
             ]},
-            {numero: 3,pregunta: "preegunta 3", respuestas: [
+            {numero: 3,pregunta: "pregunta 3", respuestas: [
                 {respuesta: "a", correcta: false},
                 {respuesta: "b", correcta: false},
                 {respuesta: "c", correcta: true},
                 {respuesta: "d", correcta: false}
             ]},
-            {numero: 4,pregunta: "preegunta 4", respuestas: [
+            {numero: 4,pregunta: "pregunta 4", respuestas: [
                 {respuesta: "a", correcta: false},
                 {respuesta: "b", correcta: false},
                 {respuesta: "c", correcta: true},
                 {respuesta: "d", correcta: false}
             ]},
-            {numero: 5,pregunta: "preegunta 5", respuestas: [
+            {numero: 5,pregunta: "pregunta 5", respuestas: [
                 {respuesta: "a", correcta: false},
                 {respuesta: "b", correcta: false},
                 {respuesta: "c", correcta: true},

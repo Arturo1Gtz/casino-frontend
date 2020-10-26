@@ -16,10 +16,14 @@ const User = () => {
             })
     })
 
+    const name = "Diego Flores";
+    const saldo = 10000;
+    const id = "#109807";
+
     return(
         <div className='userIcon'>
-            <span>Hola soy el usuario</span>
-            <h2></h2>
+            <span>Bienvenido {name} {id}</span>
+            <h2>Saldo: {saldo}</h2>
         </div>
     )
 }

@@ -14,7 +14,7 @@ class Jugador extends React.Component{
         this.state={
             // valorFicha:0,
             apuesta:0,
-            montoActual:200,
+            montoActual:10000,
             cero:[],
             uno:[],
             dos:[],
