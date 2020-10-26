@@ -10,6 +10,11 @@ import './croupier.style.scss'
 import io from 'socket.io-client'
 const socket = io("http://localhost:3001");
 
+const tipo = "player";
+const mesa = 1;
+
+socket.emit('joinMesa', {tipo, mesa});
+
 socket.on('message', message => {
     console.log(message);
 });

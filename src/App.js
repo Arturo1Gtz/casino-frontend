@@ -42,7 +42,7 @@ class App extends React.Component {
       <div className='contenido'>
         <Switch>
           <Route exact path='/' component={MainPage} />
-          <Route  path='/ruleta' component={Mesa } />
+          <Route  path='/ruleta/' component={Mesa } />
         </Switch>
       </div>
          {/* <Croupier></Croupier> */}
