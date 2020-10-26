@@ -11,20 +11,26 @@ const {
     userLeave,
     getMesaPlayers,
     getMesaSpectators
-} = require('./utils/mangeusers');
+} = require('./utils/manageusers');
+
+const formatMessage = require('./utils/handlemessages');
 const { emit } = require('process');
 //Foldes estatico
 app.use(express.static(path.join(__dirname,'public')));
 
+const chatBot = {
+    name: "Croupier",
+    id: "00"
+};
 //Cuando alguien se conecta
 io.on('connection', socket => {
-    socket.on('joinMesa', ({tipo, mesa}) => {
-        const user = userJoin(socket.id, tipo, mesa);
+    socket.on('joinMesa', ({tipo, mesa, usuario}) => {
+        const user = userJoin(socket.id, tipo, mesa, usuario);
 
         socket.join(user.mesa);
 
         //Anuncio de ususario unido
-        socket.emit('message', 'A user has joined.');
+        socket.emit('message', formatMessage(chatBot, `${user.usuario.nickname} se ha unido a la mesa`));
 
         //Send players and mesa info
         io.to(user.mesa).emit('mesaPlayers', {
@@ -44,7 +50,6 @@ io.on('connection', socket => {
     //Esperar por pregunta para todos
     socket.on('pregunta', pregunta => {
         const user = getCurrentUser(socket.id);
-
         //Mandar pregunta a la mesa
         io.to(user.mesa).emit('pregunta', pregunta);
     })
@@ -53,17 +58,17 @@ io.on('connection', socket => {
     socket.on('disconnect', () => {
         const user = userLeave(socket.id);
         if(user){
+            //Anuncio un jugador se ha ido
+            io.to(user.mesa).emit('message', formatMessage(chatBot, `${user.usuario.nickname} a abandonado la mesa.`));
+            
+            //Actualizacion de listas
             if(user.tipo === "player"){
-                //Anuncio un jugador se ha ido
-                io.to(user.mesa).emit('message', 'A player has left.');
                 //Actualizacion de jugadores
                 io.to(user.mesa).emit('mesaPlayers', {
                     mesa: user.mesa,
                     players: getMesaPlayers(user.mesa)
                 });
             } else if(user.tipo === 'spectator'){
-                //Anuncio un espectador se ha ido
-                io.to(user.mesa).emit('message', 'A spectator has left');
                 //Actualizacion de espectadores
                 io.to(user.mesa).emit('mesaSpectators', {
                     mesa: user.mesa,

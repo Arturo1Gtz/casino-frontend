@@ -9,22 +9,24 @@ const Register = () => {
         email:'',
         password:'',
         cpassword:'',
+        nickname:'',
         firstname:'',
         lastname:'',
         avatar:'',
         department:'',
         enterprise:'',
-        credits: 1000
+        credits: 10000
 
     });
     const [ adittionalData, setAdittionalData ] = useState({
 
         firstname:'',
         lastname:'',
+        nickname:'',
         avatar:'',
         department:'',
         enterprise:'',
-        credits: 1000
+        credits: 10000
     });
 
     const handleChange = event => {
@@ -33,8 +35,8 @@ const Register = () => {
         setAdittionalData({ ...adittionalData, [name]:value })
     }
 
-    const { email, password, cpassword, firstname, lastname, department, avatar, enterprise, credits } = register;
-    const { firstname1, lastname1, department1, avatar1, enterprise1, credits1 } = adittionalData;
+    const { email, password, cpassword, nickname, firstname, lastname, department, avatar, enterprise, credits } = register;
+    const {nickname1, firstname1, lastname1, department1, avatar1, enterprise1, credits1 } = adittionalData;
 
     const handleSubmit = async event => {
         event.preventDefault();
@@ -64,6 +66,8 @@ const Register = () => {
                 
                 <Input type="password" size='small' required placeholder='Confirma contraseña' onChange={handleChange} name="cpassword"/>
         
+                <Input type="text" size='small' placeholder='Nickname' required onChange={handleChange} name = "nickname"/>
+                
                 <Input type="text" size='small' placeholder='Primer nombre' required onChange={handleChange} name = "firstname"/>
                 
                 <Input type="text" size='small' placeholder='Apellido' required onChange={handleChange} name = "lastname"/>
