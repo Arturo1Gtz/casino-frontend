@@ -3,6 +3,7 @@ import React from 'react' ;
 import Ruleta from '../ruleta/ruleta.componente';
 import Cuestionario from '../cuestionario/cuestionario.componente';
 import Jugador from '../jugador/jugador.componente';
+import Chat from '../chat/chat.component';
 
 import boton from '../../img/button.png';
 
@@ -69,6 +70,7 @@ class Croupier extends React.Component{
 
         return(
             <div className={'croupier'}>
+                <Chat />
                 <div className={'juego'}>
                     <div className='ruletaCont'>
                         <Ruleta  vueltasE={vueltasEx} vueltasI={vueltasIn} giro={onGiro}></Ruleta>
