@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Input, Form, Button} from 'semantic-ui-react';
+import React, { useState } from 'react';
+import { Input, Form, Button } from 'semantic-ui-react';
 import './register.style.scss';
 import { auth, createUserProfileDocument2 } from '../../firebase/firebase.utils';
 

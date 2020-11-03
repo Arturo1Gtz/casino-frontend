@@ -1,6 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
+import 'firebase/storage'
 
 const config = {
     apiKey: "AIzaSyDtK4czTLYBdQEtRAxI4Z7RMeFex9mLw6M",
@@ -18,6 +19,8 @@ firebase.initializeApp(config);
 export const auth = firebase.auth();
 
 export const firestore = firebase.firestore();
+
+const storage = firebase.storage();
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
     if (!userAuth) return;
@@ -81,4 +84,6 @@ export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
   
 
-export default firebase;
+export {
+  storage, firebase as default
+};
