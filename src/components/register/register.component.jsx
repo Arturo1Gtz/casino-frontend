@@ -15,6 +15,7 @@ const Register = () => {
         avatar:'',
         department:'',
         enterprise:'',
+        imageURL:'',
         credits: 10000
 
     });
@@ -26,6 +27,7 @@ const Register = () => {
         avatar:'',
         department:'',
         enterprise:'',
+        imageURL:'',
         credits: 10000
     });
 
@@ -35,8 +37,8 @@ const Register = () => {
         setAdittionalData({ ...adittionalData, [name]:value })
     }
 
-    const { email, password, cpassword, nickname, firstname, lastname, department, avatar, enterprise, credits } = register;
-    const {nickname1, firstname1, lastname1, department1, avatar1, enterprise1, credits1 } = adittionalData;
+    const { email, password, cpassword, nickname, firstname, lastname, department, avatar, enterprise, imageURL, credits } = register;
+    const {nickname1, firstname1, lastname1, department1, avatar1, enterprise1, imageURL1, credits1 } = adittionalData;
 
     const handleSubmit = async event => {
         event.preventDefault();

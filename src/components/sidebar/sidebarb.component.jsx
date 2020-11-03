@@ -17,8 +17,9 @@ const SidebarUser = (props) => {
         className='sidebar'
         >
             <div className='contenido'>
-                <User/>
                 <Button onClick={() => auth.signOut()}>Cerrar sesion</Button>
+                <User/>
+                
             </div>
         </Sidebar>
     )

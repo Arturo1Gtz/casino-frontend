@@ -1,61 +1,62 @@
-import React, { Component } from 'react';
-import {Button, Input} from 'semantic-ui-react'
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { Form, Button } from 'semantic-ui-react';
+import { storage, firestore } from '../../firebase/firebase.utils';
  
-class ImageInput extends Component {
-  state =  {
-    selectedFile: null,
-    imagePreviewUrl: null
-  };
- 
-  fileChangedHandler = event => {
-    this.setState({
-      selectedFile: event.target.files[0]
-    })
- 
-    let reader = new FileReader();
-     
-    reader.onloadend = () => {
-      this.setState({
-        imagePreviewUrl: reader.result
-      });
-    }
- 
-    reader.readAsDataURL(event.target.files[0])
- 
+const ImageInput  = ({currentUser}) =>{
+
+  const allinputs = {imgUrl: ''}
+  const [imageAsfile, setImageAsfile] = useState('');
+  const [imageAsurl, setImageAsurl] = useState(allinputs);
+
+  const handleImageAsFile = (e) => {
+    const image = e.target.files[0];
+    setImageAsfile(imageFile => (image))
   }
- 
-  submit = () => {
- 
-    var fd = new FormData();
- 
-    fd.append('file', this.state.selectedFile);
- 
-    var request = new XMLHttpRequest();
- 
-    request.onreadystatechange = function() {
-      if (this.readyState === 4 && this.status === 200) {
-        alert('Uploaded!');
-      }
-    };
-    request.open("POST", "https://us-central1-tutorial-e6ea7.cloudfunctions.net/fileUpload", true);
-    request.send(fd);
-  }
- 
-  render() {
- 
-    let $imagePreview = (<div className="previewText image-container">Please select an Image for Preview</div>);
-    if (this.state.imagePreviewUrl) {
-      $imagePreview = (<div className="image-container" ><img src={this.state.imagePreviewUrl} alt="icon" width="200" /> </div>);
+
+  const handleFirebaseUpload = e => {
+    e.preventDefault();
+    console.log('start of upload');
+    if(imageAsfile == ''){
+        console.error(`not an image, the fila is a ${typeof(imageAsfile)}`);
     }
+    const uploadTask = storage.ref(`/images/${imageAsfile.name}`).put(imageAsfile);
+    uploadTask.on('state_changed',
+    (snapshot) => {
+        console.log(snapshot);
+    }, (err) => {
+        console.log(err);
+    }, () => {
+        storage.ref('images').child(imageAsfile.name).getDownloadURL().then(fireimageURL => {
+            const userURLimage = firestore.collection("user").doc(`${currentUser.id}`);
+            userURLimage.update({
+                imgurl: fireimageURL
+            })
+            setImageAsurl(prevObject => ({...prevObject, imgUrl: fireimageURL}))
+        })
+    })  
+  }
  
     return (
       <div className="App">
-         <Input type="file" name="avatar" onChange={this.fileChangedHandler} />
-         <Button  onClick={this.submit} > Upload </Button>
-         { $imagePreview }
+        <span>Hora de subir una foto</span>
+          <Form onSubmit = {handleFirebaseUpload}>
+            <input 
+              type = "file"
+              onChange = {handleImageAsFile}
+            />
+            <Button  type="submit">Sube imagen</Button>
+          </Form>  
       </div>
     );
-  }
+    
 }
  
-export default ImageInput;
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(ImageInput);
