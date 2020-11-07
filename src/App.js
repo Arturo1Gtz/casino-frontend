@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+
 import Header from './components/header/header.component';
 import MainPage from './pages/main/main.page';
-import Mesa from './components/mesa/mesa.componente';
+import Admin from './components/admin/admin.componente';
+
 import './App.css';
 import { setCurrentUser } from './redux/user/user.actions';
 import { connect } from 'react-redux'
-import { createUserProfileDocument, auth, createUserProfileDocument2 } from './firebase/firebase.utils';
+import { createUserProfileDocument, auth} from './firebase/firebase.utils';
 //import { createStructuredSelector } from 'reselect';
 //import { selectCurrentUser } from './redux/user/user.selectors';
 
@@ -42,7 +44,7 @@ class App extends React.Component {
       <div className='contenido'>
         <Switch>
           <Route exact path='/' component={MainPage} />
-          <Route  path='/ruleta/' component={Mesa } />
+          <Route  path='/ruleta/' component={Admin } />
         </Switch>
       </div>
          {/* <Croupier></Croupier> */}

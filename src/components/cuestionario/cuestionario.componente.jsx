@@ -1,35 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {connect} from 'react-redux';
 import {setCurrentRespuesta} from '../../redux/resCorrecta/resCorrec.actions';
 
-import Preguntas from './preguntas.js';
+import Preguntas from '../../files/preguntas.js';
 
 import './cuestionario.style.scss';
 
+function Cuestionario(props){
 
-class Cuestionario extends React.Component{
+    const [preguntas,setPreguntas] = useState(Preguntas)
+    const {seccPregunta, pregunta,setRespuesta} = props;
+    const seccion = preguntas[seccPregunta];
+    const question = seccion.preguntas[pregunta];
+    const respuestaObj = question.respuestas.filter(res => res.correcta === true);
+    const respuesta = respuestaObj[0].respuesta;
 
-    constructor(props){
-        super(props);
-        this.state ={
-            preguntas: Preguntas
-        };
+         // console.log('respuesta', respuesta[0].respuesta);
 
-    }
-    render(){
-        const {seccPregunta, apuesta, pregunta} = this.props;
-        const seccion = this.state.preguntas[seccPregunta];
-        const question = seccion.preguntas[pregunta];
-        const respuesta = question.respuestas.filter(res => res.correcta === true);
-        this.props.setCurrentRespuesta(respuesta[0].respuesta);
-
-        // console.log('respuesta', respuesta[0].respuesta);
-
-        return<div className='cuestionario'>
+        return(<div className='cuestionario'>
                 <div className='preguntaContainer'>
                     <span className='Seccion'> Categoria: {seccion.categoria}</span><br/>
-                    <span className='Apuesta'>Apuesta: {apuesta}</span><br/><br/>
+                    <span className='Apuesta'>Respuesta: {respuesta}</span><br/><br/>
                     <span className='Pregunta'>{question.pregunta}</span>
 
                 </div>
@@ -39,12 +31,9 @@ class Cuestionario extends React.Component{
                     <span className='rsp' key={3}>{question.respuestas[2].respuesta}</span>
                     <span className='rsp' key={4}>{question.respuestas[3].respuesta}</span>
                 </div>
-            </div>
-    }
+            </div>)
+    
 };
 
-const mapDipatchToProps = dispatch => ({
-    setCurrentRespuesta: respuesta => dispatch(setCurrentRespuesta(respuesta))
-}); 
 
-export default connect(null, mapDipatchToProps)(Cuestionario);
+export default Cuestionario;

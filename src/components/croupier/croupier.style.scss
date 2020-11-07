@@ -1,23 +1,25 @@
 .croupier{
     // border: 3px solid black;
     display: flex;
-    flex-direction: column;
-    justify-items: center;
-    justify-content: center;
-    align-items: center;
+    // flex-direction: column;
+    // align-items: center;
     margin: 0px;
     height: 100vh;
     padding: 0;
     
+    .chatCont{
+        // border:3px solid red;
+        width: 30%;
+    }
     .juego{
-        // border: 3px solid white;
-        position: absolute;
+        // border: 3px solid cyan;
+        // position: absolute;
         display: flex;
         flex-direction: column;
         justify-items: center;
         justify-content: center;
         align-items: center;
-        width: 100%;
+        width: 70%;
         height: 100%;
         top: 0;     
         padding: 0;
@@ -26,11 +28,11 @@
             position: absolute;
             top: 0;
             // border: 3px solid red;
-            width: 100%;
+            width: 70%;
             height: 70%;
             justify-content: center;
             justify-content: center;
-            z-index: 2;
+            z-index: 3;
             
         }
         .ruletaCont{
@@ -39,22 +41,28 @@
             height: 100%;
             z-index: 1;
         }
-        .jugadorCont{
+        .asientosCont{
             // border: 3px solid greenyellow;
-            display: flex;
-            justify-content: center;
-            top: 65%;
-            width: 20%;
-            z-index: 3;
-            height: 90%;
-
+            // display: flex;
+            // justify-content: center;
+            position: absolute;
+            width: 70%;
+            height: 100%;
+            z-index: 2;
+            
+        }
+        &__fondo{
+            position: absolute;
+            z-index: 0;
+            scale: 150%;
+            top: -60%;
         }
     }
 
     .boton{
         z-index: 4;
         width: min-content;
-        position: relative;
+        position: absolute;
         // top: 20px;
         &:hover{
             cursor: pointer;

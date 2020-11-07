@@ -3,9 +3,9 @@ import React from 'react';
 import GameBanner from '../../components/gameBanner/gameBanner.component';
 
 import './main.style.scss'
-import fondoDados from '../../img/dados.jpg'
 import fondoRuleta from '../../img/roulette.jpg'
-import fondoPoker from '../../img/poker.jpg'
+// import fondoDados from '../../img/dados.jpg'
+// import fondoPoker from '../../img/poker.jpg'
 
 
 
