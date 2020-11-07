@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
-// import {ReactComponent as Logo} from '../../img/logo.png';
 import menu from '../../img/menuIcon.svg';
 import logo from '../../img/logo.png';
 import SidebarA from '../../components/sidebar/sidebar.component';
 import './header.style.css';
 import SidebarUser from '../sidebar/sidebarb.component';
-//import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
-//import { selectCurrentUser } from '../../redux/user/user.selectors'
 
 const Header = ({currentUser}) => {
 

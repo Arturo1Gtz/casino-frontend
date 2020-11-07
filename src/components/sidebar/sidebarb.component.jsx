@@ -1,11 +1,10 @@
 import React from 'react'
-import { Button, Sidebar } from 'semantic-ui-react'
-import { signOutStart } from '../../redux/user/user.actions'
 import { connect } from 'react-redux'
+import { Button, Sidebar } from 'semantic-ui-react'
 import User from '../user/user.component'
 import { auth } from '../../firebase/firebase.utils'
 
-const SidebarUser = (props) => {
+const SidebarUser = (props, currentUser) => {
     
     return(
         <Sidebar 
@@ -17,13 +16,21 @@ const SidebarUser = (props) => {
         className='sidebar'
         >
             <div className='contenido'>
-                <Button onClick={() => auth.signOut()}>Cerrar sesion</Button>
                 <User/>
+                <div className = 'formulario'>
+                    <Button onClick={() => auth.signOut()}>Cerrar sesion</Button>
+                </div>
                 
             </div>
         </Sidebar>
     )
 }
 
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser
+})
 
-export default SidebarUser;
+export default connect(
+    mapStateToProps,
+    null
+)(SidebarUser);

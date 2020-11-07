@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { Input, Form, Button } from 'semantic-ui-react';
-import './register.style.scss';
+import FormInput from '../custom-input/input.component'
+import CustomButton from '../custom-button/button.component'
+import { SignUpContainer, SignUpTitle, ButtonsBarContainer } from './register.styles';
+import './register.style.scss'
 import { auth, createUserProfileDocument2 } from '../../firebase/firebase.utils';
+
 
 const Register = () => {
     const [register, setRegister] = useState({
@@ -15,19 +18,19 @@ const Register = () => {
         avatar:'',
         department:'',
         enterprise:'',
-        imageURL:'',
+        imgurl:'',
         credits: 10000
 
     });
+
     const [ adittionalData, setAdittionalData ] = useState({
 
         firstname:'',
         lastname:'',
         nickname:'',
-        avatar:'',
         department:'',
         enterprise:'',
-        imageURL:'',
+        imgurl1:'',
         credits: 10000
     });
 
@@ -35,19 +38,18 @@ const Register = () => {
         const { name, value } = event.target;
         setRegister({ ...register, [name]:value });
         setAdittionalData({ ...adittionalData, [name]:value })
+        console.log(register);
     }
 
-    const { email, password, cpassword, nickname, firstname, lastname, department, avatar, enterprise, imageURL, credits } = register;
-    const {nickname1, firstname1, lastname1, department1, avatar1, enterprise1, imageURL1, credits1 } = adittionalData;
+    const { email, password, cpassword, nickname, firstname, lastname, department, enterprise, imgurl, credits } = register;
+    const {nickname1, firstname1, lastname1, department1, enterprise1, imgurl1, credits1 } = adittionalData;
 
     const handleSubmit = async event => {
         event.preventDefault();
-        
         if (password !== cpassword) {
             alert("Las contraseñas no coinciden");
             return
         }
-
         try {
             console.log(register)
             const { user } = await auth.createUserWithEmailAndPassword(email, password)
@@ -59,29 +61,22 @@ const Register = () => {
     };
     
     return(
-        <div className='registerCont'>
-            <Form className='formularioR' onSubmit={handleSubmit}>
-
-                <Input type="email" size='small' placeholder='Email' required onChange={handleChange} name = "email"/>
-                
-                <Input type="password" size='small' required placeholder='Contraseña' onChange={handleChange} name="password"/>
-                
-                <Input type="password" size='small' required placeholder='Confirma contraseña' onChange={handleChange} name="cpassword"/>
-        
-                <Input type="text" size='small' placeholder='Nickname' required onChange={handleChange} name = "nickname"/>
-                
-                <Input type="text" size='small' placeholder='Primer nombre' required onChange={handleChange} name = "firstname"/>
-                
-                <Input type="text" size='small' placeholder='Apellido' required onChange={handleChange} name = "lastname"/>
-                
-                <Input type="text" size='small' placeholder='Empresa' required onChange={handleChange} name = "enterprise"/>
-                
-                <Input type="text" size='small' placeholder='Departamento' required onChange={handleChange} name = "department"/>
-                
-                <Button  type="submit">Registro</Button>
-                
-            </Form>
-        </div>
+        <SignUpContainer>
+            <SignUpTitle>Crea una cuenta nueva</SignUpTitle>
+            <form className='formularioR' onSubmit={handleSubmit}>
+                <FormInput type="email" label='Email' required onChange={handleChange} name = "email" value = {email}/>
+                <FormInput type="password" label='Contraseña' required onChange={handleChange} name="password" value = {password}/>
+                <FormInput type="password" label='Confirma contraseña' required onChange={handleChange} name="cpassword" value = {cpassword}/>
+                <FormInput type="text" label='Nickname' required onChange={handleChange} name = "nickname" value = {nickname}/>                
+                <FormInput type="text" label='Primer nombre' required onChange={handleChange} name = "firstname" value = {firstname}/>
+                <FormInput type="text" label='Apellido' required onChange={handleChange} name = "lastname" value = {lastname}/>                
+                <FormInput type="text" label='Empresa' required onChange={handleChange} name = "enterprise" value = {enterprise}/>
+                <FormInput type="text" label='Departamento' required onChange={handleChange} name = "department" value = {department}/>
+                <ButtonsBarContainer>            
+                    <CustomButton type="submit">Registro</CustomButton>
+                </ButtonsBarContainer>
+            </form>
+        </SignUpContainer>
     )
 }
 

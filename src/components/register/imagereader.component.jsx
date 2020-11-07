@@ -1,17 +1,28 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Form, Button } from 'semantic-ui-react';
-import { storage, firestore } from '../../firebase/firebase.utils';
+import CustomButton from '../custom-button/button.component'
+import { SignInContainer } from '../signin/signin.styles';
+import './register.style.scss';
+import { SignUpTitle, SignUpContainer, ButtonsBarContainer } from './register.styles'
+import { storage, firestore } from '../../firebase/firebase.utils'
+
  
 const ImageInput  = ({currentUser}) =>{
 
   const allinputs = {imgUrl: ''}
   const [imageAsfile, setImageAsfile] = useState('');
   const [imageAsurl, setImageAsurl] = useState(allinputs);
+  const [imagePreview, setImagePreview] = useState('');
 
   const handleImageAsFile = (e) => {
     const image = e.target.files[0];
     setImageAsfile(imageFile => (image))
+
+    let reader = new FileReader();
+
+    reader.onloadend = () => {
+      setImagePreview(prevObject => ({...prevObject, imagepreview: reader.result}))
+    }
   }
 
   const handleFirebaseUpload = e => {
@@ -38,16 +49,17 @@ const ImageInput  = ({currentUser}) =>{
   }
  
     return (
-      <div className="App">
-        <span>Hora de subir una foto</span>
-          <Form onSubmit = {handleFirebaseUpload}>
-            <input 
-              type = "file"
-              onChange = {handleImageAsFile}
-            />
-            <Button  type="submit">Sube imagen</Button>
-          </Form>  
-      </div>
+      <SignUpContainer>
+        <SignUpTitle>Solo falta un paso <br/> para disfrutar</SignUpTitle>
+        <form className='fromularioR' onSubmit={handleFirebaseUpload}>
+            <ButtonsBarContainer>
+              <input type='file' id='file' onChange={handleImageAsFile}/>
+              <label htmlFor="file">Elegir foto</label>
+              <CustomButton type='submit'>Subir foto</CustomButton>
+            </ButtonsBarContainer>
+            <img src={imagePreview.imagepreview}/>
+        </form>
+      </SignUpContainer>
     );
     
 }

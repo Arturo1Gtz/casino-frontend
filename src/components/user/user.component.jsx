@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import ImageInput from '../register/imagereader.component'
+import './user.style.scss'
 
 const User = ({currentUser}) => {
     const [transfer, setTransfer] = useState(null);
@@ -10,10 +11,12 @@ const User = ({currentUser}) => {
         if (currentUser.imgurl == '') {
             return <ImageInput/>
         } else {
-            return <div>
-                <span>Hola soy el usuario {currentUser.nickname}</span>
-                <img src={currentUser.imgurl}></img>
-            </div>
+            return <div className='contenido'>
+                        <span>Hola soy el usuario {currentUser.nickname}</span>
+                        <div className = 'userIcon'>
+                            <img className = 'icon' src={currentUser.imgurl} alt={currentUser.nickname}></img>
+                        </div>
+                    </div>
         }
 
 

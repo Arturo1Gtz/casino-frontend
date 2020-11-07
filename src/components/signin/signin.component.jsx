@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-//import { connect } from 'react-redux'
-/*import FormInput from '../Input/forminput.component'*/
-import './signin-style.scss';
-import { Form, Input, Button } from 'semantic-ui-react';
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils.js'
-//import { googleSignInStart, emailSignInStart } from '../../redux/user/user.actions'
-
+import FormInput from '../custom-input/input.component'
+import CustomButton from '../custom-button/button.component'
+import {
+    SignInContainer,
+    SignInTitle,
+    ButtonsBarContainer
+  } from './signin.styles';
+import './signin-style.scss'
 
 const SignIn = () => {
     const [login, setLogin] = useState({
@@ -34,16 +36,17 @@ const SignIn = () => {
     }
 
     return (
-        <div className='formCont '>
-            <Form onSubmit={sendData} className='formularioS'>
-                <Input   size='large' type="email" placeholder='Email' required onChange={handleChange} name = "email" value = {email}/>
-                          
-                <Input  size='large' type="password" placeholder='Contraseña' required onChange={handleChange} name="password" value = {password}/>
-
-                <Button type="submit">Sign in</Button>
-                <Button onClick = {signInWithGoogle}>{' '} Ingresar con Google{' '}</Button>
-            </Form>
-        </div>
+        <SignInContainer>
+            <SignInTitle>Ingresa con tu correo y contraseña</SignInTitle>
+            <form onSubmit={sendData} className='formularioS'>
+                <FormInput type="email" required onChange={handleChange} name = "email" value = {email} label = 'Email'/>
+                <FormInput type="password" required onChange={handleChange} name="password" value = {password} label = 'Password'/>
+                <ButtonsBarContainer>
+                    <CustomButton type="submit">Sign in</CustomButton>
+                    <CustomButton type="button" onClick = {signInWithGoogle} isGoogleSignIn >Google</CustomButton>
+                </ButtonsBarContainer>
+            </form>
+        </SignInContainer>
     );
 }
 

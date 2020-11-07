@@ -10,17 +10,7 @@ import './sidebar.style.scss';
 
 const SidebarA = (props) => {
     const [sesion, setSesion] = useState(true)
-        
-    return(
-        <Sidebar animation='overlay' direction='right' icon='labeled' onHide={props.onhide} vertical visible={props.isvisible} className='sidebar'>
-            <div className='imagenBar' style={{backgroundImage: `url(${fondoBar})`}}   />
-            <div className='contenido'>
-                <div className='thanks'>
-                    <span >
-                            Bienvenido al <br/> Casino Gran Torino.
-                    </span>
-                </div>
-                <div className='userIcon'>
+    /*<div className='userIcon'>
                     <img src={userIcon} alt='userIcon' className='icon'/>
                 </div>
                 <div className='formType'>
@@ -32,7 +22,19 @@ const SidebarA = (props) => {
                     sesion ? <SignIn/>:
                     <Register/>
                 }
+                </div>*/
+        
+    return(
+        <Sidebar animation='overlay' direction='right' icon='labeled' onHide={props.onhide} vertical visible={props.isvisible} className='sidebar'>
+            <div className='imagenBar' style={{backgroundImage: `url(${fondoBar})`}}   />
+            <div className='contenido'>
+                <div className='thanks'>
+                    <span >
+                            Bienvenido al <br/> Casino Gran Torino.
+                            Pongase cualquier texto amable, o cualquier cosa que se le parezca
+                    </span>
                 </div>
+                
             </div>
         </Sidebar>
     );
