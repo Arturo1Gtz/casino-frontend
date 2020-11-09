@@ -8,16 +8,15 @@ const User = ({currentUser}) => {
     const [recieve, setRecieve] = useState(null);
     
    
-        if (currentUser.imgurl == '') {
-            return <ImageInput/>
-        } else {
-            return <div className='contenido'>
-                        <span>Hola soy el usuario {currentUser.nickname}</span>
-                        <div className = 'userIcon'>
-                            <img className = 'icon' src={currentUser.imgurl} alt={currentUser.nickname}></img>
-                        </div>
-                    </div>
-        }
+        
+    return(
+        <div className='contenido'>
+            <span>Hola soy el usuario {currentUser.nickname}</span>
+            <div className = 'userIcon'>
+                <img className = 'icon' src={currentUser.imgurl} alt={currentUser.nickname}></img>
+            </div>
+        </div>)
+        
 
 
 

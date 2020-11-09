@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import CustomButton from '../custom-button/button.component'
-import { SignInContainer } from '../signin/signin.styles';
 import './register.style.scss';
 import { SignUpTitle, SignUpContainer, ButtonsBarContainer } from './register.styles'
 import { storage, firestore } from '../../firebase/firebase.utils'
@@ -12,17 +11,21 @@ const ImageInput  = ({currentUser}) =>{
   const allinputs = {imgUrl: ''}
   const [imageAsfile, setImageAsfile] = useState('');
   const [imageAsurl, setImageAsurl] = useState(allinputs);
-  const [imagePreview, setImagePreview] = useState('');
+  const [imagePreview, setImagePreview] = useState();
+
+  useEffect(() => {
+    if(!imageAsfile) {
+      setImagePreview(undefined);
+      return
+    }
+    const objectUrl = URL.createObjectURL(imageAsfile)
+    setImagePreview(objectUrl);
+    return () => URL.revokeObjectURL(objectUrl)
+  }, [imageAsfile])
 
   const handleImageAsFile = (e) => {
     const image = e.target.files[0];
     setImageAsfile(imageFile => (image))
-
-    let reader = new FileReader();
-
-    reader.onloadend = () => {
-      setImagePreview(prevObject => ({...prevObject, imagepreview: reader.result}))
-    }
   }
 
   const handleFirebaseUpload = e => {
@@ -49,18 +52,29 @@ const ImageInput  = ({currentUser}) =>{
   }
  
     return (
-      <SignUpContainer>
-        <SignUpTitle>Solo falta un paso <br/> para disfrutar</SignUpTitle>
-        <form className='fromularioR' onSubmit={handleFirebaseUpload}>
-            <ButtonsBarContainer>
-              <input type='file' id='file' onChange={handleImageAsFile}/>
-              <label htmlFor="file">Elegir foto</label>
-              <CustomButton type='submit'>Subir foto</CustomButton>
-            </ButtonsBarContainer>
-            <img src={imagePreview.imagepreview}/>
-        </form>
-      </SignUpContainer>
-    );
+
+      <div className='readerContent'>
+        <div className='formreader'>
+          <div className='form'>
+            <SignUpContainer>
+              <SignUpTitle>Solo falta un paso <br/> para disfrutar</SignUpTitle>
+              <form className='fromularioR' onSubmit={handleFirebaseUpload}>
+                  <ButtonsBarContainer>
+                    <input type='file' id='file' onChange={handleImageAsFile}/>
+                    <label htmlFor="file">Elegir foto</label>
+                    <CustomButton type='submit'>Subir foto</CustomButton>
+                  </ButtonsBarContainer>
+              </form>
+            </SignUpContainer>
+          </div>
+        </div>
+        <div className='imagePreview'>
+          {
+            imagePreview ? <img src={imagePreview} className='preview'/> : <img/>
+          }
+        </div>
+      </div>
+      );
     
 }
  
