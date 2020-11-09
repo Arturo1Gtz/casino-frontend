@@ -7,7 +7,7 @@ import Asientos from '../asientos/asientos.componente';
 // import Mesa from '../mesa/mesa.componente';
 // import Jugador from '../jugador/jugador.componente';
 
-// import boton from '../../img/button.png';
+import boton from '../../img/button.png';
 import './croupier.style.scss'
 import MesaFondo from '../../img/mesa-de-inicio.png';
 import Preguntas from '../../files/preguntas.js';
@@ -23,10 +23,6 @@ socket.emit('joinMesa', {tipo, mesa});
 socket.on('message', message => {
     console.log(message);
 });
-
-export function croupierRuleta(){
-
-}
 
 class Croupier extends React.Component{
     
@@ -45,7 +41,7 @@ class Croupier extends React.Component{
             acSeccIn: 0,
             acSeccEx:0,
             respuesta:'', 
-            jugadores:[{ocupado:true, apuesta: 50, respuesta:'b'},{ocupado:true, apuesta: 50, respuesta: 'c'}]
+            jugadores:[{ocupado:true, apuesta: 50, respuesta:'b',resultado:undefined},{ocupado:true, apuesta: 50, respuesta: 'c',resultado:undefined}]
         }
     }
     
@@ -79,11 +75,15 @@ class Croupier extends React.Component{
             const seccion = Preguntas[actualSeccEx];
             const questionObj = seccion.preguntas[preguntaNumero];
             const respuestaObj = questionObj.respuestas.filter(res => res.correcta === true);
-            const answer = respuestaObj[0].respuesta;
+            const answer = respuestaObj[0].respuesta; 
 
-            this.setState({onPregunta: true,acSeccEx:actualSeccEx, acSeccIn:actualSeccIn, pregunta: preguntaNumero, respuesta:answer}
-                ,()=>console.log('cuestionario', this.state.respuesta))
+            this.setState({acSeccEx:actualSeccEx, acSeccIn:actualSeccIn, pregunta: preguntaNumero, respuesta:answer}
+                // ,()=>console.log('cuestionario', this.state.respuesta)
+                );
                 
+        }
+        const showQuestion=()=>{
+            this.setState({onPregunta: true});
         }
         const revelacion =()=>{
             console.log('respuesta', respuesta)
@@ -92,23 +92,38 @@ class Croupier extends React.Component{
         const tomarAsiento=()=>{
             // console.log(respuestaCorrecta)
                 let newJugadores = [...jugadores];
-                newJugadores.push({ocupado:true, apuesta: 0, respuesta: undefined});
+                newJugadores.push({ocupado:true, apuesta: 0, respuesta: undefined, resultado:undefined});
                 
                 // setAsiento(newJugadores.length);
                 this.setState({jugadores:newJugadores}
-                    ,()=>console.log('tomarAsiento', this.state)
+                    // ,()=>console.log('tomarAsiento', this.state)
                 )
             
         }
-        // const apostar =(i, b)=>{
-        //     jugadores[i].apuesta = b
-        //     // console.log('apuesta', this.state)           
-        // }
+        const apostar =(i, b)=>{
+            jugadores[i].apuesta = b
+            // console.log('apuesta', this.state)        
+            let apuestasTotal = 0;
+            jugadores.map(function(jugador){
+                if(jugador.apuesta){
+                    apuestasTotal += 1;
+                }
+            } )
+            if(apuestasTotal === jugadores.length){
+                juego()
+            }   
+        }
 
-        // const responder = (i,x) =>{
-        //     jugadores[i].respuesta = x;
-        //     console.log('respuesta')
-        // }
+        const responder = (i,x) =>{
+            console.log('respuesta', this.state.respuesta)
+            jugadores[i].respuesta = x;
+            if(x === this.state.respuesta){
+                jugadores[i].resultado = true
+            }else{
+                jugadores[i].resultado = false
+            }
+            console.log('respuesta', this.state)
+        }
 
         const endGame=()=>{
             this.setState({onPregunta:false, onGame:false}
@@ -116,15 +131,15 @@ class Croupier extends React.Component{
         );}
         
         const juego=()=>{
-            giro();
-            setTimeout(()=>seccion(), 7000 )
-            console.log('inmediato',this.state.respuesta)
-            setTimeout(() => {
-                // revelacion()
-                console.log('espera7s', this.state.respuesta)
-            }, 7500);
+            calcVueltas();
+            seccion();
+            setTimeout(()=>{showQuestion()},7000)
+            
+            // setTimeout(() => {
+            //     revelacion()
+            //     console.log('espera7s', this.state)
+            // }, 7500);
 
-            // setTimeout(endGame,10000);
         }  
 
         return(
@@ -147,7 +162,7 @@ class Croupier extends React.Component{
                         :null}
 
                     <div className='asientosCont'>
-                        <Asientos juego={juego} replica= {respuesta} sentarse={tomarAsiento}  enJuego={onGame}></Asientos>
+                        <Asientos juego={juego} replica= {respuesta} sentarse={tomarAsiento}  apostar={apostar} responder={responder} enJuego={onGame}></Asientos>
                     </div>
 
 
@@ -156,9 +171,9 @@ class Croupier extends React.Component{
 
                     </div>
                 </div>
-                {/* {onGame ? null:
+                {onGame ? null:
                 <img src={boton} alt='boton' className='boton' onClick={juego}/>
-                } */}
+                }
             </div> 
         )
     }
