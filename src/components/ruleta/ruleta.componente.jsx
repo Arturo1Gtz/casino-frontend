@@ -13,7 +13,7 @@ import './ruleta.style.css';
 
 const Circulo = styled.img`
         position: absolute;
-        width: 700px;
+        width: 400px;
         transform:rotate(${props => props.vueltas}turn);
         transition: transform ${ props => props.giro ? `${props.tamano ? 5 : 7}s ease-out`: 'none'};
         `;

@@ -1,61 +1,55 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 
 import CustomBoton from '../custom-boton/custom-boton.componente';
 
 import Icon from '../../img/userphoto.svg';
-import Ficha1 from '../../img/fichaUno.png';
+// import Ficha1 from '../../img/fichaUno.png';
 import Ficha5 from '../../img/fichaCinco.png';
 
 import './jugador.style.scss';
 
-class Jugador extends React.Component{
-    constructor(props){
-        super(props);
-        this.state={
-            // valorFicha:0,
-            apuesta:0,
-            montoActual:10000,
-            cero:[],
-            uno:[],
-            dos:[],
-            tres:[]
-        }
-    }
-    render(){
-        let juego = this.props.enJuego;
-        console.log(juego)
+function Jugador (props){
+    console.log('jugador',props)
+    var {apuesta,acumulado} = props.jugador;
+    const[bet,setBet] = useState(apuesta);
+    const[montoActual, setMonto] = useState(acumulado);
+    const[chips, setChips] = useState([[],[],[],[]]);
+    var {responder, apostar, onGame} = props;
+        // let juego = this.props.onGame;
 
-    const aumentaApuesta=(a)=>{
-        const suma = this.state.apuesta + a;
-        const resta = this.state.montoActual - a;
-        let variable = undefined;
-        // let long = 0;
-        
-        switch(a){
-            case 1: variable = this.state.cero; break;
-            case 3: variable = this.state.uno;  break;
-            case 5: variable = this.state.dos;  break;
-            case 10:variable = this.state.tres; break;
+        const aumentaApuesta=(a)=>{
+            console.log('aumenta', a)
+            const suma = bet + a;
+            const resta = montoActual - a;
+            let vari = undefined;
+            // let long = 0;
+            
+            switch(a){
+                case 1:  vari=chips[0]; break;
+                case 3:  vari=chips[1]; break;
+                case 5:  vari=chips[2]; break;
+                case 10: vari=chips[3]; break;
+                default: break;
+            }
+
+            if(resta < 0 ||vari.length == 5){
+                return
+            }else{
+                vari.push(1);
+                setBet(suma);
+                setMonto(resta);
+            }
         }
 
-        if(resta < 0 ||variable.length == 8){
-            return
-        }else{
-            variable.push(1);
-            this.setState({apuesta: suma, montoActual:resta},() => 
-            console.log('cantidad',this.state));
+        const limpiar=()=>{
+            const suma = bet + montoActual;
+            setBet(0)
+            setMonto(suma)
+            setChips([[],[],[],[]])
+            
         }
-    }
-    const limpiar=()=>{
-        const suma = this.state.apuesta + this.state.montoActual;
-        this.setState({apuesta:0, montoActual:suma,cero:[],uno:[],dos:[],tres:[]},()=>
-        console.log(this.state));
-    }
-        // console.log(fichas1)
-    const apostar=()=>{
-        console.log('Aposto')
-        this.props.accion()
-    }
+
+    
 
         return(
          <div className='jugador'>
@@ -68,53 +62,73 @@ class Jugador extends React.Component{
             <div className='tarjeta'>
                 <div className='MontoCont'>
                     <span className='Titulo'>Monto Actual:</span> <br/>
-                    <span className='Monto'>$ {this.state.montoActual}</span>
+                    <span className='Monto'>$ {montoActual}</span>
                 </div>
-                <div className='fichasCont'>
-                    <img className='ficha' alt='ficha' src={Ficha5} onClick={()=>aumentaApuesta(1)}/>
-                    <img className='ficha' alt='ficha' src={Ficha5} onClick={()=>aumentaApuesta(3)}/>
-                    <img className='ficha' alt='ficha' src={Ficha5} onClick={()=>aumentaApuesta(5)}/>
-                    <img className='ficha' alt='ficha' src={Ficha5} onClick={()=>aumentaApuesta(10)}/>
+
+
+             { onGame?  <div className={'abcdCont'}>
+                    <span className='abcd' onClick={()=>responder('a')}>A</span>
+                    <span className='abcd' onClick={()=>responder('b')}>B</span>
+                    <span className='abcd' onClick={()=>responder('c')}>C</span>
+                    <span className='abcd' onClick={()=>responder('d')}>D</span>
+
+                </div>
+                
+                :<div className={`fichasCont ${apuesta?'off':null}`}>
+                    <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentaApuesta(1)}/>
+                    <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentaApuesta(3)}/>
+                    <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentaApuesta(5)}/>
+                    <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentaApuesta(10)}/>
                    
+                </div>}
+
+                <div className={`botonesCont ${apuesta?'off':null}`}>
+                    <CustomBoton type='button' onClick={apuesta?null:limpiar} color='rojo' lugar='tarj' >limpiar</CustomBoton>
+                    <CustomBoton color='amarillo' lugar='tarj' onClick={apuesta ? null : ()=> apostar(bet)}>apostar</CustomBoton>
+
                 </div>
-
-                <div className='botonesCont'>
-                    <CustomBoton type='button' onClick={limpiar} color='rojo' lugar='tarj' >limpiar</CustomBoton>
-                    <CustomBoton color='amarillo' lugar='tarj' onClick={juego ? null : apostar}>apostar</CustomBoton>
-
-                </div>
-
+            
+            
                 <div className='apuestaCont' >
                     <div className='fichCont'>
+                    {/* {chips.map(function(fila){
+                        <div className='fichas'>{
+                           fila.map((value, index)=>{
+                               return <img className='fichaPeq' style={{bottom:`${3 + index}%`}} alt='ficha' src={Ficha5}/>
+                           })}
+                        </div>
+                    })} */}
+
+                            
                         <div className='fichas'>
-                           {this.state.cero.map((value, index)=>{
+                           {chips[0].map((value, index)=>{
                                return <img className='fichaPeq' style={{bottom:`${3 + index}%`}} alt='ficha' src={Ficha5}/>
                            })}
                         </div>
                         <div className='fichas'>
-                           {this.state.uno.map((value, index)=>{
+                           {chips[1].map((value, index)=>{
                                return <img className='fichaPeq' style={{bottom:`${3 + index}%`}} alt='ficha' src={Ficha5}/>
                            })}
                         </div>
                         <div className='fichas'>
-                           {this.state.dos.map((value, index)=>{
+                           {chips[2].map((value, index)=>{
                                return <img className='fichaPeq' style={{bottom:`${3 + index}%`}} alt='ficha' src={Ficha5}/>
                            })}
                         </div>
                         <div className='fichas'>
-                           {this.state.tres.map((value, index)=>{
+                           {chips[3].map((value, index)=>{
                                return <img className='fichaPeq' style={{bottom:`${3 + index}%`}} alt='ficha' src={Ficha5}/>
                            })}
                         </div>
                     </div>
-                    <span className='apuestaTotal'>$ {this.state.apuesta}</span>
+                    <span className='apuestaTotal'>$ {bet}</span>
                     
                 </div>
             </div>
 
          </div>
         )
-    }
+    
 };
 
 export default Jugador;
