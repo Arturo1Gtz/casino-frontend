@@ -15,7 +15,7 @@ const MainPage = ({currentUser}) => {
                     <RoomsPaige/>
                     :
                     <SignInAndSignUpPage/>
-                }
+                }else []
         </div>
     );
 };

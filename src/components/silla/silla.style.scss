@@ -58,14 +58,6 @@
             opacity: 0;
         }
     }
-            // .imgContainer{
-            //     .Img{
-            //         &:hover{
-            //             opacity: 0.7;
-            //             cursor: pointer;
-            //         }
-            //     }
-            // }
 
     .imgContainer{
         z-index: 2;
@@ -76,6 +68,16 @@
                 opacity: 0.7;
                 cursor: pointer;
             }
+        }
+        .verde{
+            border: 5px solid #ACFF10;
+            border-radius: 100%;
+            
+        }
+        .rojo{
+            border: 5px solid red;
+            border-radius: 100%;
+
         }
     }
     .datosContainer{

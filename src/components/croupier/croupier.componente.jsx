@@ -33,6 +33,7 @@ class Croupier extends React.Component{
             onGame: false,
             onGiro:false,
             onPregunta:false,
+            onRevelacion:false,
             vueltasEx: 0,
             vueltasIn: 0,
             pregunta: 0,
@@ -41,15 +42,13 @@ class Croupier extends React.Component{
             acSeccIn: 0,
             acSeccEx:0,
             respuesta:'', 
-            jugadores:[{ocupado:true, apuesta: 50, respuesta:'b',resultado:undefined},{ocupado:true, apuesta: 50, respuesta: 'c',resultado:undefined}]
+            jugadores:[{ocupado:true, apuesta: 50, respuesta:'c',resultado:true},{ocupado:true, apuesta: 50, respuesta: 'a',resultado:false}]
         }
     }
     
     render(){
-        const {onGame, onGiro, onPregunta, vueltasEx, vueltasIn,seccEx,seccIn, jugadores, respuesta,asiento} = this.state;
-        
-        
-        
+        const {onGame, onGiro, onPregunta, onRevelacion, vueltasEx, vueltasIn,seccEx,seccIn , acSeccEx, acSeccIn, jugadores, pregunta, respuesta,asiento} = this.state;
+                
         const giro = () =>{
             calcVueltas();
             setTimeout(sinGiro,7000);
@@ -85,8 +84,9 @@ class Croupier extends React.Component{
         const showQuestion=()=>{
             this.setState({onPregunta: true});
         }
+
         const revelacion =()=>{
-            console.log('respuesta', respuesta)
+            this.setState({onRevelacion:true})
         }
 
         const tomarAsiento=()=>{
@@ -103,43 +103,42 @@ class Croupier extends React.Component{
         const apostar =(i, b)=>{
             jugadores[i].apuesta = b
             // console.log('apuesta', this.state)        
-            let apuestasTotal = 0;
-            jugadores.map(function(jugador){
-                if(jugador.apuesta){
-                    apuestasTotal += 1;
-                }
-            } )
-            if(apuestasTotal === jugadores.length){
-                juego()
-            }   
+            // let apuestasTotal = 0;
+            // jugadores.map(function(jugador){
+            //     if(jugador.apuesta){
+            //         apuestasTotal += 1;
+            //     }
+            // } )
+            // if(apuestasTotal === jugadores.length){
+            //     juego()
+            // }   
         }
 
         const responder = (i,x) =>{
-            console.log('respuesta', this.state.respuesta)
-            jugadores[i].respuesta = x;
+            // console.log('respuesta', this.state.respuesta)
+            const newjugadores = [...jugadores];
+
+            newjugadores[i].respuesta = x;
             if(x === this.state.respuesta){
-                jugadores[i].resultado = true
+                newjugadores[i].resultado = true
             }else{
-                jugadores[i].resultado = false
+                newjugadores[i].resultado = false
             }
-            console.log('respuesta', this.state)
+            this.setState({jugadores:newjugadores})
+
+            // console.log('respuesta', this.state)
         }
 
         const endGame=()=>{
-            this.setState({onPregunta:false, onGame:false}
+            this.setState({onGame:false, onPregunta:false, onRevelacion:false}
                 ,()=> console.log('endgame',this.state.jugadores)
         );}
         
         const juego=()=>{
-            calcVueltas();
+            giro();
             seccion();
             setTimeout(()=>{showQuestion()},7000)
-            
-            // setTimeout(() => {
-            //     revelacion()
-            //     console.log('espera7s', this.state)
-            // }, 7500);
-
+            setTimeout(()=>{revelacion()},22000)
         }  
 
         return(
@@ -156,13 +155,13 @@ class Croupier extends React.Component{
                     </div>
                         {onPregunta?
                         <div className='cuestionarioCont'>
-                            <Cuestionario seccPregunta={this.state.acSeccEx} apuesta={this.state.acSeccIn} pregunta={this.state.pregunta} > </Cuestionario>
+                            <Cuestionario seccPregunta={acSeccEx} apuesta={acSeccIn} pregunta={pregunta} revelado={onRevelacion} > </Cuestionario>
 
                         </div>
                         :null}
 
                     <div className='asientosCont'>
-                        <Asientos juego={juego} replica= {respuesta} sentarse={tomarAsiento}  apostar={apostar} responder={responder} enJuego={onGame}></Asientos>
+                        <Asientos juego={juego} end={endGame} replica= {respuesta} sentarse={tomarAsiento}  apostar={apostar} responder={responder} enJuego={onGame} revelado={onRevelacion}></Asientos>
                     </div>
 
 
@@ -171,9 +170,9 @@ class Croupier extends React.Component{
 
                     </div>
                 </div>
-                {onGame ? null:
+                {/* {onGame ? null:
                 <img src={boton} alt='boton' className='boton' onClick={juego}/>
-                }
+                } */}
             </div> 
         )
     }

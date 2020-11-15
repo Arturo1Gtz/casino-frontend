@@ -1,22 +1,54 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Silla from '../silla/silla.component';
 import Jugador from '../jugador/jugador.componente';
 
 import './asientos.styles.scss';
 
 function Asientos(props){
+    const {sentarse,  replica, enJuego, juego, apostar, responder, revelado, end} = props;
     
     const [player, setPlayer] = useState({nombre: 'arturo03', acumulado:10000, sentado: false, asiento:null})
-    const [players, sePlayers] = useState([{nombre: 'juan02', acumulado:10000, apuesta: 50, resp: 'c', res: null},{nombre: 'eric05', acumulado:10000, apuesta: 50, resp: 'a', res: null}]);
+    const [players, setPlayers] = useState([{nombre: 'juan02', acumulado:10000, apuesta: 50, respuesta: 'c', res: true},{nombre: 'eric05', acumulado:10000, apuesta: 50, respuesta: 'a', res: false}]);
     const jugadores = players.filter(jugador=>jugador.nombre !== player.nombre);
-    const {sentarse,  replica, enJuego, juego, apostar, responder} = props;
 
+    //jugador state
+    const[bet,setBet] = useState(0);
+    const[montoActual, setMonto] = useState(player.acumulado);
+    const[chips, setChips] = useState([[],[],[],[]]);
 
+    //jugador funciones
+    const aumentaApuesta=(a,row)=>{
+        console.log('aumenta', a)
+        const suma = bet + a
+        const resta = montoActual - a;
+        // let row = undefined;
+        if(resta < 0 ||chips[row].length == 5){
+            return
+        }else{
+            let newchips = chips;
+            newchips[row].push(1);
+            setChips(newchips)
+            setBet(suma);
+            setMonto(resta);
+        }
+    }
+
+    const limpiar=()=>{
+        const suma = bet + montoActual;
+        // bet = 0
+        // montoActual += bet
+        setBet(0)
+        setMonto(suma)
+        setChips([[],[],[],[]])
+        
+    }
+
+    //functions 
     const sit =()=>{
         console.log(player)
         if(player.sentado === false){
             player.asiento = players.length
-            players.push({nombre:player.nombre, acumulado:player.acumulado, apuesta:0, resp:null,res: null})
+            players.push({nombre:player.nombre, acumulado:player.acumulado, apuesta:0, respuesta:null, res: null})
             player.sentado = true;
             console.log(players)
             sentarse()
@@ -24,57 +56,106 @@ function Asientos(props){
         }else{return}
     }
     const answer = (y)=>{
-        players[player.asiento].respuesta = y;
-        responder(player.asiento, y)
+        const newplayers = players;
+        newplayers[player.asiento].respuesta = y;
+        setPlayers(newplayers)
         // respuesta(player.asiento,y);
         if(players[player.asiento].respuesta === replica){
             players[player.asiento].res = true
         }else{ 
             players[player.asiento].res = false
         }
+        responder(player.asiento, y)
+
         console.log('answer', players)
     }
-    const apuesta = (bet) =>{
+    const apuesta = () =>{
         players[player.asiento].apuesta = bet;
         // apuesta(player.asiento,bet)
-        console.log('asientos apuesta', players)
-
         apostar(player.asiento,bet)
+        
+        let apuestasTotal = 0;
+        players.map(function(jugador){
+            if(jugador.apuesta){
+                apuestasTotal += 1;
+            }
+        } )
+        if(apuestasTotal === players.length){
+            game()
+        }   
+        console.log('asientos apuesta', players)
     }; 
     const pago = () =>{
-        players.map(function(jugador){
-            console.log(jugador.nombre, replica);
-            if(jugador.respuesta === replica){
+        let newPlayers = players;
+        let newJugador = player;
+
+        if(players[player.asiento].res){
+            newJugador.acumulado += players[player.asiento].apuesta;
+        }else{
+            newJugador.acumulado -= players[player.asiento].apuesta;
+
+        }
+
+        newPlayers.map(function(jugador){
+            if(jugador.res){
                 console.log(jugador.nombre,'gano');
-                jugador.acumulado += (jugador.apuesta * 2);
+                jugador.acumulado += (jugador.apuesta );
             }else{
+                jugador.acumulado -= (jugador.apuesta );
                 console.log(jugador.nombre,'perdio');
             }
         })
+        setPlayer(newJugador)
+        setPlayers(newPlayers);
+        setMonto(player.acumulado);
+        console.log( player)
+        console.log(players)
+
+    }
+
+    const finalizar = () =>{
+        let newPlayers = players;
+
+        newPlayers[player.asiento].apuesta = 0;
+        newPlayers[player.asiento].respuesta = null;
+        newPlayers[player.asiento].res = null;
+        
+        // newPlayers.map(function(jugador){
+        //     jugador.apuesta= 0;
+        //     jugador.respuesta= null;
+        //     jugador.res= null;
+        // })
+
+        setBet(0)
+        setChips([[],[],[],[]])
+        // setMonto(player.acumulado)
+        end()
     }
     const game = ()=>{
         juego()
-        
         setTimeout(()=>pago(),22000)
+        setTimeout(()=>finalizar(),24000)
     };
+
+
     return(
         <div className={'asientos'}>
             <div className={'jugadoresCont'}>
                 <div className={'Contenedor izq'}>
-                    <div className={'asiento'}><Silla  align={'izq'} ident={jugadores[0]} tomarAsiento={sit} ></Silla></div>
-                    <div className={'asiento'}><Silla  align={'izq'} ident={jugadores[1]} tomarAsiento={sit}></Silla></div>
-                    <div className={'asiento'}><Silla  align={'izq'} ident={jugadores[2]} tomarAsiento={sit}></Silla></div>
+                    <div className={'asiento'}><Silla  align={'izq'} ident={jugadores[0]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
+                    <div className={'asiento'}><Silla  align={'izq'} ident={jugadores[1]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
+                    <div className={'asiento'}><Silla  align={'izq'} ident={jugadores[2]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
                     
                 </div>
                 <div className={'Contenedor der'}>
-                    <div className={'asiento'}><Silla align={'der'} ident={jugadores[3]} tomarAsiento={sit}></Silla></div>
-                    <div className={'asiento'}><Silla align={'der'} ident={jugadores[4]} tomarAsiento={sit}></Silla></div>
-                    <div className={'asiento'}><Silla align={'der'} ident={jugadores[5]} tomarAsiento={sit}></Silla></div>
+                    <div className={'asiento'}><Silla align={'der'} ident={jugadores[3]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
+                    <div className={'asiento'}><Silla align={'der'} ident={jugadores[4]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
+                    <div className={'asiento'}><Silla align={'der'} ident={jugadores[5]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
 
                 </div>
             </div>
         <div className={'jugadorCont'}>
-            {player.sentado ?<Jugador jugador={players[player.asiento]} onGame={enJuego} apostar= {apuesta} responder={answer}></Jugador>:<Silla align={'cabz'} ident={jugadores[6]} tomarAsiento={sit}></Silla>}
+            {player.sentado ?<Jugador respuesta={players[player.asiento].respuesta} apuesta={players[player.asiento].apuesta} bet={bet} monto={montoActual} fichas={chips} aumentar={aumentaApuesta} clean={limpiar} onGame={enJuego} apostar= {apuesta} responder={answer}></Jugador>:<Silla align={'cabz'} ident={jugadores[6] } tomarAsiento={sit} revelacion= {revelado} ></Silla>}
             {/* {jugando?<span>diosmio</span>:<span>agarranosconfesados</span>} */}
         </div>
         </div>
