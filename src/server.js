@@ -10,8 +10,10 @@ const {
     userJoin,
     userLeave,
     getMesaPlayers,
-    getMesaSpectators
-} = require('./utils/manageusers');
+    getMesaSpectators,
+    getCurrentUser
+} = require('./utils/manageusers');0
+
 
 const formatMessage = require('./utils/handlemessages');
 const { emit } = require('process');
@@ -22,6 +24,7 @@ const chatBot = {
     name: "Croupier",
     id: "00"
 };
+
 //Cuando alguien se conecta
 io.on('connection', socket => {
     socket.on('joinMesa', ({tipo, mesa, nickname, avatar, saldo}) => {
@@ -48,10 +51,15 @@ io.on('connection', socket => {
     });
 
     //Esperar por pregunta para todos
-    socket.on('pregunta', pregunta => {
+    socket.on('vueltas', () => {
         const user = getCurrentUser(socket.id);
         //Mandar pregunta a la mesa
-        io.to(user.mesa).emit('pregunta', pregunta);
+        const vext = Math.random() * (25- 10) + 10;
+        const vint = Math.random() * (25- 10) + 10;
+        console.log(`ext ${vext} int ${vint} a mesa ${user.mesa}`);
+        io.to(user.mesa).emit("vext", vint);
+        io.to(user.mesa).emit("vint", vint);
+
     })
     
     //Cuando alguien se desconecta

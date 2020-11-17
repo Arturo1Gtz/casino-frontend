@@ -21,7 +21,6 @@ const mesa = "1";
 
 
 
-
 class Croupier extends React.Component{
     
     constructor (props){
@@ -52,7 +51,18 @@ class Croupier extends React.Component{
             setTimeout(sinGiro,7000);
         }
         const calcVueltas=()=>{
-            this.setState({onGame:true, onGiro:true,  vueltasEx:Math.random() * (25- 10) + 10 ,vueltasIn:Math.random() * (25- 10) + 10}
+            var ext;
+            var int;
+            socket.emit("vueltas");
+            socket.on("vext", vext => {
+                console.log(vext);
+                ext = vext;
+            });
+            socket.on("vint", vint => {
+                console.log(vint);
+                int = vint;
+            })
+            this.setState({onGame:true, onGiro:true,  vueltasEx:ext,vueltasIn:int}
             // ,() => console.log('vueltas',this.state)
         );}
         const sinGiro =()=>{

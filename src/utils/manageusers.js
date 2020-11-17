@@ -18,6 +18,11 @@ function userLeave(id) {
   }
 }
 
+//Get current user
+function getCurrentUser(id) {
+  return users.find(user => user.id === id);
+}
+
 // Get mesa players
 function getMesaPlayers(room) {
   return users.filter(user => user.room === room && user.tipo === "player");
@@ -32,5 +37,6 @@ module.exports = {
   userJoin,
   userLeave,
   getMesaPlayers,
-  getMesaSpectators
+  getMesaSpectators,
+  getCurrentUser
 };
