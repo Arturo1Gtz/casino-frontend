@@ -13,8 +13,8 @@ const RoomsPaige = ({history, currentUser})=> {
     function ruleta(){
         history.push('/ruleta');
     }
-    // if(currentUser.imgurl != "") {
-    if('GOMD' !== "") {
+    // if('GOMD' !== "") {
+    if(currentUser.imgurl != "") {
       return(
         <div className='mainContainer'>
           <GameBanner action={ruleta} titulo={'Mesa 1'} imagen={fondoRuleta}  />

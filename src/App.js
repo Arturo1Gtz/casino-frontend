@@ -46,8 +46,8 @@ class App extends React.Component {
         <Header className='encabezado' /> 
         <div className='mainContainer'>
             
-            {/* {currentUser ?  */}
-            {true ? 
+            {/* {true ?  */}
+            {currentUser ? 
               <div className='contenido'>
                 <Switch>
                   <Route exact path='/' component={RoomsPaige} />
