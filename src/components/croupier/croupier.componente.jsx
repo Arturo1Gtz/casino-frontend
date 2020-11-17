@@ -16,13 +16,11 @@ import io from 'socket.io-client'
 const socket = io("http://localhost:3001");
 
 const tipo = "player";
-const mesa = 1;
 
-socket.emit('joinMesa', {tipo, mesa});
+const mesa = "1";
 
-socket.on('message', message => {
-    console.log(message);
-});
+
+
 
 class Croupier extends React.Component{
     
@@ -161,7 +159,7 @@ class Croupier extends React.Component{
                         :null}
 
                     <div className='asientosCont'>
-                        <Asientos juego={juego} end={endGame} replica= {respuesta} sentarse={tomarAsiento}  apostar={apostar} responder={responder} enJuego={onGame} revelado={onRevelacion}></Asientos>
+                        <Asientos juego={juego} end={endGame} replica= {respuesta} sentarse={tomarAsiento}  apostar={apostar} responder={responder} enJuego={onGame} revelado={onRevelacion} socket={socket} mesa={mesa} tipo={tipo}></Asientos>
                     </div>
 
 

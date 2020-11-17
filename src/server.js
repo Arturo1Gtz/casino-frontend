@@ -24,13 +24,13 @@ const chatBot = {
 };
 //Cuando alguien se conecta
 io.on('connection', socket => {
-    socket.on('joinMesa', ({tipo, mesa, usuario}) => {
-        const user = userJoin(socket.id, tipo, mesa, usuario);
+    socket.on('joinMesa', ({tipo, mesa, nickname, avatar, saldo}) => {
+        const user = userJoin(socket.id, tipo, mesa, nickname, avatar, saldo);
 
         socket.join(user.mesa);
 
         //Anuncio de ususario unido
-        socket.emit('message', formatMessage(chatBot, `${user.usuario.nickname} se ha unido a la mesa`));
+        socket.emit('message', formatMessage(chatBot, `${user.nickname} se ha unido a la mesa`));
 
         //Send players and mesa info
         io.to(user.mesa).emit('mesaPlayers', {
@@ -59,7 +59,7 @@ io.on('connection', socket => {
         const user = userLeave(socket.id);
         if(user){
             //Anuncio un jugador se ha ido
-            io.to(user.mesa).emit('message', formatMessage(chatBot, `${user.usuario.nickname} a abandonado la mesa.`));
+            io.to(user.mesa).emit('message', formatMessage(chatBot, `${user.nickname} a abandonado la mesa.`));
             
             //Actualizacion de listas
             if(user.tipo === "player"){
