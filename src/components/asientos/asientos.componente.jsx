@@ -4,9 +4,20 @@ import Jugador from '../jugador/jugador.componente';
 
 import './asientos.styles.scss';
 
+
+const usuario = {
+    nickname: "PedritoSola",
+    avatar: "imagenshida",
+    saldo: 0
+};
+
+
 function Asientos(props){
-    const {sentarse,  replica, enJuego, juego, apostar, responder, revelado, end} = props;
-    
+    const {sentarse,  replica, enJuego, juego, apostar, responder, revelado, end, socket, mesa, tipo} = props;
+
+    //conexion a socket
+    socket.emit('joinMesa', {tipo, mesa, usuario});
+
     const [player, setPlayer] = useState({nombre: 'arturo03', acumulado:10000, sentado: false, asiento:null})
     const [players, setPlayers] = useState([{nombre: 'juan02', acumulado:10000, apuesta: 50, respuesta: 'c', res: true},{nombre: 'eric05', acumulado:10000, apuesta: 50, respuesta: 'a', res: false}]);
     const jugadores = players.filter(jugador=>jugador.nombre !== player.nombre);

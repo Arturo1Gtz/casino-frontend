@@ -16,13 +16,10 @@ import io from 'socket.io-client'
 const socket = io("http://localhost:3001");
 
 const tipo = "player";
-const mesa = 1;
 
-socket.emit('joinMesa', {tipo, mesa});
+const mesa = "1";
 
-socket.on('message', message => {
-    console.log(message);
-});
+
 
 class Croupier extends React.Component{
     
@@ -54,8 +51,19 @@ class Croupier extends React.Component{
             setTimeout(sinGiro,7000);
         }
         const calcVueltas=()=>{
-            this.setState({onGame:true, onGiro:true,  vueltasEx:Math.random() * (25- 10) + 10 ,vueltasIn:Math.random() * (25- 10) + 10}
-            ,() => console.log('vueltas',this.state)
+            var ext;
+            var int;
+            socket.emit("vueltas");
+            socket.on("vext", vext => {
+                console.log(vext);
+                ext = vext;
+            });
+            socket.on("vint", vint => {
+                console.log(vint);
+                int = vint;
+            })
+            this.setState({onGame:true, onGiro:true,  vueltasEx:ext,vueltasIn:int}
+            // ,() => console.log('vueltas',this.state)
         );}
         const sinGiro =()=>{
             const actualDegE = this.state.vueltasEx - Math.floor(this.state.vueltasEx);
@@ -162,7 +170,7 @@ class Croupier extends React.Component{
                         :null}
 
                     <div className='asientosCont'>
-                        <Asientos juego={juego} end={endGame} replica= {respuesta} sentarse={tomarAsiento}  apostar={apostar} responder={responder} enJuego={onGame} revelado={onRevelacion}></Asientos>
+                        <Asientos juego={juego} end={endGame} replica= {respuesta} sentarse={tomarAsiento}  apostar={apostar} responder={responder} enJuego={onGame} revelado={onRevelacion} socket={socket} mesa={mesa} tipo={tipo}></Asientos>
                     </div>
 
 

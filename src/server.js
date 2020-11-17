@@ -10,8 +10,10 @@ const {
     userJoin,
     userLeave,
     getMesaPlayers,
-    getMesaSpectators
-} = require('./utils/manageusers');
+    getMesaSpectators,
+    getCurrentUser
+} = require('./utils/manageusers');0
+
 
 const formatMessage = require('./utils/handlemessages');
 const { emit } = require('process');
@@ -22,15 +24,16 @@ const chatBot = {
     name: "Croupier",
     id: "00"
 };
+
 //Cuando alguien se conecta
 io.on('connection', socket => {
-    socket.on('joinMesa', ({tipo, mesa, usuario}) => {
-        const user = userJoin(socket.id, tipo, mesa, usuario);
+    socket.on('joinMesa', ({tipo, mesa, nickname, avatar, saldo}) => {
+        const user = userJoin(socket.id, tipo, mesa, nickname, avatar, saldo);
 
         socket.join(user.mesa);
 
         //Anuncio de ususario unido
-        socket.emit('message', formatMessage(chatBot, `${user.usuario.nickname} se ha unido a la mesa`));
+        socket.emit('message', formatMessage(chatBot, `${user.nickname} se ha unido a la mesa`));
 
         //Send players and mesa info
         io.to(user.mesa).emit('mesaPlayers', {
@@ -48,10 +51,15 @@ io.on('connection', socket => {
     });
 
     //Esperar por pregunta para todos
-    socket.on('pregunta', pregunta => {
+    socket.on('vueltas', () => {
         const user = getCurrentUser(socket.id);
         //Mandar pregunta a la mesa
-        io.to(user.mesa).emit('pregunta', pregunta);
+        const vext = Math.random() * (25- 10) + 10;
+        const vint = Math.random() * (25- 10) + 10;
+        console.log(`ext ${vext} int ${vint} a mesa ${user.mesa}`);
+        io.to(user.mesa).emit("vext", vint);
+        io.to(user.mesa).emit("vint", vint);
+
     })
     
     //Cuando alguien se desconecta
@@ -59,7 +67,7 @@ io.on('connection', socket => {
         const user = userLeave(socket.id);
         if(user){
             //Anuncio un jugador se ha ido
-            io.to(user.mesa).emit('message', formatMessage(chatBot, `${user.usuario.nickname} a abandonado la mesa.`));
+            io.to(user.mesa).emit('message', formatMessage(chatBot, `${user.nickname} a abandonado la mesa.`));
             
             //Actualizacion de listas
             if(user.tipo === "player"){
