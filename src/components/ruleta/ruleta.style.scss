@@ -1,0 +1,20 @@
+.ruleta{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    .elemento{
+        position: absolute;
+        width: 400px;
+    }
+    
+    &__selector{
+        position: absolute;
+        width: 400px;
+        transform: rotate(-90deg);
+    }
+}
+
+
+

@@ -55,20 +55,20 @@ class Croupier extends React.Component{
         }
         const calcVueltas=()=>{
             this.setState({onGame:true, onGiro:true,  vueltasEx:Math.random() * (25- 10) + 10 ,vueltasIn:Math.random() * (25- 10) + 10}
-            // ,() => console.log('vueltas',this.state)
+            ,() => console.log('vueltas',this.state)
         );}
         const sinGiro =()=>{
             const actualDegE = this.state.vueltasEx - Math.floor(this.state.vueltasEx);
             const actualDegI = this.state.vueltasIn - Math.floor(this.state.vueltasIn);
 
             this.setState({onGiro: false, vueltasEx: actualDegE, vueltasIn: actualDegI}
-            // ,() => console.log('simGiro',this.state)
+            ,() => console.log('simGiro',this.state)
             
         );}
 
         const seccion = () =>{
-            const actualSeccEx = Math.floor(vueltasEx*seccEx);
-            const actualSeccIn = Math.floor(vueltasIn*seccIn);
+            const actualSeccEx = Math.floor(this.state.vueltasEx * this.state.seccEx);
+            const actualSeccIn = Math.floor(this.state.vueltasIn * this.state.seccIn);
             const preguntaNumero= Math.floor(Math.random() * (4))
             
             const seccion = Preguntas[actualSeccEx];
@@ -77,7 +77,7 @@ class Croupier extends React.Component{
             const answer = respuestaObj[0].respuesta; 
 
             this.setState({acSeccEx:actualSeccEx, acSeccIn:actualSeccIn, pregunta: preguntaNumero, respuesta:answer}
-                // ,()=>console.log('cuestionario', this.state.respuesta)
+                ,()=>console.log('cuestionario', this.state)
                 );
                 
         }
@@ -136,8 +136,9 @@ class Croupier extends React.Component{
         
         const juego=()=>{
             giro();
-            seccion();
-            setTimeout(()=>{showQuestion()},7000)
+            
+            setTimeout(()=>{seccion()},7001)
+            setTimeout(()=>{showQuestion()},7003)
             setTimeout(()=>{revelacion()},22000)
         }  
 
@@ -153,7 +154,7 @@ class Croupier extends React.Component{
                         <Ruleta  vueltasE={vueltasEx} vueltasI={vueltasIn} giro={onGiro}></Ruleta>
 
                     </div>
-                        {onPregunta?
+                        {false?
                         <div className='cuestionarioCont'>
                             <Cuestionario seccPregunta={acSeccEx} apuesta={acSeccIn} pregunta={pregunta} revelado={onRevelacion} > </Cuestionario>
 
@@ -170,9 +171,9 @@ class Croupier extends React.Component{
 
                     </div>
                 </div>
-                {/* {onGame ? null:
+                {onGame ? null:
                 <img src={boton} alt='boton' className='boton' onClick={juego}/>
-                } */}
+                }
             </div> 
         )
     }

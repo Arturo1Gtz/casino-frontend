@@ -9,7 +9,7 @@ import ruletaEx from '../../img/ruletaExterna.png';
 import ruletaIn from '../../img/ruletaInterna.png';
 import selector from '../../img/ruletaSelector.png';
 
-import './ruleta.style.css';
+import './ruleta.style.scss';
 
 const Circulo = styled.img`
         position: absolute;
@@ -25,7 +25,7 @@ function Ruleta(props) {
             <img src={fondo} alt='fondo' className='elemento'/>
             <Circulo src={ruletaEx} vueltas={props.vueltasE} giro={props.giro} tamano={true}/>
             <Circulo src={ruletaIn} vueltas={props.vueltasI} giro={props.giro}/>
-            <img src={selector} alt='selector' className='elemento selector'/>
+            <img src={selector} alt='selector' className='ruleta__selector'/>
 
             
         </div>
