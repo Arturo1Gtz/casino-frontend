@@ -1,8 +1,8 @@
 const users = [];
 
 // Join user to chat
-function userJoin(id, tipo, room) {
-  const user = { id, tipo, room };
+function userJoin(id, tipo, mesa) {
+  const user = { id, tipo, mesa };
 
   users.push(user);
 
@@ -24,13 +24,13 @@ function getCurrentUser(id) {
 }
 
 // Get mesa players
-function getMesaPlayers(room) {
-  return users.filter(user => user.room === room && user.tipo === "player");
+function getMesaPlayers(mesa) {
+  return users.filter(user => user.mesa === mesa && user.tipo === "player");
 }
 
 // Get mesa spectator
-function getMesaSpectators(room) {
-    return users.filter(user => user.room === room && user.tipo === "spectator");
+function getMesaSpectators(mesa) {
+    return users.filter(user => user.mesa === mesa && user.tipo === "spectator");
 }
 
 module.exports = {

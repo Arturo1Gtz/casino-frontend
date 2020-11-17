@@ -51,19 +51,17 @@ class Croupier extends React.Component{
             setTimeout(sinGiro,7000);
         }
         const calcVueltas=()=>{
-            var ext;
-            var int;
             socket.emit("vueltas");
             socket.on("vext", vext => {
                 console.log(vext);
-                ext = vext;
+                this.setState({vueltasEx:vext},() => console.log('calamares',this.state));
             });
             socket.on("vint", vint => {
                 console.log(vint);
-                int = vint;
-            })
-            this.setState({onGame:true, onGiro:true,  vueltasEx:ext,vueltasIn:int}
-            // ,() => console.log('vueltas',this.state)
+                this.setState({vueltasIn:vint},() => console.log('calamares',this.state));
+            });
+            this.setState({onGame:true, onGiro:true}
+             ,() => console.log('vueltas',this.state)
         );}
         const sinGiro =()=>{
             const actualDegE = this.state.vueltasEx - Math.floor(this.state.vueltasEx);
