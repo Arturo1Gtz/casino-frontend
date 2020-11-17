@@ -10,7 +10,10 @@ function Asientos(props){
     const [player, setPlayer] = useState({nombre: 'arturo03', acumulado:10000, sentado: false, asiento:null})
     const [players, setPlayers] = useState([{nombre: 'juan02', acumulado:10000, apuesta: 50, respuesta: 'c', res: true},{nombre: 'eric05', acumulado:10000, apuesta: 50, respuesta: 'a', res: false}]);
     const jugadores = players.filter(jugador=>jugador.nombre !== player.nombre);
-
+    // let sentado =  false;
+    
+    console.log('mesa' , players)
+    // console.log( sentado, 'sentado')
     //jugador state
     const[bet,setBet] = useState(0);
     const[montoActual, setMonto] = useState(player.acumulado);
@@ -35,26 +38,51 @@ function Asientos(props){
 
     const limpiar=()=>{
         const suma = bet + montoActual;
-        // bet = 0
-        // montoActual += bet
         setBet(0)
         setMonto(suma)
         setChips([[],[],[],[]])
         
     }
 
-    //functions 
-    const sit =()=>{
-        console.log(player)
-        if(player.sentado === false){
-            player.asiento = players.length
-            players.push({nombre:player.nombre, acumulado:player.acumulado, apuesta:0, respuesta:null, res: null})
-            player.sentado = true;
-            console.log(players)
-            sentarse()
 
+    // Messaunctions 
+    const sit =()=>{
+        let newplayers = players;
+        let newplayer = player;
+        console.log('sit', newplayers, newplayer)
+        if(newplayer.sentado === false){
+            newplayer.asiento = players.length
+            newplayers.push({nombre:player.nombre, acumulado:player.acumulado, apuesta:0, respuesta:null, res: null})
+            newplayer.sentado = true;
+            setPlayers(newplayers)
+            setPlayer(newplayer)
+            console.log('sit2', newplayers, newplayer)
+            sentarse()
+            
         }else{return}
     }
+
+    const standUp =()=>{
+        // console.log('stand')
+        // const newPlayers = players;
+        const newplayer = player;
+
+        let newplayers = players.filter(function(jugador){
+            if(jugador.nombre !== player.nombre){
+                console.log(jugador)
+                return jugador
+            }else{
+                return
+            }
+        });
+
+        newplayer.sentado = false;
+        setPlayers(newplayers)
+        setPlayer(newplayer)
+        console.log('stand', players, player)
+        // const newJu
+    }
+
     const answer = (y)=>{
         const newplayers = players;
         newplayers[player.asiento].respuesta = y;
@@ -69,11 +97,10 @@ function Asientos(props){
 
         console.log('answer', players)
     }
+
     const apuesta = () =>{
         players[player.asiento].apuesta = bet;
-        // apuesta(player.asiento,bet)
-        apostar(player.asiento,bet)
-        
+    
         let apuestasTotal = 0;
         players.map(function(jugador){
             if(jugador.apuesta){
@@ -85,6 +112,7 @@ function Asientos(props){
         }   
         console.log('asientos apuesta', players)
     }; 
+
     const pago = () =>{
         let newPlayers = players;
         let newJugador = player;
@@ -108,8 +136,6 @@ function Asientos(props){
         setPlayer(newJugador)
         setPlayers(newPlayers);
         setMonto(player.acumulado);
-        console.log( player)
-        console.log(players)
 
     }
 
@@ -134,10 +160,17 @@ function Asientos(props){
     const game = ()=>{
         juego()
         setTimeout(()=>pago(),22000)
-        setTimeout(()=>finalizar(),24000)
+        setTimeout(()=>finalizar(),26000)
     };
 
+    // useEffect(()=>{
+    //     players.map(function(jugador){
+    //         if(jugador.nombre == player.nombre){
+    //             sentado = true;
+    //         }
 
+    //     })
+    // })
     return(
         <div className={'asientos'}>
             <div className={'jugadoresCont'}>
@@ -155,7 +188,7 @@ function Asientos(props){
                 </div>
             </div>
         <div className={'jugadorCont'}>
-            {player.sentado ?<Jugador respuesta={players[player.asiento].respuesta} apuesta={players[player.asiento].apuesta} bet={bet} monto={montoActual} fichas={chips} aumentar={aumentaApuesta} clean={limpiar} onGame={enJuego} apostar= {apuesta} responder={answer}></Jugador>:<Silla align={'cabz'} ident={jugadores[6] } tomarAsiento={sit} revelacion= {revelado} ></Silla>}
+            {player.sentado ?<Jugador levantarse={standUp} respuesta={players[player.asiento].respuesta} apuesta={players[player.asiento].apuesta} bet={bet} monto={montoActual} fichas={chips} aumentar={aumentaApuesta} clean={limpiar} onGame={enJuego} apostar= {apuesta} responder={answer}></Jugador>:<Silla align={'cabz'} ident={jugadores[6] } tomarAsiento={sit} revelacion= {revelado} ></Silla>}
             {/* {jugando?<span>diosmio</span>:<span>agarranosconfesados</span>} */}
         </div>
         </div>

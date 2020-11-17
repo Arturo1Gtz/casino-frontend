@@ -10,7 +10,7 @@ import './jugador.style.scss';
 
 function Jugador (props){
     console.log('jugador',props.jugador)
-    var {responder, apostar, onGame, apuesta, monto, fichas, aumentar, clean, respuesta,bet} = props;
+    var {responder, levantarse, apostar, onGame, apuesta, monto, fichas, aumentar, clean, respuesta,bet} = props;
 
     // const[bet,setBet] = useState(apuesta);
     // const[montoActual, setMonto] = useState(acumulado);
@@ -29,6 +29,10 @@ function Jugador (props){
             <div className='relleno'> <img alt='relleno' src={Icon} className='Img'/></div>
             
             <div className='tarjeta'>
+                <div className={'tarjeta__cont'}>
+                    <span className={'tarjeta__cont__salir'} onClick={()=>levantarse()}> SALIR </span>
+
+                </div>
                 <div className='MontoCont'>
                     <span className='Titulo'>Monto Actual:</span> <br/>
                     <span className='Monto'>$ {monto}</span>

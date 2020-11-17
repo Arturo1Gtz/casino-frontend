@@ -37,7 +37,7 @@ function Silla(props){
             <div className={'imgContainer'}>
             {ocupado?
                 <img src={Ocup} alt ='img_silla' className={`Img ${revelacion?color:null}`} />
-                :<img src={Disp} alt ='img_silla' className={`Img`} onClick={() => tomarAsiento()}/>
+                :<img src={Disp} alt ='img_silla' className={`Img`} onClick={tomarAsiento}/>
             }
             </div>
             
