@@ -35,11 +35,11 @@ io.on('connection', socket => {
         //Anuncio de ususario unido
         socket.emit('message', formatMessage(chatBot, `${user.nickname} se ha unido a la mesa`));
 
+        console.log(getMesaPlayers(user.mesa));
+        
+        console.log(getMesaSpectators(user.mesa));
         //Send players and mesa info
-        io.to(user.mesa).emit('mesaPlayers', {
-            mesa: user.mesa,
-            players: getMesaPlayers(user.mesa)
-        });
+        io.to(user.mesa).emit('mesaPlayers', {players: getMesaPlayers(user.mesa)});
 
         //Send spectators and mesa info
         io.to(user.mesa).emit('mesaSpectators', {

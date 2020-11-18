@@ -1,25 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import Silla from '../silla/silla.component';
 import Jugador from '../jugador/jugador.componente';
-
+import {connect } from 'react-redux';
 import './asientos.styles.scss';
 
 
-const usuario = {
-    nickname: "PedritoSola",
-    avatar: "imagenshida",
-    saldo: 0
-};
 
 
-function Asientos(props){
+
+
+function Asientos(props, {currentUser}){
+    // const nickname = currentUser.nickname;
+    // const   avatar = currentUser.imgurl;
+    // const saldo = currentUser.credits;   
+    const nickname = "pedritosola";
+    const   avatar = "avatar";
+    const saldo = 0;     
+    console.log("mermelada", currentUser);
     const {sentarse,  replica, enJuego, juego, apostar, responder, revelado, end, socket, mesa, tipo} = props;
 
     //conexion a socket
-    socket.emit('joinMesa', {tipo, mesa, usuario});
-
+    socket.emit('joinMesa', {tipo, mesa, nickname, avatar, saldo});
+    socket.on("message", message => {
+        console.log(message)
+    });
     const [player, setPlayer] = useState({nombre: 'arturo03', acumulado:10000, sentado: false, asiento:null})
     const [players, setPlayers] = useState([{nombre: 'juan02', acumulado:10000, apuesta: 50, respuesta: 'c', res: true},{nombre: 'eric05', acumulado:10000, apuesta: 50, respuesta: 'a', res: false}]);
+    socket.on("mesaPlayers", players => {
+        console.log("jugadores",players);
+        //console.log(players[0].nickname)
+    });
     const jugadores = players.filter(jugador=>jugador.nombre !== player.nombre);
     // let sentado =  false;
     
@@ -206,4 +216,9 @@ function Asientos(props){
     )
 }
 
-export default Asientos;
+
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser
+});
+
+export default connect(mapStateToProps,null)(Asientos);
