@@ -2,9 +2,7 @@ const moment = require('moment');
 
 function formatMessage(user, text){
     return{
-        nickname: user.nickname,
-        id: user.id,
-        //avatar: user.avatar,
+        nickname: user,
         text,
         time: moment().format('h:mm a')
     };

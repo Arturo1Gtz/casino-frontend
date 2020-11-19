@@ -6,8 +6,6 @@ import './user.style.scss'
 const User = ({currentUser}) => {
     const [transfer, setTransfer] = useState(null);
     const [recieve, setRecieve] = useState(null);
-    
-   
         
     return(
         <div className='contenido'>

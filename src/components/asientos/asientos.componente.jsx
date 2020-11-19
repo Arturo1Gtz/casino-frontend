@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Silla from '../silla/silla.component';
 import Jugador from '../jugador/jugador.componente';
-
+import { connect } from 'react-redux';
 import './asientos.styles.scss';
 
+const Asientos = (props) => {
+    const {currentUser, sentarse,  replica, enJuego, juego, apostar, responder, revelado, end, socket, mesa, tipo} = props;
 
+<<<<<<< HEAD
 const usuario = {
     nickname: "PedritoSola",
     avatar: "imagenshida",
@@ -14,13 +17,23 @@ const usuario = {
 
 const Asientos=(props)=>{
     const {sentarse,  replica, enJuego, juego, apostar, responder, revelado, end, socket, mesa, tipo} = props;
+=======
+    const nickname = currentUser.nickname;
+    const avatar = currentUser.imgurl;
+    const saldo = currentUser.credits;   
+>>>>>>> a919cd867d6032d9ed07f034cadbec43c4c22e27
 
     //conexion a socket
-    socket.emit('joinMesa', {tipo, mesa, usuario});
-
-    const [player, setPlayer] = useState({nombre: 'arturo03', acumulado:10000, sentado: false, asiento:null})
-    const [players, setPlayers] = useState([{nombre: 'juan02', acumulado:10000, apuesta: 50, respuesta: 'c', res: true},{nombre: 'eric05', acumulado:10000, apuesta: 50, respuesta: 'a', res: false}]);
-    const jugadores = players.filter(jugador=>jugador.nombre !== player.nombre);
+    socket.emit('joinMesa', {tipo, mesa, nickname, avatar, saldo});
+    
+    var pleiers = [];
+    socket.on("mesaPlayers", players => {
+        pleiers = players;
+    });
+    
+    const [player, setPlayer] = useState({nombre:currentUser.nickname, acumulado: currentUser.credits, sentado: false, asiento:null});
+    const [players, setPlayers] = useState(pleiers);
+    const jugadores = players.filter(jugador=>jugador.nickname !== player.nickname);
     // let sentado =  false;
     
     console.log('mesa' , players)
@@ -76,8 +89,10 @@ const Asientos=(props)=>{
     const standUp =()=>{
         // console.log('stand')
         // const newPlayers = players;
-        const newplayer = player;
+        socket.emit("disconnect");
 
+        const newplayer = player;
+        
         let newplayers = players.filter(function(jugador){
             if(jugador.nombre !== player.nombre){
                 console.log(jugador)
@@ -198,12 +213,19 @@ const Asientos=(props)=>{
 
                 </div>
             </div>
-        <div className={'jugadorCont'}>
-            {player.sentado ?<Jugador levantarse={standUp} respuesta={players[player.asiento].respuesta} apuesta={players[player.asiento].apuesta} bet={bet} monto={montoActual} fichas={chips} aumentar={aumentaApuesta} clean={limpiar} onGame={enJuego} apostar= {apuesta} responder={answer}></Jugador>:<Silla align={'cabz'} ident={jugadores[6] } tomarAsiento={sit} revelacion= {revelado} ></Silla>}
-            {/* {jugando?<span>diosmio</span>:<span>agarranosconfesados</span>} */}
-        </div>
+            <div className={'jugadorCont'}>
+                {player.sentado ?<Jugador levantarse={standUp} respuesta={players[player.asiento].respuesta} apuesta={players[player.asiento].apuesta} bet={bet} monto={montoActual} fichas={chips} aumentar={aumentaApuesta} clean={limpiar} onGame={enJuego} apostar= {apuesta} responder={answer}></Jugador>:<Silla align={'cabz'} ident={jugadores[6] } tomarAsiento={sit} revelacion= {revelado} ></Silla>}
+                {/* {jugando?<span>diosmio</span>:<span>agarranosconfesados</span>} */}
+            </div>
         </div>
     )
 }
 
-export default Asientos;
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser
+})
+
+export default connect(
+    mapStateToProps,
+    null
+)(Asientos);

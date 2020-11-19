@@ -33,21 +33,28 @@ io.on('connection', socket => {
         socket.join(user.mesa);
 
         //Anuncio de ususario unido
-        socket.emit('message', formatMessage(chatBot, `${user.nickname} se ha unido a la mesa`));
+        socket.emit('messageServer', formatMessage(chatBot, `${user.nickname} se ha unido a la mesa`));
 
+        console.log(getMesaPlayers(user.mesa));
+        
+        console.log(getMesaSpectators(user.mesa));
         //Send players and mesa info
-        io.to(user.mesa).emit('mesaPlayers', {
-            mesa: user.mesa,
-            players: getMesaPlayers(user.mesa)
-        });
+        io.to(user.mesa).emit('mesaPlayers', {players: getMesaPlayers(user.mesa)});
 
         //Send spectators and mesa info
         io.to(user.mesa).emit('mesaSpectators', {
-            mesa: user.mesa,
             spectators: getMesaSpectators(user.mesa) 
         });
 
         console.log(`nuevo ${user.tipo} en mesa ${user.mesa}`);
+
+        socket.on('message', (nickname, message) => {
+            io.emit("messages", formatMessage(nickname, message));
+        })
+
+        socket.on('disconnect', () => {
+            io.emit("messages", {server: "Server", message: "Has leave the room"})
+        })
     });
 
     //Esperar por pregunta para todos
@@ -73,18 +80,16 @@ io.on('connection', socket => {
             if(user.tipo === "player"){
                 //Actualizacion de jugadores
                 io.to(user.mesa).emit('mesaPlayers', {
-                    mesa: user.mesa,
                     players: getMesaPlayers(user.mesa)
                 });
             } else if(user.tipo === 'spectator'){
                 //Actualizacion de espectadores
                 io.to(user.mesa).emit('mesaSpectators', {
-                    mesa: user.mesa,
                     spectators: getMesaSpectators(user.mesa) 
                 });
             }
         }
-        //console.log(`${user.tipo} salio de mesa ${user.mesa}`);
+        console.log(`un usuario salio de mesa`);
     });
 });
 

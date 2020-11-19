@@ -1,9 +1,13 @@
-import React from 'react';
-import io from 'socket.io-client';
+import React, {
+    useEffect,
+    useState,
+    useRef
+} from 'react';
+//import socket from './socket'
+import { connect } from 'react-redux'
+import './chat.style.scss'
 
-const socket = io("http://localhost:3001");
-
-const usuario = {
+/*const usuario = {
     nickname: "BurritoQuemado",
     name: "Diego Flores",
     id: "#298761",
@@ -12,16 +16,55 @@ const usuario = {
 
 const mesa = 1;
 
-socket.emit('message', {usuario, mesa});
+socket.emit('message', {usuario, mesa});*/
 
-const Chat = () => {
+const Chat = (props) => {
+    const {currentUser, socket} = props;
+    const [message, setMessage] = useState("");
+    const [messages, setMessages] = useState([]);
+    const nickname = currentUser.nickname;
+    const avatar = currentUser.imgurl;
+    const saldo = currentUser.credits;  
+    const bottomRef = useRef(null);
+
+    /*useEffect(() => {
+        socket.emit('joinMesa', tipo, mesa, nickname, avatar, saldo);
+    }, [nick]);*/
+
+    useEffect(() => {
+        socket.on('messages', message => {
+            setMessages([...messages, message])
+        })
+
+        return () => {socket.off()}
+    }, [messages])
+
+    /*useEffect(() => {
+        bottomRef.current.scrollIntoView({ behavior: 'smooth', block: 'start', });
+    })*/
+
+    const handleSubmit = e => {
+        e.preventDefault();
+        socket.emit('message', nickname, message)
+        setMessage('');
+    }
+
+    const MapMessages = messages.map((messa) => 
+        <div className='chatMessage'>
+            <b>{messa.nickname}</b> dijo: {messa.text} {messa.time}
+            <div ref={bottomRef}></div>
+        </div>
+    )
+
     return(
-        <div class="Chat">
-            <div class="chatMessages"></div>
+        <div class="chatContainer">
+            <div className='messagesContainer'>
+                {MapMessages}
+            </div>
             <div class="chatForm">
-                <form>
-                    <input type="text" id="msg" placeholder="Escribir mensaje" required autoComplete="off" />
-                    <button class="formButton">Enviar</button>
+                <form onSubmit = {handleSubmit}>
+                    <input type="text" id="message" placeholder="Escribir mensaje" required autoComplete="off" value={message} onChange={e => setMessage(e.target.value)}/>
+                    <button type="submit">Enviar</button>
                 </form>
             </div>
 
@@ -29,4 +72,11 @@ const Chat = () => {
     );
 }
 
-export default Chat;
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser
+})
+
+export default connect(
+    mapStateToProps,
+    null
+)(Chat);
