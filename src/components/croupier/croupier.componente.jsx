@@ -162,7 +162,7 @@ class Croupier extends React.Component{
                         <Ruleta  vueltasE={vueltasEx} vueltasI={vueltasIn} giro={onGiro}></Ruleta>
 
                     </div>
-                        {false?
+                        {onPregunta?
                         <div className='cuestionarioCont'>
                             <Cuestionario seccPregunta={acSeccEx} apuesta={acSeccIn} pregunta={pregunta} revelado={onRevelacion} > </Cuestionario>
 
@@ -179,9 +179,9 @@ class Croupier extends React.Component{
 
                     </div>
                 </div>
-                {onGame ? null:
+                {/* {onGame ? null:
                 <img src={boton} alt='boton' className='boton' onClick={juego}/>
-                }
+                } */}
             </div> 
         )
     }

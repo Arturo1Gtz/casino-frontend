@@ -12,7 +12,7 @@ const usuario = {
 };
 
 
-function Asientos(props){
+const Asientos=(props)=>{
     const {sentarse,  replica, enJuego, juego, apostar, responder, revelado, end, socket, mesa, tipo} = props;
 
     //conexion a socket
