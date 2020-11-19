@@ -43,7 +43,6 @@ io.on('connection', socket => {
 
         //Send spectators and mesa info
         io.to(user.mesa).emit('mesaSpectators', {
-            mesa: user.mesa,
             spectators: getMesaSpectators(user.mesa) 
         });
 
@@ -81,18 +80,16 @@ io.on('connection', socket => {
             if(user.tipo === "player"){
                 //Actualizacion de jugadores
                 io.to(user.mesa).emit('mesaPlayers', {
-                    mesa: user.mesa,
                     players: getMesaPlayers(user.mesa)
                 });
             } else if(user.tipo === 'spectator'){
                 //Actualizacion de espectadores
                 io.to(user.mesa).emit('mesaSpectators', {
-                    mesa: user.mesa,
                     spectators: getMesaSpectators(user.mesa) 
                 });
             }
         }
-        //console.log(`${user.tipo} salio de mesa ${user.mesa}`);
+        console.log(`un usuario salio de mesa`);
     });
 });
 

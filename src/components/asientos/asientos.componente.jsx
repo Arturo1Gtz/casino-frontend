@@ -5,24 +5,23 @@ import { connect } from 'react-redux';
 import './asientos.styles.scss';
 
 const Asientos = (props) => {
-    
     const {currentUser, sentarse,  replica, enJuego, juego, apostar, responder, revelado, end, socket, mesa, tipo} = props;
+
     const nickname = currentUser.nickname;
     const avatar = currentUser.imgurl;
     const saldo = currentUser.credits;   
-    console.log("mandarina", nickname, avatar, saldo);
+
     //conexion a socket
     socket.emit('joinMesa', {tipo, mesa, nickname, avatar, saldo});
-    socket.on("message", message => {
-        console.log(message)
-    });
-    const [player, setPlayer] = useState({nombre: 'arturo03', acumulado:10000, sentado: false, asiento:null})
-    const [players, setPlayers] = useState([{nombre: 'juan02', acumulado:10000, apuesta: 50, respuesta: 'c', res: true},{nombre: 'eric05', acumulado:10000, apuesta: 50, respuesta: 'a', res: false}]);
+    
+    var pleiers = [];
     socket.on("mesaPlayers", players => {
-        console.log("jugadores",players);
-        //console.log(players[0].nickname)
+        pleiers = players;
     });
-    const jugadores = players.filter(jugador=>jugador.nombre !== player.nombre);
+    
+    const [player, setPlayer] = useState({nombre:currentUser.nickname, acumulado: currentUser.credits, sentado: false, asiento:null});
+    const [players, setPlayers] = useState(pleiers);
+    const jugadores = players.filter(jugador=>jugador.nickname !== player.nickname);
     // let sentado =  false;
     
     console.log('mesa' , players)
@@ -78,8 +77,10 @@ const Asientos = (props) => {
     const standUp =()=>{
         // console.log('stand')
         // const newPlayers = players;
-        const newplayer = player;
+        socket.emit("disconnect");
 
+        const newplayer = player;
+        
         let newplayers = players.filter(function(jugador){
             if(jugador.nombre !== player.nombre){
                 console.log(jugador)
