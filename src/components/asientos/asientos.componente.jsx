@@ -1,24 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import Silla from '../silla/silla.component';
 import Jugador from '../jugador/jugador.componente';
-import {connect } from 'react-redux';
+import { connect } from 'react-redux';
 import './asientos.styles.scss';
 
-
-
-
-
-
-function Asientos(props, {currentUser}){
-    // const nickname = currentUser.nickname;
-    // const   avatar = currentUser.imgurl;
-    // const saldo = currentUser.credits;   
-    const nickname = "pedritosola";
-    const   avatar = "avatar";
-    const saldo = 0;     
-    console.log("mermelada", currentUser);
-    const {sentarse,  replica, enJuego, juego, apostar, responder, revelado, end, socket, mesa, tipo} = props;
-
+const Asientos = (props) => {
+    
+    const {currentUser, sentarse,  replica, enJuego, juego, apostar, responder, revelado, end, socket, mesa, tipo} = props;
+    const nickname = currentUser.nickname;
+    const avatar = currentUser.imgurl;
+    const saldo = currentUser.credits;   
+    console.log("mandarina", nickname, avatar, saldo);
     //conexion a socket
     socket.emit('joinMesa', {tipo, mesa, nickname, avatar, saldo});
     socket.on("message", message => {
@@ -208,17 +200,19 @@ function Asientos(props, {currentUser}){
 
                 </div>
             </div>
-        <div className={'jugadorCont'}>
-            {player.sentado ?<Jugador levantarse={standUp} respuesta={players[player.asiento].respuesta} apuesta={players[player.asiento].apuesta} bet={bet} monto={montoActual} fichas={chips} aumentar={aumentaApuesta} clean={limpiar} onGame={enJuego} apostar= {apuesta} responder={answer}></Jugador>:<Silla align={'cabz'} ident={jugadores[6] } tomarAsiento={sit} revelacion= {revelado} ></Silla>}
-            {/* {jugando?<span>diosmio</span>:<span>agarranosconfesados</span>} */}
-        </div>
+            <div className={'jugadorCont'}>
+                {player.sentado ?<Jugador levantarse={standUp} respuesta={players[player.asiento].respuesta} apuesta={players[player.asiento].apuesta} bet={bet} monto={montoActual} fichas={chips} aumentar={aumentaApuesta} clean={limpiar} onGame={enJuego} apostar= {apuesta} responder={answer}></Jugador>:<Silla align={'cabz'} ident={jugadores[6] } tomarAsiento={sit} revelacion= {revelado} ></Silla>}
+                {/* {jugando?<span>diosmio</span>:<span>agarranosconfesados</span>} */}
+            </div>
         </div>
     )
 }
 
-
 const mapStateToProps = state => ({
     currentUser: state.user.currentUser
-});
+})
 
-export default connect(mapStateToProps,null)(Asientos);
+export default connect(
+    mapStateToProps,
+    null
+)(Asientos);

@@ -151,7 +151,7 @@ class Croupier extends React.Component{
         return(
             <div className={'croupier'}>
                 <div className={'chatCont'}>
-                    <Chat />
+                    <Chat socket={socket} tipo={tipo} mesa={mesa} />
 
                 </div>
 

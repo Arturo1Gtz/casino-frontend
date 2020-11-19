@@ -4,8 +4,7 @@ import { Button, Sidebar } from 'semantic-ui-react'
 import User from '../user/user.component'
 import { auth } from '../../firebase/firebase.utils'
 
-const SidebarUser = (props, currentUser) => {
-    
+const SidebarUser = (props, {currentUser}) => {
     return(
         <Sidebar 
         animation='overlay'

@@ -33,7 +33,7 @@ io.on('connection', socket => {
         socket.join(user.mesa);
 
         //Anuncio de ususario unido
-        socket.emit('message', formatMessage(chatBot, `${user.nickname} se ha unido a la mesa`));
+        socket.emit('messageServer', formatMessage(chatBot, `${user.nickname} se ha unido a la mesa`));
 
         console.log(getMesaPlayers(user.mesa));
         
@@ -48,6 +48,14 @@ io.on('connection', socket => {
         });
 
         console.log(`nuevo ${user.tipo} en mesa ${user.mesa}`);
+
+        socket.on('message', (nickname, message) => {
+            io.emit("messages", formatMessage(nickname, message));
+        })
+
+        socket.on('disconnect', () => {
+            io.emit("messages", {server: "Server", message: "Has leave the room"})
+        })
     });
 
     //Esperar por pregunta para todos
