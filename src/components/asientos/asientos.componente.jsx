@@ -7,21 +7,9 @@ import './asientos.styles.scss';
 const Asientos = (props) => {
     const {currentUser, sentarse,  replica, enJuego, juego, apostar, responder, revelado, end, socket, mesa, tipo} = props;
 
-<<<<<<< HEAD
-const usuario = {
-    nickname: "PedritoSola",
-    avatar: "imagenshida",
-    saldo: 0
-};
-
-
-const Asientos=(props)=>{
-    const {sentarse,  replica, enJuego, juego, apostar, responder, revelado, end, socket, mesa, tipo} = props;
-=======
     const nickname = currentUser.nickname;
     const avatar = currentUser.imgurl;
     const saldo = currentUser.credits;   
->>>>>>> a919cd867d6032d9ed07f034cadbec43c4c22e27
 
     //conexion a socket
     socket.emit('joinMesa', {tipo, mesa, nickname, avatar, saldo});
