@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils.js'
 import FormInput from '../custom-input/input.component'
 import CustomButton from '../custom-button/button.component'
+import PartialRegister from '../../components/register/partial-register.component'
 import {
     SignInContainer,
     SignInTitle,
@@ -33,6 +34,13 @@ const SignIn = () => {
     const handleChange = (event) =>{
         const { value, name } = event.target;
         setLogin({ ...login, [name]: value });
+    }
+
+    const GoogleSignAction  = () => {
+        signInWithGoogle();
+        return(
+            <PartialRegister/>
+        )
     }
 
     return (
