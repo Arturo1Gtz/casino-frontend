@@ -7,12 +7,18 @@ import './asientos.styles.scss';
 const Asientos = (props) => {
     const {currentUser, sentarse,  replica, enJuego, juego, apostar, responder, revelado, end, socket, mesa, tipo} = props;
 
-    const nickname = currentUser.nickname;
-    const avatar = currentUser.imgurl;
-    const saldo = currentUser.credits;   
+     
 
     //conexion a socket
-    socket.emit('joinMesa', {tipo, mesa, nickname, avatar, saldo});
+    useEffect(() => {
+        const nickname = currentUser.nickname;
+        const avatar = currentUser.imgurl;
+        const saldo = currentUser.credits;  
+        const unsubscribeFromSocket = () =>  socket.emit('joinMesa', {tipo, mesa, nickname, avatar, saldo});
+
+        return() => unsubscribeFromSocket();
+    }, [])
+   
     
     var pleiers = [];
     socket.on("mesaPlayers", players => {
