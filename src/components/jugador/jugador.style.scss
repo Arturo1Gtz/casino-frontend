@@ -8,13 +8,16 @@
 
     .ImgCont{
         position: absolute;
-        height: 10%;
+        height: 185px;
+        width: 185px;
         margin: 0;
+        
         .Img{
             margin: 0;
             width: 40%;
             border: 4px solid #C8B300;
             border-radius: 50%;
+            
         }
     }
     .relleno{
