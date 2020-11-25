@@ -27,7 +27,7 @@ function Jugador (props){
                 <img src={avatar} alt ='User' className='Img'/>
             </div>
 
-            <div className='relleno'> <img alt='relleno' src={avatar} className='Img'/></div>
+            <div className='relleno'> <span>relleno</span></div>
             
             <div className='tarjeta'>
                 <div className={'tarjeta__cont'}>

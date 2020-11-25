@@ -57,10 +57,12 @@ class Croupier extends React.Component{
                 console.log(vext);
                 this.setState({vueltasEx:vext},() => console.log('calamares',this.state));
             });
+
             socket.on("vint", vint => {
                 console.log(vint);
                 this.setState({vueltasIn:vint},() => console.log('calamares',this.state));
             });
+
             this.setState({onGame:true, onGiro:true}
              ,() => console.log('vueltas',this.state)
         );}
@@ -143,7 +145,6 @@ class Croupier extends React.Component{
         
         const juego=()=>{
             giro();
-            
             setTimeout(()=>{seccion()},7001)
             setTimeout(()=>{showQuestion()},7003)
             setTimeout(()=>{revelacion()},22000)
