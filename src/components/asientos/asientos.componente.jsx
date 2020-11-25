@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
+
 import Silla from '../silla/silla.component';
 import Jugador from '../jugador/jugador.componente';
+import Timer from '../timer/timer.component';
+
 import { connect } from 'react-redux';
 import './asientos.styles.scss';
 
@@ -177,6 +180,22 @@ const Asientos = (props) => {
         // setMonto(player.acumulado)
         end()
     }
+    const checkApuestas = () => {
+        let newPlayers = players;
+        if(newPlayers.length){
+
+            newPlayers.map(function(jugador){
+                if(jugador.apuesta === 0){
+                    jugador.apuesta = 10;
+                }
+            })
+            
+            setPlayers(newPlayers)
+
+            game()
+            
+        }else{return}
+    }
     const game = ()=>{
         juego()
         setTimeout(()=>pago(),22000)
@@ -194,6 +213,17 @@ const Asientos = (props) => {
     return(
         <div className={'asientos'}>
             <div className={'jugadoresCont'}>
+                <div className={'timerCont'}>{
+                    enJuego?null:
+                    <div className={'anuncio'}>
+                       <span>ESPERANDO APUESTAS</span>
+                       <div className={'anuncio__timer'}>
+                        <Timer time={20} jugadores={players} accion= {checkApuestas}></Timer>
+                        </div>
+                    </div>
+                }
+                </div>
+
                 <div className={'Contenedor izq'}>
                     <div className={'asiento'}><Silla  align={'izq'} ident={jugadores[0]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
                     <div className={'asiento'}><Silla  align={'izq'} ident={jugadores[1]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
@@ -208,7 +238,7 @@ const Asientos = (props) => {
                 </div>
             </div>
             <div className={'jugadorCont'}>
-                {player.sentado ?<Jugador levantarse={standUp} respuesta={players[player.asiento].respuesta} apuesta={players[player.asiento].apuesta} bet={bet} monto={montoActual} fichas={chips} aumentar={aumentaApuesta} clean={limpiar} onGame={enJuego} apostar= {apuesta} responder={answer}></Jugador>:<Silla align={'cabz'} ident={jugadores[6] } tomarAsiento={sit} revelacion= {revelado} ></Silla>}
+                {player.sentado ?<Jugador levantarse={standUp} respuesta={players[player.asiento].respuesta} apuesta={players[player.asiento].apuesta} bet={bet} monto={montoActual} fichas={chips} aumentar={aumentaApuesta} clean={limpiar} onGame={enJuego} apostar= {apuesta} responder={answer} avatar={currentUser.imgurl}></Jugador>:<Silla align={'cabz'} ident={jugadores[6] } tomarAsiento={sit} revelacion= {revelado} ></Silla>}
                 {/* {jugando?<span>diosmio</span>:<span>agarranosconfesados</span>} */}
             </div>
         </div>

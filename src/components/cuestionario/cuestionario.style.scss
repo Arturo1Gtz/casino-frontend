@@ -16,25 +16,30 @@
         border: 3px solid #929292;
         background-color: white;
         border-radius: 5em;
-        width: 60%;
+        width: 50%;
         height: 40%;
-        align-items: center;
-        align-content: center;
-        padding: 2%;
+        padding: 1%;
         box-shadow: 0px 10px #6D6D6D;
+        display: flex;
+        flex-direction: column;
         .Seccion{
             font-size: 120%;
             color: #464646;
         }
         .Apuesta{
             font-size: 120%;
-            margin: 5%;
+            margin: 3%;
             color: #464646;
         }
         .Pregunta{
-            // border: 3px solid blue;
             font-size: 250%;
-
+            
+        }
+        .temporizador{
+            // border: 3px solid black;
+            font-size: 350%;
+            color: red;
+            margin: 6%;
         }
       
     }    
@@ -42,7 +47,7 @@
         position: relative;
         top: 25%;
         height: 40%;
-        width: 60%;
+        width: 50%;
         // border: 3px solid black;
         display: flex;
         flex-wrap: wrap;

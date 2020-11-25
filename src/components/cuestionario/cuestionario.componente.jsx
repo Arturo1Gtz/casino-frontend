@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import Preguntas from '../../files/preguntas.js';
+import Timer from '../timer/timer.component';
 
 import './cuestionario.style.scss';
 
@@ -31,9 +32,14 @@ function Cuestionario(props){
 
         return(<div className='cuestionario'>
                 <div className='preguntaContainer'>
-                    <span className='Seccion'> Categoria: {seccion.categoria}</span><br/>
-                    <span className='Apuesta'>Respuesta: {respuesta}</span><br/><br/>
+                    <span className='Seccion'> Categoria: {seccion.categoria}</span>
+                    <span className='Apuesta'>Respuesta: {respuesta}</span>
                     <span className='Pregunta'>{question.pregunta}</span>
+                    <div className={'temporizador'}>
+                    <Timer  time={15}></Timer>
+
+                    </div>
+
                 </div>
                 <div className='respuestas'>
                     <span className= {`rsp ${revelado ? a: null}`} key={1}>{question.respuestas[0].respuesta}</span>

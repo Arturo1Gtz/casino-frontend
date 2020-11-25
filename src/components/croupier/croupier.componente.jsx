@@ -4,6 +4,7 @@ import Ruleta from '../ruleta/ruleta.componente';
 import Cuestionario from '../cuestionario/cuestionario.componente';
 import Chat from '../chat/chat.component';
 import Asientos from '../asientos/asientos.componente';
+import Timer from '../timer/timer.component';
 // import Mesa from '../mesa/mesa.componente';
 // import Jugador from '../jugador/jugador.componente';
 
@@ -149,6 +150,7 @@ class Croupier extends React.Component{
         }  
 
         return(
+            
             <div className={'croupier'}>
                 <div className={'chatCont'}>
                     <Chat socket={socket} tipo={tipo} mesa={mesa} />
@@ -156,8 +158,13 @@ class Croupier extends React.Component{
                 </div>
 
                 <div className={'juego'}>
+                    
                     <div className='ruletaCont'>
                         <Ruleta  vueltasE={vueltasEx} vueltasI={vueltasIn} giro={onGiro}></Ruleta>
+                        {/* <div className= {'timerCont'}>
+                            <Timer></Timer>
+
+                        </div> */}
 
                     </div>
                         {onPregunta?
@@ -176,6 +183,7 @@ class Croupier extends React.Component{
                         <img src={MesaFondo} alt ='fondoJuego' className='juego__fondo__Img' /> 
 
                     </div>
+                    
                 </div>
                 {/* {onGame ? null:
                     <img src={boton} alt='boton' className='boton' onClick={juego}/>
