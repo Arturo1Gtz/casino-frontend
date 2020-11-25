@@ -1,4 +1,4 @@
-import React from 'react' ;
+import React, {useEffect} from 'react' ;
 
 import Ruleta from '../ruleta/ruleta.componente';
 import Cuestionario from '../cuestionario/cuestionario.componente';
@@ -14,6 +14,7 @@ import MesaFondo from '../../img/mesa-de-inicio.png';
 import Preguntas from '../../files/preguntas.js';
 
 import io from 'socket.io-client'
+import { connect } from 'react-redux';
 const socket = io("http://localhost:3001");
 
 const tipo = "player";
@@ -46,7 +47,17 @@ class Croupier extends React.Component{
     
     render(){
         const {onGame, onGiro, onPregunta, onRevelacion, vueltasEx, vueltasIn,seccEx,seccIn , acSeccEx, acSeccIn, jugadores, pregunta, respuesta,asiento} = this.state;
-                
+        const {currentUser} = this.props;
+        
+        componentDidMount(() => {
+            const nickname = currentUser.nickname;
+            const avatar = currentUser.imgurl;
+            const saldo = currentUser.credits;  
+            const unsubscribeFromSocket = () =>  socket.emit('joinMesa', {tipo, mesa, nickname, avatar, saldo});
+    
+            return() => unsubscribeFromSocket();
+        }, [])
+
         const giro = () =>{
             calcVueltas();
             setTimeout(sinGiro,7000);
@@ -194,4 +205,11 @@ class Croupier extends React.Component{
 
 };
 
-export default Croupier;
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser
+})
+
+export default connect(
+    mapStateToProps,
+    null
+)(Croupier);
