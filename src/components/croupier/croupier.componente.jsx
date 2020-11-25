@@ -41,22 +41,34 @@ class Croupier extends React.Component{
             acSeccIn: 0,
             acSeccEx:0,
             respuesta:'', 
-            jugadores:[{ocupado:true, apuesta: 50, respuesta:'c',resultado:true},{ocupado:true, apuesta: 50, respuesta: 'a',resultado:false}]
+            jugadores:[{ocupado:true, apuesta: 50, respuesta:'c',resultado:true},{ocupado:true, apuesta: 50, respuesta: 'a',resultado:false}],
+            nickname:'',
+            avatar:'',
+            saldo: 0
         }
+    }
+
+    unsubscribeFromSocket = null;
+
+    componentDidMount() {
+        const { currentUser } = this.props;
+        const { nickname, avatar, saldo } = this.state;
+        this.setState({
+            nickname: currentUser.nickname,
+            avatar: currentUser.imgurl,
+            saldo: currentUser.saldo
+        })
+        console.log("Avocato", currentUser)
+
+        this.unsubscribeFromSocket = () => socket.emit('joinMesa', {tipo, mesa, nickname, avatar, saldo});
+    }
+    
+    componentWillUnmount() {
+        this.unsubscribeFromSocket()
     }
     
     render(){
-        const {onGame, onGiro, onPregunta, onRevelacion, vueltasEx, vueltasIn,seccEx,seccIn , acSeccEx, acSeccIn, jugadores, pregunta, respuesta,asiento} = this.state;
-        const {currentUser} = this.props;
-        
-        componentDidMount(() => {
-            const nickname = currentUser.nickname;
-            const avatar = currentUser.imgurl;
-            const saldo = currentUser.credits;  
-            const unsubscribeFromSocket = () =>  socket.emit('joinMesa', {tipo, mesa, nickname, avatar, saldo});
-    
-            return() => unsubscribeFromSocket();
-        }, [])
+        const {onGame, onGiro, onPregunta, onRevelacion, vueltasEx, vueltasIn,seccEx,seccIn , acSeccEx, acSeccIn, jugadores, pregunta, respuesta,asiento } = this.state;
 
         const giro = () =>{
             calcVueltas();
