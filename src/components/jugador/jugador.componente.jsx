@@ -9,9 +9,10 @@ import Ficha5 from '../../img/fichaCinco.png';
 import './jugador.style.scss';
 
 function Jugador (props){
-    console.log('jugador', props.jugador)
-    var {responder, levantarse, apostar, onGame, apuesta, monto, fichas, aumentar, clean, respuesta,bet} = props;
+   
+    var {responder, levantarse, apostar, onGame, apuesta, monto, fichas, aumentar, clean, respuesta,bet, avatar} = props;
 
+    console.log("avatar", avatar)
     // const[bet,setBet] = useState(apuesta);
     // const[montoActual, setMonto] = useState(acumulado);
 
@@ -23,10 +24,10 @@ function Jugador (props){
         return(
          <div className='jugador'>
             <div className='ImgCont'>
-                <img src={Icon} alt ='User' className='Img'/>
+                <img src={avatar} alt ='User' className='Img'/>
             </div>
 
-            <div className='relleno'> <img alt='relleno' src={Icon} className='Img'/></div>
+            <div className='relleno'> <img alt='relleno' src={avatar} className='Img'/></div>
             
             <div className='tarjeta'>
                 <div className={'tarjeta__cont'}>

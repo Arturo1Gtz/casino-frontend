@@ -238,7 +238,7 @@ const Asientos = (props) => {
                 </div>
             </div>
             <div className={'jugadorCont'}>
-                {player.sentado ?<Jugador levantarse={standUp} respuesta={players[player.asiento].respuesta} apuesta={players[player.asiento].apuesta} bet={bet} monto={montoActual} fichas={chips} aumentar={aumentaApuesta} clean={limpiar} onGame={enJuego} apostar= {apuesta} responder={answer}></Jugador>:<Silla align={'cabz'} ident={jugadores[6] } tomarAsiento={sit} revelacion= {revelado} ></Silla>}
+                {player.sentado ?<Jugador levantarse={standUp} respuesta={players[player.asiento].respuesta} apuesta={players[player.asiento].apuesta} bet={bet} monto={montoActual} fichas={chips} aumentar={aumentaApuesta} clean={limpiar} onGame={enJuego} apostar= {apuesta} responder={answer} avatar={currentUser.imgurl}></Jugador>:<Silla align={'cabz'} ident={jugadores[6] } tomarAsiento={sit} revelacion= {revelado} ></Silla>}
                 {/* {jugando?<span>diosmio</span>:<span>agarranosconfesados</span>} */}
             </div>
         </div>

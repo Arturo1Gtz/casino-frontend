@@ -49,12 +49,11 @@ const Register = () => {
 
     const handleSubmit = async event => {
         event.preventDefault();
-        setDuplicateNickname(false)
         collectionRef.get().then(function(querySnapshot){
-            querySnapshot.forEach(function(doc) {
-                if(register.nickname === doc.data().nickname) {
+            querySnapshot.forEach(function(doc){
+                if(nickname === doc.data().nickname) {
+                    console.log("Se repitio este nickname: ", register.nickname, duplicateNickname, doc.data().nickname)
                     setDuplicateNickname(true)
-                    console.log("Se repitio este nickname: ", register.nickname, duplicateNickname)
                 }
             })
         })
