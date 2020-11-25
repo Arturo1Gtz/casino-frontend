@@ -55,10 +55,9 @@ io.on('connection', socket => {
         socket.on('disconnect', () => {
             io.emit("messages", {server: "Server", message: "Has leave the room"})
         })
-    });
 
-    //Esperar por pregunta para todos
-    socket.on('vueltas', () => {
+        //Esperar por pregunta para todos
+        socket.on('vueltas', () => {
         const user = getCurrentUser(socket.id);
         //Mandar pregunta a la mesa
         const vext = Math.random() * (25- 10) + 10;
@@ -66,8 +65,10 @@ io.on('connection', socket => {
         console.log(`ext ${vext} int ${vint} a mesa ${user.mesa}`);
         io.to(user.mesa).emit("vext", vint);
         io.to(user.mesa).emit("vint", vint);
+        })
+    });
 
-    })
+    
     
     //Cuando alguien se desconecta
     socket.on('disconnect', () => {

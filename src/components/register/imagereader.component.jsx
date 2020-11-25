@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import CustomButton from '../custom-button/button.component'
+import PartialRegister from '../register/partial-register.component'
 import './register.style.scss';
+import { SignInAndSignUpContainer } from '../../pages/signin-signup/inicio-styles'
 import { SignUpTitle, SignUpContainer, ButtonsBarContainer } from './register.styles'
 import { storage, firestore } from '../../firebase/firebase.utils'
 
@@ -50,15 +52,20 @@ const ImageInput  = ({currentUser}) =>{
         })
     })  
   }
- 
+  if(currentUser.firstname === ""){
+    return(
+      <SignInAndSignUpContainer>
+        <PartialRegister/>
+      </SignInAndSignUpContainer>
+    )
+  }else{
     return (
-
       <div className='readerContent'>
         <div className='formreader'>
           <div className='form'>
             <SignUpContainer>
               <SignUpTitle>Solo falta un paso <br/> para disfrutar</SignUpTitle>
-              <form className='fromularioR' onSubmit={handleFirebaseUpload}>
+                <form className='fromularioR' onSubmit={handleFirebaseUpload}>
                   <ButtonsBarContainer>
                     <input type='file' id='file' onChange={handleImageAsFile}/>
                     <label htmlFor="file">Elegir foto</label>
@@ -74,7 +81,9 @@ const ImageInput  = ({currentUser}) =>{
           }
         </div>
       </div>
-      );
+    );
+  }
+    
     
 }
  

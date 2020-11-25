@@ -1,4 +1,4 @@
-import React from 'react' ;
+import React, {useEffect} from 'react' ;
 
 import Ruleta from '../ruleta/ruleta.componente';
 import Cuestionario from '../cuestionario/cuestionario.componente';
@@ -14,6 +14,7 @@ import MesaFondo from '../../img/mesa-de-inicio.png';
 import Preguntas from '../../files/preguntas.js';
 
 import io from 'socket.io-client'
+import { connect } from 'react-redux';
 const socket = io("http://localhost:3001");
 
 const tipo = "player";
@@ -40,13 +41,35 @@ class Croupier extends React.Component{
             acSeccIn: 0,
             acSeccEx:0,
             respuesta:'', 
-            jugadores:[{ocupado:true, apuesta: 50, respuesta:'c',resultado:true},{ocupado:true, apuesta: 50, respuesta: 'a',resultado:false}]
+            jugadores:[{ocupado:true, apuesta: 50, respuesta:'c',resultado:true},{ocupado:true, apuesta: 50, respuesta: 'a',resultado:false}],
+            nickname:'',
+            avatar:'',
+            saldo: 0
         }
+    }
+
+    unsubscribeFromSocket = null;
+
+    componentDidMount() {
+        const { currentUser } = this.props;
+        const { nickname, avatar, saldo } = this.state;
+        this.setState({
+            nickname: currentUser.nickname,
+            avatar: currentUser.imgurl,
+            saldo: currentUser.saldo
+        })
+        console.log("Avocato", currentUser)
+
+        this.unsubscribeFromSocket = () => socket.emit('joinMesa', {tipo, mesa, nickname, avatar, saldo});
+    }
+    
+    componentWillUnmount() {
+        this.unsubscribeFromSocket()
     }
     
     render(){
-        const {onGame, onGiro, onPregunta, onRevelacion, vueltasEx, vueltasIn,seccEx,seccIn , acSeccEx, acSeccIn, jugadores, pregunta, respuesta,asiento} = this.state;
-                
+        const {onGame, onGiro, onPregunta, onRevelacion, vueltasEx, vueltasIn,seccEx,seccIn , acSeccEx, acSeccIn, jugadores, pregunta, respuesta,asiento } = this.state;
+
         const giro = () =>{
             calcVueltas();
             setTimeout(sinGiro,7000);
@@ -195,4 +218,11 @@ class Croupier extends React.Component{
 
 };
 
-export default Croupier;
+const mapStateToProps = state => ({
+    currentUser: state.user.currentUser
+})
+
+export default connect(
+    mapStateToProps,
+    null
+)(Croupier);

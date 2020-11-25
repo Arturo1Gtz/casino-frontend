@@ -10,6 +10,7 @@ const Register = () => {
 
     const collectionRef = firestore.collection('user');
     const [duplicateNickname, setDuplicateNickname] = useState(false);
+    const [nick, setNick] = useState("");
 
     const [register, setRegister] = useState({
        
@@ -41,22 +42,29 @@ const Register = () => {
         const { name, value } = event.target;
         setRegister({ ...register, [name]:value });
         setAdittionalData({ ...adittionalData, [name]:value })
-
+        setNick(register.nickname)
     }
+
+    useEffect(() => {
+        const validatingNickname = () => collectionRef.get().then((querySnapshot) => {
+            setDuplicateNickname(false);
+            querySnapshot.forEach((doc) => {
+                if(nickname === doc.data().nickname) {
+                    console.log("Se repitio este nickname: ", register.nickname, duplicateNickname, doc.data().nickname)
+                    setDuplicateNickname(true)
+                    console.log("Manzanoria", duplicateNickname)
+                }
+            })
+        })
+
+        return() => validatingNickname()
+    }, [nick])
 
     const { email, password, cpassword, nickname, firstname, lastname, department, enterprise, imgurl, credits } = register;
     const {nickname1, firstname1, lastname1, department1, enterprise1, imgurl1, credits1 } = adittionalData;
 
     const handleSubmit = async event => {
         event.preventDefault();
-        collectionRef.get().then(function(querySnapshot){
-            querySnapshot.forEach(function(doc){
-                if(nickname === doc.data().nickname) {
-                    console.log("Se repitio este nickname: ", register.nickname, duplicateNickname, doc.data().nickname)
-                    setDuplicateNickname(true)
-                }
-            })
-        })
         
         if (password !== cpassword) {
             alert("Las contraseñas no coinciden");

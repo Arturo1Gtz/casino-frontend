@@ -1,59 +1,62 @@
 import { registerVersion } from 'firebase';
+import firebase from 'firebase/app'
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { firestore, auth } from '../../firebase/firebase.utils';
-import { Form, Input, Select } from 'semantic-ui-react';
+import { Form, Input } from 'semantic-ui-react';
 import CustomButton from '../custom-button/button.component';
+import Select from 'react-select'
 import './user.style.scss';
 
 const User = ({currentUser}) => {
     const [transfer, setTransfer] = useState(0);
-    const [getCredits, setGetCredits] = useState(0);
     const [userArray, setUserArray] = useState();
     const collectionRef = firestore.collection('user').where("nickname", "!=", `${currentUser.nickname}`);
-    const [option, setOption] = useState();
+    const [options, setOption] = useState();
 
     useEffect(() => {
-        const userMapping = () => collectionRef.onSnapshot((snapshot) => {
+        const userMapping = () => collectionRef.get().then((querySnapshot) => {
             const postData = [];
-            snapshot.forEach((doc) => postData.push({
-                key: doc.data().nickname,
-                value: doc.data().nickname, 
-                id: doc.id,
-                text: doc.data().nickname
-            }));
-            console.log(postData);
+            querySnapshot.forEach((doc) => postData.push({
+                value: doc.id,
+                label: doc.data().nickname
+            }))
+            //console.log(postData)
             setUserArray(postData)
         })
+
         return() => userMapping()
     },[transfer])
 
-    const handleChange = event => {
-        const { value } = event.target;
-        setOption(value);
-        console.log("Opcion ", value, event.target.value);
+    const handleChange = option => {
+        setOption(option);
+        //console.log("Opcion ", options);
     }
     
     const handleTransfer = event => {
         const { value } = event.target;
         setTransfer(value)
-        console.log("Creditos Transferrencia", transfer)
-        console.log("Usuarios", userArray);
+        //console.log("Creditos Transferrencia", transfer)
     }
     
     const handleSubmit = async event => {
         event.preventDefault();
-
-        try{
-            const updateRef = firestore.collection("user").doc(`${option.id}`)
-            updateRef.get().then(function(doc){setGetCredits(doc.data().credits)})
+        const updateRef = firestore.collection("user").doc(`${options.value}`)
+        const localRef = firestore.collection("user").doc(`${currentUser.id}`)
+        let transfered = parseInt(transfer, 10);
+        try{              
             updateRef.update({
-                credits: getCredits + transfer
+                credits: firebase.firestore.FieldValue.increment(transfered)
             })
+            localRef.update({
+                credits: firebase.firestore.FieldValue.increment(-transfered)
+            })
+            setTransfer(0)
+            setOption()
+            //console.log("Creditos actuales ",currentUser.credits)
         } catch (error) {
             console.error(error)
         }
-        
     }
         
     return(
@@ -74,13 +77,16 @@ const User = ({currentUser}) => {
                             min='1000'
                             max={currentUser.credits}
                         />
-                        <Form.Field
-                            control={Select}
-                            label='Destinatario'
-                            options={userArray}
-                            value={option}
-                            onChange={handleChange}
-                        />
+                        <Form.Field>
+                            <label>Destinatario</label>
+                            <Select 
+                                onChange={handleChange}
+                                options={userArray}
+                                value={options}
+                                getOptionLabel={(option) => option.label}
+                                getOptionValue={(option) => option.value}
+                            />
+                        </Form.Field>
                     </Form.Group>
                     <CustomButton type='submit'>Transeferir</CustomButton>
                 </Form>
