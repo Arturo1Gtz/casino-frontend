@@ -9,7 +9,7 @@ import Ficha5 from '../../img/fichaCinco.png';
 import './jugador.style.scss';
 
 function Jugador (props){
-    console.log('jugador',props.jugador)
+    console.log('jugador', props.jugador)
     var {responder, levantarse, apostar, onGame, apuesta, monto, fichas, aumentar, clean, respuesta,bet} = props;
 
     // const[bet,setBet] = useState(apuesta);
@@ -30,8 +30,9 @@ function Jugador (props){
             
             <div className='tarjeta'>
                 <div className={'tarjeta__cont'}>
+                { onGame?null:  
                     <span className={'tarjeta__cont__salir'} onClick={()=>levantarse()}> SALIR </span>
-
+                }
                 </div>
                 <div className='MontoCont'>
                     <span className='Titulo'>Monto Actual:</span> <br/>
@@ -95,7 +96,7 @@ function Jugador (props){
                            })}
                         </div>
                     </div>
-                    <span className='apuestaTotal'>$ {bet}</span>
+                    <span className='apuestaTotal'>{`$ ${bet ? bet : apuesta}`}</span>
                     
                 </div>
             </div>
