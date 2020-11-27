@@ -48,7 +48,6 @@ class Croupier extends React.Component{
         }
     }
 
-    unsubscribeFromSocket = null;
 
     componentDidMount() {
         const { currentUser } = this.props;
@@ -59,12 +58,12 @@ class Croupier extends React.Component{
             saldo: currentUser.saldo
         })
         console.log("Avocato", currentUser)
-
-        this.unsubscribeFromSocket = () => socket.emit('joinMesa', {tipo, mesa, nickname, avatar, saldo});
+        socket.emit('joinMesa', {tipo, mesa, nickname, avatar, saldo});
     }
-    
+
     componentWillUnmount() {
-        this.unsubscribeFromSocket()
+        socket.emit('disconnect');
+        console.log("Component unmount")
     }
     
     render(){

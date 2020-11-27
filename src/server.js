@@ -53,7 +53,26 @@ io.on('connection', socket => {
         })
 
         socket.on('disconnect', () => {
-            io.emit("messages", {server: "Server", message: "Has leave the room"})
+            io.to(user.mesa).emit("messages", {server: "Server", message: "Has leave the room"})
+            const user = userLeave(socket.id);
+            if(user){
+                //Anuncio un jugador se ha ido
+                io.to(user.mesa).emit('message', formatMessage(chatBot, `${user.nickname} a abandonado la mesa.`));
+                
+                //Actualizacion de listas
+                if(user.tipo === "player"){
+                    //Actualizacion de jugadores
+                    io.to(user.mesa).emit('mesaPlayers', {
+                        players: getMesaPlayers(user.mesa)
+                    });
+                } else if(user.tipo === 'spectator'){
+                    //Actualizacion de espectadores
+                    io.to(user.mesa).emit('mesaSpectators', {
+                        spectators: getMesaSpectators(user.mesa) 
+                    });
+                }
+            }
+            console.log(`un usuario salio de mesa`);
         })
 
         //Esperar por pregunta para todos
@@ -71,27 +90,7 @@ io.on('connection', socket => {
     
     
     //Cuando alguien se desconecta
-    socket.on('disconnect', () => {
-        const user = userLeave(socket.id);
-        if(user){
-            //Anuncio un jugador se ha ido
-            io.to(user.mesa).emit('message', formatMessage(chatBot, `${user.nickname} a abandonado la mesa.`));
-            
-            //Actualizacion de listas
-            if(user.tipo === "player"){
-                //Actualizacion de jugadores
-                io.to(user.mesa).emit('mesaPlayers', {
-                    players: getMesaPlayers(user.mesa)
-                });
-            } else if(user.tipo === 'spectator'){
-                //Actualizacion de espectadores
-                io.to(user.mesa).emit('mesaSpectators', {
-                    spectators: getMesaSpectators(user.mesa) 
-                });
-            }
-        }
-        console.log(`un usuario salio de mesa`);
-    });
+    
 });
 
 const PORT = 3001 || process.env.PORT;
