@@ -15,7 +15,7 @@ import Preguntas from '../../files/preguntas.js';
 
 import io from 'socket.io-client'
 import { connect } from 'react-redux';
-const socket = io("http://localhost:3001");
+const socket = io("http://localhost:8081");
 
 const tipo = "player";
 
