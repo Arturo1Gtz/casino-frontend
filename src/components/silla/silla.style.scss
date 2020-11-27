@@ -11,7 +11,7 @@
         display: flex;
     }
 
-    &.izq{
+    &.Izq{
         // border:3px solid green;
         flex-direction: row-reverse;
         .datosContainer{
@@ -21,11 +21,11 @@
             // border: 3px solid blue;
             &__Img{
                 left: 0%;
-                rotate: 180deg;
+                // rotate: 180deg;
             }
         }
     }
-    &.der{
+    &.Der{
         .datosContainer{
             align-items: flex-start;
         }
@@ -35,7 +35,7 @@
            
         }
     }
-    &.cabz{
+    &.Cntr{
         // border: 3px solid red;
         flex-direction: column;
         justify-content: flex-start;
@@ -47,7 +47,7 @@
             // flex-direction: row-reverse;
             justify-content: center;
             &__Img{
-                rotate: 90deg;
+                // rotates: 90deg;
             }
         }
     }

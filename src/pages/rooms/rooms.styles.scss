@@ -1,26 +1,25 @@
 
 .rooms{
-    // border: 1px solid greenyellow;
+    // border: 3px solid red; 
     height: 100%;
     width: 100%;
     display: flex;
     flex-direction: column;
     // table-layout: auto;
     &__fila{
-        flex-grow: 1;
+        // flex-grow: 1;
+        // border: 3px solid gray;
+        flex: 1;
         width : 100%;
+        height: 30%;
         display: flex;
 
         &__cont{
-            // border: 3px solid black;
+            // border: 3px solid white;
             width: 100%;
             scale: 0.99;
+            // flex: 1;
             opacity: 0.9;
-            &__coupier{
-                // border: 3px solid wheat;
-                height: 100%;
-                overflow: hidden;
-            }
 
             &:hover{
                 cursor: pointer;
