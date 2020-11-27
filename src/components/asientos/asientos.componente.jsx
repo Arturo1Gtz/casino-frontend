@@ -8,6 +8,10 @@ import { connect } from 'react-redux';
 import './asientos.styles.scss';
 import { firestore } from '../../firebase/firebase.utils';
 
+import Izq from '../../img/silla-individual.png';
+import Der from '../../img/silla-individual-der.png';
+import Cntr from '../../img/silla-individual-cntr.png';
+
 const Asientos = (props) => {
     const {currentUser, sentarse,  replica, enJuego, juego, apostar, responder, revelado, end, socket, mesa, tipo} = props;
     const updateUserRef = firestore.collection('user').doc(`${currentUser.id}`)
@@ -234,20 +238,20 @@ const Asientos = (props) => {
                 </div>
 
                 <div className={'Contenedor izq'}>
-                    <div className={'asiento'}><Silla  align={'izq'} ident={jugadores[0]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
-                    <div className={'asiento'}><Silla  align={'izq'} ident={jugadores[1]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
-                    <div className={'asiento'}><Silla  align={'izq'} ident={jugadores[2]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
+                    <div className={'asiento'}><Silla  align={'Izq'} img={Izq} ident={jugadores[0]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
+                    <div className={'asiento'}><Silla  align={'Izq'} img={Izq} ident={jugadores[1]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
+                    <div className={'asiento'}><Silla  align={'Izq'} img={Izq} ident={jugadores[2]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
                     
                 </div>
                 <div className={'Contenedor der'}>
-                    <div className={'asiento'}><Silla align={'der'} ident={jugadores[3]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
-                    <div className={'asiento'}><Silla align={'der'} ident={jugadores[4]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
-                    <div className={'asiento'}><Silla align={'der'} ident={jugadores[5]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
+                    <div className={'asiento'}><Silla align={'Der'} img={Der} ident={jugadores[3]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
+                    <div className={'asiento'}><Silla align={'Der'} img={Der} ident={jugadores[4]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
+                    <div className={'asiento'}><Silla align={'Der'} img={Der} ident={jugadores[5]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
 
                 </div>
             </div>
             <div className={'jugadorCont'}>
-                {player.sentado ?<Jugador levantarse={standUp} respuesta={players[player.asiento].respuesta} apuesta={players[player.asiento].apuesta} bet={bet} monto={montoActual} fichas={chips} aumentar={aumentaApuesta} clean={limpiar} onGame={enJuego} apostar= {apuesta} responder={answer} avatar={currentUser.imgurl}></Jugador>:<Silla align={'cabz'} ident={jugadores[6] } tomarAsiento={sit} revelacion= {revelado} ></Silla>}
+                {player.sentado ?<Jugador levantarse={standUp} respuesta={players[player.asiento].respuesta} apuesta={players[player.asiento].apuesta} bet={bet} monto={montoActual} fichas={chips} aumentar={aumentaApuesta} clean={limpiar} onGame={enJuego} apostar= {apuesta} responder={answer} avatar={currentUser.imgurl}></Jugador>:<Silla align={'Cntr'} img={Cntr} ident={jugadores[6] } tomarAsiento={sit} revelacion= {revelado} ></Silla>}
                 {/* {jugando?<span>diosmio</span>:<span>agarranosconfesados</span>} */}
             </div>
         </div>

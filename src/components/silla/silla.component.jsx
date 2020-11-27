@@ -4,12 +4,14 @@ import './silla.style.scss';
 // import Icon from '../../img/userphoto.svg';
 import Ocup from '../../img/lugar-ocupado.png';
 import Disp from '../../img/lugar-disponible.png';
-import Sillon from '../../img/silla-individual.png';
+import Izq from '../../img/silla-individual.png';
+import Der from '../../img/silla-individual-der.png';
+import Cntr from '../../img/silla-individual-cntr.png';
 
 
 function Silla(props){
     var ocupado = props.ident;
-    var {align, tomarAsiento, ident, revelacion} = props;
+    var {align, tomarAsiento, ident, img, revelacion} = props;
     const [color, setColor] = useState('rojo');
     // console.log('silla', props, ocupado)
     
@@ -49,7 +51,7 @@ function Silla(props){
                 <span className={`datosContainer__apuesta`}>{apuesta}</span>
             </div>
             <div className={'silla__fondo'}>
-                <img src={Sillon} alt ='img_silla' className='silla__fondo__Img' />
+                <img src={img} alt ='img_silla' className='silla__fondo__Img' />
                 
             </div>
         </div>

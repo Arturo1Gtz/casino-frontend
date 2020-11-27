@@ -24,137 +24,86 @@ const RoomsPaige = ({history, currentUser})=> {
         {/* fila 1 */}
         <div className={'rooms__fila'}>
           <div className={'rooms__fila__cont'} onClick={ruleta}>
-            <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={1}></MiniCroupier>
-            </div>
+            <MiniCroupier num={1}></MiniCroupier>
           </div>
           <div className={'rooms__fila__cont'} onClick={ruleta}>
-            <div className={'rooms__fila__cont__coupier'}>
-                <MiniCroupier num={2}></MiniCroupier>
-              </div>
+            <MiniCroupier num={2}></MiniCroupier>
           </div>
           <div className={'rooms__fila__cont'} onClick={ruleta}>
-            <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={3}></MiniCroupier>
-            </div>
+            <MiniCroupier num={3}></MiniCroupier>
           </div>
           <div className={'rooms__fila__cont'} onClick={ruleta}>
-            <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={4}></MiniCroupier>
-            </div>
+            <MiniCroupier num={4}></MiniCroupier>
           </div>
           <div className={'rooms__fila__cont'} onClick={ruleta}>
-            <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={5}></MiniCroupier>
-            </div>
+            <MiniCroupier num={5}></MiniCroupier>
           </div>
           <div className={'rooms__fila__cont'} onClick={ruleta}>
-           <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={6}></MiniCroupier>
-            </div>
+            <MiniCroupier num={6}></MiniCroupier>
           </div>
           <div className={'rooms__fila__cont'} onClick={ruleta}>
-            <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={7}></MiniCroupier>
-            </div>
+            <MiniCroupier num={7}></MiniCroupier>
           </div>
           <div className={'rooms__fila__cont'} onClick={ruleta}>
-            <div className={'rooms__fila__cont__coupier'}>
-                <MiniCroupier num={8}></MiniCroupier>
-              </div>
+            <MiniCroupier num={8}></MiniCroupier>
           </div>
         </div>
 
-        {/* fila2 */}
-        <div className={'rooms__fila'} >
-          <div className={'rooms__fila__cont'} onClick={ruleta}>
-            <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={9}></MiniCroupier>
-            </div>
-          </div>
-          <div className={'rooms__fila__cont'} onClick={ruleta}>
-            <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={10}></MiniCroupier>
-            </div>
-          </div>
-          <div className={'rooms__fila__cont'} onClick={ruleta}>
-            <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={11}></MiniCroupier>
-            </div>
-          </div>
-          <div className={'rooms__fila__cont'} onClick={ruleta}>
-           <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={12}></MiniCroupier>
-            </div>
-          </div>
-          <div className={'rooms__fila__cont'} onClick={ruleta}>
-            <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={13}></MiniCroupier>
-            </div>
-          </div>
-          <div className={'rooms__fila__cont'} onClick={ruleta}>
-            <div className={'rooms__fila__cont__coupier'}>
-                <MiniCroupier num={14}></MiniCroupier>
-              </div>
-          </div>
-          <div className={'rooms__fila__cont'} onClick={ruleta}>
-            <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={15}></MiniCroupier>
-            </div>
-          </div>
-          <div className={'rooms__fila__cont'} onClick={ruleta}>
-            <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={16}></MiniCroupier>
-            </div>
-          </div>
-        </div>
-
-
-        {/* fila3 */}
         <div className={'rooms__fila'}>
-          
           <div className={'rooms__fila__cont'} onClick={ruleta}>
-            <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={17}></MiniCroupier>
-            </div>
+            <MiniCroupier num={9}></MiniCroupier>
           </div>
           <div className={'rooms__fila__cont'} onClick={ruleta}>
-           <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={18}></MiniCroupier>
-            </div>
+            <MiniCroupier num={10}></MiniCroupier>
           </div>
           <div className={'rooms__fila__cont'} onClick={ruleta}>
-           <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={19}></MiniCroupier>
-            </div>
+            <MiniCroupier num={11}></MiniCroupier>
           </div>
           <div className={'rooms__fila__cont'} onClick={ruleta}>
-           <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={20}></MiniCroupier>
-            </div>
+            <MiniCroupier num={12}></MiniCroupier>
           </div>
           <div className={'rooms__fila__cont'} onClick={ruleta}>
-           <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={21}></MiniCroupier>
-            </div>
+            <MiniCroupier num={13}></MiniCroupier>
           </div>
           <div className={'rooms__fila__cont'} onClick={ruleta}>
-           <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={22}></MiniCroupier>
-            </div>
+            <MiniCroupier num={14}></MiniCroupier>
           </div>
           <div className={'rooms__fila__cont'} onClick={ruleta}>
-           <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={23}></MiniCroupier>
-            </div>
+            <MiniCroupier num={15}></MiniCroupier>
           </div>
           <div className={'rooms__fila__cont'} onClick={ruleta}>
-           <div className={'rooms__fila__cont__coupier'}>
-              <MiniCroupier num={24}></MiniCroupier>
-            </div>
+            <MiniCroupier num={16}></MiniCroupier>
           </div>
-          
         </div>
+
+        <div className={'rooms__fila'}>
+          <div className={'rooms__fila__cont'} onClick={ruleta}>
+            <MiniCroupier num={17}></MiniCroupier>
+          </div>
+          <div className={'rooms__fila__cont'} onClick={ruleta}>
+            <MiniCroupier num={18}></MiniCroupier>
+          </div>
+          <div className={'rooms__fila__cont'} onClick={ruleta}>
+            <MiniCroupier num={19}></MiniCroupier>
+          </div>
+          <div className={'rooms__fila__cont'} onClick={ruleta}>
+            <MiniCroupier num={20}></MiniCroupier>
+          </div>
+          <div className={'rooms__fila__cont'} onClick={ruleta}>
+            <MiniCroupier num={21}></MiniCroupier>
+          </div>
+          <div className={'rooms__fila__cont'} onClick={ruleta}>
+            <MiniCroupier num={22}></MiniCroupier>
+          </div>
+          <div className={'rooms__fila__cont'} onClick={ruleta}>
+            <MiniCroupier num={23}></MiniCroupier>
+          </div>
+          <div className={'rooms__fila__cont'} onClick={ruleta}>
+            <MiniCroupier num={24}></MiniCroupier>
+          </div>
+        </div>
+
+
 
         </div>
 

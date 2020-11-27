@@ -5,13 +5,18 @@ import MesaFondo from '../../img/mesa-de-inicio.png';
 import Ocup from '../../img/lugar-ocupado.png';
 import Disp from '../../img/lugar-disponible.png';
 import Sillon from '../../img/silla-individual.png';
+import SillonDer from '../../img/silla-individual-der.png';
+import SillonCntr from '../../img/silla-individual-cntr.png';
 
 const MiniCroupier =(props)=>{
     const arr = [1,1,1]
     const {num} = props;
     return(
         <div className={'mini'}>
-            <span className={'mini__num'}>{num}</span>
+
+            <div className={'mini__num'}>
+                <span className={'mini__num__span'}>{num}</span>
+            </div>
             {/* <span>mini croupier</span> */}
             <div className={'mini__front'}>
                 <div className={'mini__front__sillas'}>
@@ -33,20 +38,20 @@ const MiniCroupier =(props)=>{
 
             {/* fondo con sillas */}
             <div className={'mini__fondo'}>
-                <div className={'mini__fondo__sillas__izq'}>
-                    <img src={Sillon} alt ='img_silla' className={`mini__fondo__sillas__izq__img`} />
-                    <img src={Sillon} alt ='img_silla' className={`mini__fondo__sillas__izq__img`} />
-                    <img src={Sillon} alt ='img_silla' className={`mini__fondo__sillas__izq__img`} />
+                <div className={'mini__fondo__sillas'}>
+                    <img src={Sillon} alt ='img_silla' className={`mini__fondo__sillas__img`} />
+                    <img src={Sillon} alt ='img_silla' className={`mini__fondo__sillas__img`} />
+                    <img src={Sillon} alt ='img_silla' className={`mini__fondo__sillas__img`} />
                 </div>
-                <div className={'mini__fondo__center'}>
-                    <img src={MesaFondo} alt ='fondoJuego' className={'mini__fondo__center__imgBg'}/> 
-                    <img src={Sillon} alt ='img_silla' className={`mini__fondo__center__img`} />
+                <div className={'mini__fondo__sillas'}>
+                    <img src={MesaFondo} alt ='fondoJuego' className={'mini__fondo__sillas__imgBg'}/> 
+                    <img src={SillonCntr} alt ='img_silla' className={`mini__fondo__sillas__imgCntr`} />
                         
                 </div>
-                <div className={'mini__fondo__sillas__der'}>
-                    <img src={Sillon} alt ='img_silla' className={`mini__fondo__sillas__der__img`} />
-                    <img src={Sillon} alt ='img_silla' className={`mini__fondo__sillas__der__img`} />
-                    <img src={Sillon} alt ='img_silla' className={`mini__fondo__sillas__der__img`} />
+                <div className={'mini__fondo__sillas'}>
+                    <img src={SillonDer} alt ='img_silla' className={`mini__fondo__sillas__img`} />
+                    <img src={SillonDer} alt ='img_silla' className={`mini__fondo__sillas__img`} />
+                    <img src={SillonDer} alt ='img_silla' className={`mini__fondo__sillas__img`} />
                 </div>
             </div>
 
