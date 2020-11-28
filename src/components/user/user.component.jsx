@@ -6,6 +6,7 @@ import { firestore, auth } from '../../firebase/firebase.utils';
 import { Form, Input } from 'semantic-ui-react';
 import CustomButton from '../custom-button/button.component';
 import Select from 'react-select'
+
 import './user.style.scss';
 
 const User = ({currentUser}) => {
@@ -60,14 +61,19 @@ const User = ({currentUser}) => {
     }
         
     return(
-        <div className='contenido'>
-            <span>Hola soy el usuario {currentUser.nickname}</span>
-            <div className = 'userIcon'>
-                <img className = 'icon' src={currentUser.imgurl} alt={currentUser.nickname}></img>
+        <div className='user'>
+            <div className={'user__cont'}>
+                <img className={'user__cont__icon'} src={currentUser.imgurl} alt={currentUser.nickname}></img>
             </div>
-            <div className='transferForm'>
-                <Form onSubmit={handleSubmit}>
-                    <Form.Group>
+            <div className={'user__cont'}>
+                <span>Hola soy el usuario {currentUser.nickname}</span>
+
+            </div>
+
+            <div className='user__cont'>
+
+                <Form onSubmit={handleSubmit} className={'user__cont__form'}>
+                    <Form.Group className={'user__cont__form__group'}>
                         <Form.Field
                             control={Input}
                             label='Monto a transferir'
@@ -90,6 +96,7 @@ const User = ({currentUser}) => {
                     </Form.Group>
                     <CustomButton type='submit'>Transeferir</CustomButton>
                 </Form>
+
             </div>
         </div>
     )
