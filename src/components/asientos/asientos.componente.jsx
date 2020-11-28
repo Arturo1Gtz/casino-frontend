@@ -6,6 +6,7 @@ import Timer from '../timer/timer.component';
 
 import { connect } from 'react-redux';
 import './asientos.styles.scss';
+import { firestore } from '../../firebase/firebase.utils';
 
 import Izq from '../../img/silla-individual.png';
 import Der from '../../img/silla-individual-der.png';
@@ -13,18 +14,18 @@ import Cntr from '../../img/silla-individual-cntr.png';
 
 const Asientos = (props) => {
     const {currentUser, sentarse,  replica, enJuego, juego, apostar, responder, revelado, end, socket, mesa, tipo} = props;
-
+    const updateUserRef = firestore.collection('user').doc(`${currentUser.id}`)
      
 
     //conexion a socket
-    useEffect(() => {
+    /*useEffect(() => {
         const nickname = currentUser.nickname;
         const avatar = currentUser.imgurl;
         const saldo = currentUser.credits;  
         const unsubscribeFromSocket = () =>  socket.emit('joinMesa', {tipo, mesa, nickname, avatar, saldo});
-
+        console.log("Terreno", saldo, avatar, nickname)
         return() => unsubscribeFromSocket();
-    }, [])
+    }, [])*/
    
     
     var pleiers = [];
@@ -182,6 +183,14 @@ const Asientos = (props) => {
         setBet(0)
         setChips([[],[],[],[]])
         // setMonto(player.acumulado)
+        try{
+            updateUserRef.update({
+                credits: montoActual
+            })
+            console.log("Creditos actualizados en la base de datos")
+        } catch (error) {
+            console.log(error)
+        }
         end()
     }
     const checkApuestas = () => {
