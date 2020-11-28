@@ -1,9 +1,7 @@
-import { registerVersion } from 'firebase';
 import firebase from 'firebase/app'
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { firestore, auth } from '../../firebase/firebase.utils';
-import { Form, Input } from 'semantic-ui-react';
 import CustomButton from '../custom-button/button.component';
 import Select from 'react-select'
 
@@ -72,18 +70,17 @@ const User = ({currentUser}) => {
 
             <div className='user__cont'>
 
-                <Form onSubmit={handleSubmit} className={'user__cont__form'}>
-                    <Form.Group className={'user__cont__form__group'}>
-                        <Form.Field
-                            control={Input}
-                            label='Monto a transferir'
+                <form onSubmit={handleSubmit} className={'user__cont__form'}>
+                    <div className={'user__cont__form__group'}>
+                        <label>Monto a transferir</label>
+                        <input
                             type='number'
                             value={transfer}
                             onChange={handleTransfer}
                             min='1000'
                             max={currentUser.credits}
                         />
-                        <Form.Field>
+                        <div>
                             <label>Destinatario</label>
                             <Select 
                                 onChange={handleChange}
@@ -92,11 +89,10 @@ const User = ({currentUser}) => {
                                 getOptionLabel={(option) => option.label}
                                 getOptionValue={(option) => option.value}
                             />
-                        </Form.Field>
-                    </Form.Group>
+                        </div>
+                    </div>
                     <CustomButton type='submit'>Transeferir</CustomButton>
-                </Form>
-
+                </form>
             </div>
         </div>
     )
