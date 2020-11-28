@@ -1,21 +1,35 @@
 .user{
-    border: 3px solid red;
+    // border: 3px solid green;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
     &__cont{
-        border: 3px solid cyan;
-        height: 30%;
+        // border: 3px solid cyan;
+        height: 50%;
         color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
         &__icon{
-            border: 3px solid yellow;
+            // border: 3px solid yellow;
             width: 200px;
-
         }
-
         &__form{
-            border:3px solid white;
+            // border:3px solid purple;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            &__group{
+                // border: 3px solid pink;
+                height: 70%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+            }
         }
 
     }

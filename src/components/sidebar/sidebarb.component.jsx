@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import { Button, Sidebar } from 'semantic-ui-react'
 import User from '../user/user.component'
 import { auth } from '../../firebase/firebase.utils'
+import CustomButton from '../custom-button/button.component';
+
+import './sidebarB.style.scss'
 
 const SidebarUser = (props, {currentUser}) => {
     return(
@@ -14,10 +17,12 @@ const SidebarUser = (props, {currentUser}) => {
         vertical visible={props.isvisible}
         className='sidebar'
         >
-            <div className='contenido'>
-                <User/>
-                <div className = 'formulario'>
-                    <Button onClick={() => auth.signOut()}>Cerrar sesion</Button>
+            <div className={'sidebar__content'}>
+                <div className={'sidebar__content__user'}>
+                <User />
+                </div>
+                <div className ={'sidebar__content__btn'}>
+                <CustomButton onClick={() => auth.signOut()}>Cerrar sesion</CustomButton>
                 </div>
                 
             </div>

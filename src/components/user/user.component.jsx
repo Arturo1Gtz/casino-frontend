@@ -62,11 +62,11 @@ const User = ({currentUser}) => {
         <div className='user'>
             <div className={'user__cont'}>
                 <img className={'user__cont__icon'} src={currentUser.imgurl} alt={currentUser.nickname}></img>
-            </div>
-            <div className={'user__cont'}>
                 <span>Hola soy el usuario {currentUser.nickname}</span>
-
             </div>
+            {/* <div className={'user__cont'}>
+
+            </div> */}
 
             <div className='user__cont'>
 
