@@ -94,7 +94,7 @@ const Register = () => {
                 <FormInput type="email" label='Email' required onChange={handleChange} name = "email" value = {email} autofocus/>
                 <FormInput type="password" label='Contraseña' required onChange={handleChange} name="password" value = {password} autofocus/>
                 <FormInput type="password" label='Confirma contraseña' required onChange={handleChange} name="cpassword" value = {cpassword} autofocus/>
-                <FormInput type="text" label='Nickname' required onChange={handleChange} name = "nickname" value = {nickname} autofocus/>                
+                <FormInput type="text" label='Nombre de Usuario' required onChange={handleChange} name = "nickname" value = {nickname} autofocus/>                
                 <FormInput type="text" label='Primer nombre' required onChange={handleChange} name = "firstname" value = {firstname} autofocus/>
                 <FormInput type="text" label='Apellido' required onChange={handleChange} name = "lastname" value = {lastname} autofocus/>                
                 <FormInput type="text" label='Empresa' required onChange={handleChange} name = "enterprise" value = {enterprise} autofocus/>

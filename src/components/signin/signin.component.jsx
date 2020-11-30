@@ -42,8 +42,8 @@ const SignIn = () => {
                 <FormInput type="email" required onChange={handleChange} name = "email" value = {email} label = 'Email'/>
                 <FormInput type="password" required onChange={handleChange} name="password" value = {password} label = 'Password'/>
                 <ButtonsBarContainer>
-                    <CustomButton type="submit">Sign in</CustomButton>
-                    <CustomButton type="button" onClick = {signInWithGoogle} isGoogleSignIn >Google</CustomButton>
+                    <CustomButton type="submit">Iniciar Sesión</CustomButton>
+                    {/* <CustomButton type="button" onClick = {signInWithGoogle} isGoogleSignIn >Google</CustomButton> */}
                 </ButtonsBarContainer>
             </form>
         </SignInContainer>
