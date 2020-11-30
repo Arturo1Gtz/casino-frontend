@@ -29,6 +29,9 @@
                 display: flex;
                 flex-direction: column;
                 justify-content: space-evenly;
+                &__select{
+                    color: black;
+                }
             }
         }
 
