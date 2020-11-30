@@ -57,7 +57,7 @@ class Croupier extends React.Component{
             avatar: currentUser.imgurl,
             saldo: currentUser.saldo
         })
-        console.log("vane", table) 
+        console.log("mesa 2", table) 
         console.log("Avocato", currentUser)
         socket.emit('joinMesa', {tipo, mesa, nickname, avatar, saldo});
     }
