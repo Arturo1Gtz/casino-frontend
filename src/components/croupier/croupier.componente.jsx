@@ -85,8 +85,13 @@ class Croupier extends React.Component{
                 this.setState({vueltasIn:vint},() => console.log('calamares',this.state));
             });
 
+            this.setState_(vueltasEx = Math.random() * (25- 10) + 10);
+            this.setState(vueltasIn = Math.random() * (25- 10) + 10);
+
             this.setState({onGame:true, onGiro:true}
              ,() => console.log('vueltas',this.state)
+
+            
         );}
         const sinGiro =()=>{
             const actualDegE = this.state.vueltasEx - Math.floor(this.state.vueltasEx);
