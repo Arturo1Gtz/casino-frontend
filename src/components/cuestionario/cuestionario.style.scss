@@ -3,16 +3,14 @@
     display: flex;
     flex-direction: column;
     color: black;
-    justify-content: center;
-    justify-items: center;
-    align-content: center;
+    justify-content: flex-end;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 90%;
     // border: 3px solid greenyellow;
     .preguntaContainer{
-        position: absolute;
-        top: 10%;
+        // position: absolute;s
+        // top: -10%;
         border: 3px solid #929292;
         background-color: white;
         border-radius: 5em;
@@ -44,18 +42,19 @@
       
     }    
     .respuestas{
-        position: relative;
+        // border: 3px solid black;
+        // position: relative;
         top: 25%;
         height: 40%;
         width: 50%;
-        // border: 3px solid black;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        align-items: flex-end;
 
         .rsp{
             opacity: 0.8;
-           padding-top: 2%;
+           padding-top: 3%;
             text-align: center;
             text-justify: inter-word;
             width: 45%;
@@ -67,9 +66,11 @@
         }
         .verde{
             color:#ACFF10;
+            border:3px solid #ACFF10;
         }
         .rojo{
             color: red;
+            border: 3px solid red;
         }
             
 

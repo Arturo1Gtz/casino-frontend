@@ -226,6 +226,18 @@ const Asientos = (props) => {
     return(
         <div className={'asientos'}>
             <div className={'jugadoresCont'}>
+
+               {player.sentado && revelado ?
+                <div className={'jugadoresCont__anuncio'}>
+                    { players[player.asiento].res ?
+                        <span>¡ GANASTE !</span>
+                    :
+                        <span>PERDISTE</span>
+                    }
+                </div>
+                : null
+                }
+
                 <div className={'timerCont'}>{
                     enJuego?null:
                     <div className={'anuncio'}>

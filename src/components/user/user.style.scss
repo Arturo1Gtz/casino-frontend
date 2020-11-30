@@ -1,65 +1,105 @@
-.User{
-    // border: 3px solid red;
-    // overflow: hidden;
-    background-color: #1B2743;
-    .contenido{
-        width: 100%;
-        height: 100%;
-        top: 0;
-        // border: 3px solid blue;
-        position: absolute;
-        overflow:hidden;
+.user{
+    // border: 3px solid green;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    &__cont{
+        // border: 3px solid cyan;
+        height: 50%;
+        color: white;
         display: flex;
         flex-direction: column;
         align-items: center;
-
-        .thanks{
-            position: absolute;
-            width: 100%;
-            height: 10%;
-            top: 10%;
-            // border: 2px solid red;
-            font-size: 150%;
-            line-height: 1.5;
+        justify-content: space-evenly;
+        &__icon{
+            // border: 3px solid yellow;
+            width: 200px;
         }
-        .userIcon{
-            position: relative;
-            width: 45%;
-            top: 40%;
-            // border: 2px solid white;
-            .icon{
-                width: 100%;
+        &__form{
+            // border:3px solid purple;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            &__group{
+                // border: 3px solid pink;
+                height: 70%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
             }
-        }
-        .formType{
-            position:absolute;
-            width: 100%;
-            top: 30%;
-            .optionForm{
-                opacity: 0.5;
-                &:hover{
-                    cursor: pointer;
-                }
-            }
-            .active{
-                opacity: 1;
-                size: 1.2;
-            }
-        }
-        .formulario{
-            position: absolute;
-            top: 35%;
-            // border: 2px solid greenyellow;
-            height: 60%;
-            
         }
 
     }
-    .imagenBar{
-        // border: 3px solid black;
-        width: 100%;
-        height: 100%;
-        background-position: center;
-        background-size: cover;
-    }
+   
+
 }
+
+
+// .User{
+//     // border: 3px solid red;
+//     // overflow: hidden;
+//     // background-color: #1B2743;
+//     .contenido{
+//         // width: 100%;
+//         // height: 100%;
+//         // top: 0;
+//         // border: 3px solid cyan;
+//         // position: absolute;
+//         // overflow:hidden;
+//         // display: flex;
+//         // flex-direction: column;
+//         // align-items: center;
+
+//         .thanks{
+//             position: absolute;
+//             width: 100%;
+//             height: 10%;
+//             top: 10%;
+//             border: 2px solid red;
+//             font-size: 150%;
+//             line-height: 1.5;
+//         }
+//         .userIcon{
+//             position: relative;
+//             width: 45%;
+//             top: 40%;
+//             // border: 2px solid white;
+//             .icon{
+//                 width: 100%;
+//             }
+//         }
+//         .formType{
+//             position:absolute;
+//             width: 100%;
+//             top: 30%;
+//             .optionForm{
+//                 opacity: 0.5;
+//                 &:hover{
+//                     cursor: pointer;
+//                 }
+//             }
+//             .active{
+//                 opacity: 1;
+//                 size: 1.2;
+//             }
+//         }
+//         .formulario{
+//             position: absolute;
+//             top: 35%;
+//             // border: 2px solid greenyellow;
+//             height: 60%;
+            
+//         }
+
+//     }
+//     .imagenBar{
+//         // border: 3px solid black;
+//         width: 100%;
+//         height: 100%;
+//         background-position: center;
+//         background-size: cover;
+//     }
+// }
