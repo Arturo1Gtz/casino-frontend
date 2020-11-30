@@ -53,11 +53,12 @@ io.on('connection', socket => {
         })
 
         socket.on('disconnect', () => {
-            io.to(user.mesa).emit("messages", {server: "Server", message: "Has leave the room"})
             const user = userLeave(socket.id);
+            
             if(user){
                 //Anuncio un jugador se ha ido
                 io.to(user.mesa).emit('message', formatMessage(chatBot, `${user.nickname} a abandonado la mesa.`));
+                io.to(user.mesa).emit("messages", {server: "Server", message: "Has leave the room"})
                 
                 //Actualizacion de listas
                 if(user.tipo === "player"){
