@@ -88,6 +88,7 @@ const User = ({currentUser}) => {
                                 value={options}
                                 getOptionLabel={(option) => option.label}
                                 getOptionValue={(option) => option.value}
+                                className="user__cont__form__group__select"
                             />
                         </div>
                     </div>
