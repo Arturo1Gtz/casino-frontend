@@ -51,10 +51,10 @@ function Jugador (props){
                 </div>
                 
                 :<div className={`fichasCont ${apuesta?'off':null}`}>
-                    <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentar(1,0)}/>
-                    <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentar(3,1)}/>
-                    <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentar(5,2)}/>
-                    <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentar(10,3)}/>
+                    <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentar(100,0)}/>
+                    <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentar(500,1)}/>
+                    <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentar(1000,2)}/>
+                    <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentar(2000,3)}/>
                    
                 </div>}
 

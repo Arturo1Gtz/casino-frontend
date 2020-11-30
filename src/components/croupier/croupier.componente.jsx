@@ -18,8 +18,8 @@ import { connect } from 'react-redux';
 const socket = io('localhost:8081');
 
 const tipo = "player";
+var mesa = "1";
 
-const mesa = "1";
 
 
 
@@ -50,13 +50,14 @@ class Croupier extends React.Component{
 
 
     componentDidMount() {
-        const { currentUser } = this.props;
+        const { currentUser, table } = this.props;
         const { nickname, avatar, saldo } = this.state;
         this.setState({
             nickname: currentUser.nickname,
             avatar: currentUser.imgurl,
             saldo: currentUser.saldo
         })
+        console.log("vane", table) 
         console.log("Avocato", currentUser)
         socket.emit('joinMesa', {tipo, mesa, nickname, avatar, saldo});
     }

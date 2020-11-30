@@ -51,7 +51,7 @@ class App extends React.Component {
               <div className='contenido'>
                 <Switch>
                   <Route exact path='/' component={RoomsPaige} />
-                  <Route  path='/ruleta/' component={Admin} />
+                  <Route  path='/ruleta/:mesa' component={Admin} />
                 </Switch>
               </div>
                 :
