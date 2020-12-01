@@ -12,7 +12,7 @@ const {
     getMesaPlayers,
     getMesaSpectators,
     getCurrentUser
-} = require('./utils/manageusers');0
+} = require('./utils/manageusers');
 
 
 const formatMessage = require('./utils/handlemessages');
@@ -88,11 +88,8 @@ io.on('connection', socket => {
         })
     });
 
-    
-    
-    //Cuando alguien se desconecta
-    
-});
+
+   });
 
 const PORT = 8081 || process.env.PORT;
 

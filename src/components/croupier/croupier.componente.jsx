@@ -54,7 +54,7 @@ class Croupier extends React.Component{
             avatar: currentUser.imgurl,
             saldo: currentUser.saldo
         })
-        console.log("vane", table) 
+        console.log("mesa 2", table) 
         console.log("Avocato", currentUser)
         socket.emit('joinMesa', {tipo, mesa, nickname, avatar, saldo});
     }
@@ -83,8 +83,13 @@ class Croupier extends React.Component{
                 this.setState({vueltasIn:vint},() => console.log('calamares',this.state));
             });
 
+            this.setState({vueltasEx: Math.random() * (25- 10) + 10});
+            this.setState({vueltasIn: Math.random() * (25- 10) + 10});
+
             this.setState({onGame:true, onGiro:true}
              ,() => console.log('vueltas',this.state)
+
+            
         );}
         const sinGiro =()=>{
             const actualDegE = this.state.vueltasEx - Math.floor(this.state.vueltasEx);
