@@ -10,7 +10,7 @@ import Timer from '../timer/timer.component';
 
 import boton from '../../img/button.png';
 import './croupier.style.scss'
-import MesaFondo from '../../img/mesa-de-inicio.png';
+import MesaFondo from '../../img/mesa-de-inicio-mitad.png';
 import Preguntas from '../../files/preguntas.js';
 
 import io from 'socket.io-client'
@@ -19,9 +19,6 @@ const socket = io('localhost:8081');
 
 const tipo = "player";
 var mesa = "1";
-
-
-
 
 class Croupier extends React.Component{
     
@@ -178,40 +175,25 @@ class Croupier extends React.Component{
             <div className={'croupier'}>
                 <div className={'chatCont'}>
                     <Chat socket={socket} tipo={tipo} mesa={mesa} />
-
                 </div>
-
-                <div className={'juego'}>
-                    
+                <div className={'juego'}>                    
                     <div className='ruletaCont'>
                         <Ruleta  vueltasE={vueltasEx} vueltasI={vueltasIn} giro={onGiro}></Ruleta>
-                        {/* <div className= {'timerCont'}>
-                            <Timer></Timer>
-
-                        </div> */}
-
                     </div>
                         {onPregunta?
                         <div className='cuestionarioCont'>
                             <Cuestionario seccPregunta={acSeccEx} apuesta={acSeccIn} pregunta={pregunta} revelado={onRevelacion} > </Cuestionario>
-
                         </div>
                         :null}
-
                     <div className='asientosCont'>
                         <Asientos juego={juego} end={endGame} replica= {respuesta} sentarse={tomarAsiento}  apostar={apostar} responder={responder} enJuego={onGame} revelado={onRevelacion} socket={socket} mesa={mesa} tipo={tipo}></Asientos>
                     </div>
-
-
                     <div className={'juego__fondo'}>                    
-                        <img src={MesaFondo} alt ='fondoJuego' className='juego__fondo__Img' /> 
-
+                        <img src={MesaFondo} alt ='fondoJuego' className={'juego__fondo__img'} /> 
                     </div>
                     
                 </div>
-                {/* {onGame ? null:
-                    <img src={boton} alt='boton' className='boton' onClick={juego}/>
-                } */}
+                {/* {onGame ? null:<img src={boton} alt='boton' className='boton' onClick={juego}/>} */}
             </div> 
         )
     }
