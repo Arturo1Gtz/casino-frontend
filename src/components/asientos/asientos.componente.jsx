@@ -193,6 +193,7 @@ const Asientos = (props) => {
         }
         end()
     }
+    
     const checkApuestas = () => {
         let newPlayers = players;
         if(newPlayers.length){

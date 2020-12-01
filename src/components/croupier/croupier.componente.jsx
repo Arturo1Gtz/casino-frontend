@@ -48,15 +48,16 @@ class Croupier extends React.Component{
 
     componentDidMount() {
         const { currentUser, table } = this.props;
-        const { nickname, avatar, saldo } = this.state;
-        this.setState({
-            nickname: currentUser.nickname,
-            avatar: currentUser.imgurl,
-            saldo: currentUser.saldo
-        })
+        this.state.nickname = currentUser.nickname;
+        this.state.avatar = currentUser.imgurl;
+        this.state.saldo = currentUser.credits;
+        const nickname = this.state.nickname;
+        const avatar = this.state.avatar;
+        const saldo = this.state.saldo;
         console.log("mesa 2", table) 
         console.log("Avocato", currentUser)
-        socket.emit('joinMesa', {tipo, mesa, nickname, avatar, saldo});
+        socket.emit('joinMesa', {tipo, mesa , nickname, avatar, saldo});
+        console.log("Cascanueces", this.state.nickname, this.state.avatar, this.state.saldo)
     }
 
     componentWillUnmount() {
