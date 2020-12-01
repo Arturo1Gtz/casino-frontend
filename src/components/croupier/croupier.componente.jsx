@@ -18,7 +18,7 @@ import { connect } from 'react-redux';
 const socket = io('localhost:8081');
 
 const tipo = "player";
-var mesa = "1";
+var mesa = "10";
 
 class Croupier extends React.Component{
     
@@ -65,7 +65,7 @@ class Croupier extends React.Component{
     }
     
     render(){
-        const {onGame, onGiro, onPregunta, onRevelacion, vueltasEx, vueltasIn,seccEx,seccIn , acSeccEx, acSeccIn, jugadores, pregunta, respuesta,asiento } = this.state;
+        const {onGame, onGiro, onPregunta, onRevelacion, vueltasEx, vueltasIn,seccEx,seccIn , acSeccEx, acSeccIn, jugadores, pregunta, respuesta, asiento, respuestasArreglo } = this.state;
 
         const giro = () =>{
             calcVueltas();
@@ -107,6 +107,7 @@ class Croupier extends React.Component{
             
             const seccion = Preguntas[actualSeccEx];
             const questionObj = seccion.preguntas[preguntaNumero];
+            const respuestas = questionObj.respuestas;
             const respuestaObj = questionObj.respuestas.filter(res => res.correcta === true);
             const answer = respuestaObj[0].respuesta; 
 
@@ -182,16 +183,22 @@ class Croupier extends React.Component{
                     <Chat socket={socket} tipo={tipo} mesa={mesa} />
                 </div>
                 <div className={'juego'}>                    
-                    <div className='ruletaCont'>
-                        <Ruleta  vueltasE={vueltasEx} vueltasI={vueltasIn} giro={onGiro}></Ruleta>
+                    <div className={'ruletaCont'}>
+                        <div className={'ruletaCont__elem'}>
+                        <Ruleta vueltasE={vueltasEx} vueltasI={vueltasIn} giro={onGiro}></Ruleta>
+                        </div>
+                        <div className={'ruletaCont__elem'}>
+                        <span >{mesa}</span>
+
+                        </div>
                     </div>
-                        {onPregunta?
+                        {/* {onPregunta?
                         <div className='cuestionarioCont'>
                             <Cuestionario seccPregunta={acSeccEx} apuesta={acSeccIn} pregunta={pregunta} revelado={onRevelacion} > </Cuestionario>
                         </div>
-                        :null}
+                        :null} */}
                     <div className='asientosCont'>
-                        <Asientos juego={juego} end={endGame} replica= {respuesta} sentarse={tomarAsiento}  apostar={apostar} responder={responder} enJuego={onGame} revelado={onRevelacion} socket={socket} mesa={mesa} tipo={tipo}></Asientos>
+                        <Asientos juego={juego} end={endGame} seccPregunta={acSeccEx} pregunta={pregunta} replica= {respuesta} sentarse={tomarAsiento}  apostar={apostar} responder={responder} enJuego={onGame} enPregunta={onPregunta} revelado={onRevelacion} socket={socket} mesa={mesa} tipo={tipo}></Asientos>
                     </div>
                     <div className={'juego__fondo'}>                    
                         <img src={MesaFondo} alt ='fondoJuego' className={'juego__fondo__img'} /> 

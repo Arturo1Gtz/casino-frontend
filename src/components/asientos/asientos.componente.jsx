@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Silla from '../silla/silla.component';
 import Jugador from '../jugador/jugador.componente';
 import Timer from '../timer/timer.component';
+import Cuestionario from '../cuestionario/cuestionario.componente';
 
 import { connect } from 'react-redux';
 import './asientos.styles.scss';
@@ -13,7 +14,7 @@ import Der from '../../img/silla-individual-der.png';
 import Cntr from '../../img/silla-individual-cntr.png';
 
 const Asientos = (props) => {
-    const {currentUser, sentarse,  replica, enJuego, juego, apostar, responder, revelado, end, socket, mesa, tipo} = props;
+    const {currentUser, seccPregunta, pregunta, sentarse,  replica, enJuego, juego, apostar, enPregunta, responder, revelado, end, socket, mesa, tipo} = props;
     const updateUserRef = firestore.collection('user').doc(`${currentUser.id}`)
      
 
@@ -113,7 +114,15 @@ const Asientos = (props) => {
 
     const answer = (y)=>{
         const newplayers = players;
-        newplayers[player.asiento].respuesta = y;
+
+        newplayers.map(function(jugador){
+            if(jugador.nombre === player.nombre){
+                if(!jugador.respuesta){
+                    jugador.respuesta = y;
+                }
+            } 
+        })
+        // newplayers[player.asiento].respuesta = y;
         setPlayers(newplayers)
         // respuesta(player.asiento,y);
         if(players[player.asiento].respuesta === replica){
@@ -226,19 +235,11 @@ const Asientos = (props) => {
     return(
         <div className={'asientos'}>
             <div className={'jugadoresCont'}>
+                {/* Anuncio */}
+               
 
-               {player.sentado && revelado ?
-                <div className={'jugadoresCont__anuncio'}>
-                    { players[player.asiento].res ?
-                        <span>¡ GANASTE !</span>
-                    :
-                        <span>PERDISTE</span>
-                    }
-                </div>
-                : null
-                }
-
-                <div className={'timerCont'}>{
+                {/* <div className={'timerCont'}>
+                {
                     enJuego?null:
                     <div className={'anuncio'}>
                        <span>ESPERANDO APUESTAS</span>
@@ -247,23 +248,52 @@ const Asientos = (props) => {
                         </div>
                     </div>
                 }
-                </div>
+                </div> */}
 
                 <div className={'Contenedor izq'}>
-                    <div className={'asiento'}><Silla  align={'Izq'} img={Izq} ident={jugadores[0]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
-                    <div className={'asiento'}><Silla  align={'Izq'} img={Izq} ident={jugadores[1]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
-                    <div className={'asiento'}><Silla  align={'Izq'} img={Izq} ident={jugadores[2]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
+                    <div className={'Contenedor__asiento'}><Silla  align={'Izq'} img={Izq} ident={jugadores[0]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
+                    <div className={'Contenedor__asiento'}><Silla  align={'Izq'} img={Izq} ident={jugadores[1]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
+                    <div className={'Contenedor__asiento'}><Silla  align={'Izq'} img={Izq} ident={jugadores[2]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
                     
                 </div>
+
+                <div className={'Contenedor cntr'}>
+                    {/* <div> */}
+                    <div className={'Contenedor__anuncio'}>
+                    {player.sentado && revelado ?
+                         players[player.asiento].res ?
+                            <span>¡ GANASTE !</span>
+                        :
+                            <span>PERDISTE</span>
+                        
+                        : null}
+                    </div>
+                    {enPregunta?
+                        <div className={'Contenedor__cuest'}>
+                            <Cuestionario respondio={players[player.asiento].respuesta} responder={answer} seccPregunta={seccPregunta} pregunta={pregunta} revelado={revelado} > </Cuestionario>
+                        </div>
+                    :null}
+                    
+
+                    {/* {enPregunta?
+                    <div className={'Contenedor__respuestas'}>
+                        <span className={`rsp ${revelado? respuestasArr[0].correcta?'verde':'rojo': null}`} key={1} onClick={()=>answer('a')} >{respuestasArr[0].respuesta}</span>
+                        <span className={`rsp ${revelado? respuestasArr[1].correcta?'verde':'rojo': null}`} key={2} onClick={()=>answer('b')} >{respuestasArr[1].respuesta}</span>
+                        <span className={`rsp ${revelado? respuestasArr[2].correcta?'verde':'rojo': null}`} key={3} onClick={()=>answer('c')} >{respuestasArr[2].respuesta}</span>
+                        <span className={`rsp ${revelado? respuestasArr[3].correcta?'verde':'rojo': null}`} key={4} onClick={()=>answer('d')} >{respuestasArr[3].respuesta}</span>
+                    </div>
+                    :null} */}
+                </div>
+
                 <div className={'Contenedor der'}>
-                    <div className={'asiento'}><Silla align={'Der'} img={Der} ident={jugadores[3]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
-                    <div className={'asiento'}><Silla align={'Der'} img={Der} ident={jugadores[4]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
-                    <div className={'asiento'}><Silla align={'Der'} img={Der} ident={jugadores[5]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
+                    <div className={'Contenedor__asiento'}><Silla align={'Der'} img={Der} ident={jugadores[3]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
+                    <div className={'Contenedor__asiento'}><Silla align={'Der'} img={Der} ident={jugadores[4]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
+                    <div className={'Contenedor__asiento'}><Silla align={'Der'} img={Der} ident={jugadores[5]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
 
                 </div>
             </div>
             <div className={'jugadorCont'}>
-                {player.sentado ?<Jugador levantarse={standUp} respuesta={players[player.asiento].respuesta} apuesta={players[player.asiento].apuesta} bet={bet} monto={montoActual} fichas={chips} aumentar={aumentaApuesta} clean={limpiar} onGame={enJuego} apostar= {apuesta} responder={answer} avatar={currentUser.imgurl}></Jugador>:<Silla align={'Cntr'} img={Cntr} ident={jugadores[6] } tomarAsiento={sit} revelacion= {revelado} ></Silla>}
+                {player.sentado ?<Jugador levantarse={standUp}  apuesta={players[player.asiento].apuesta} bet={bet} monto={montoActual} fichas={chips} aumentar={aumentaApuesta} clean={limpiar} onGame={enJuego} apostar= {apuesta}  avatar={currentUser.imgurl}></Jugador>:<Silla align={'Cntr'} img={Cntr} ident={jugadores[6] } tomarAsiento={sit} revelacion= {revelado} ></Silla>}
                 {/* {jugando?<span>diosmio</span>:<span>agarranosconfesados</span>} */}
             </div>
         </div>

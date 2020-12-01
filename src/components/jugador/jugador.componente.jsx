@@ -10,7 +10,7 @@ import './jugador.style.scss';
 
 function Jugador (props){
    
-    var {responder, levantarse, apostar, onGame, apuesta, monto, fichas, aumentar, clean, respuesta,bet, avatar} = props;
+    var {levantarse, apostar, onGame, apuesta, monto, fichas, aumentar, clean, bet, avatar} = props;
 
     console.log("avatar", avatar)
     // const[bet,setBet] = useState(apuesta);
@@ -41,7 +41,7 @@ function Jugador (props){
                 </div>
 
 
-             { onGame?  
+             {/* { onGame?  
                 <div className={`abcdCont ${respuesta ?'off':null}` }>
                     <span className='abcd' onClick={respuesta ? null : ()=>responder('a')}>A</span>
                     <span className='abcd' onClick={respuesta ? null : ()=>responder('b')}>B</span>
@@ -50,13 +50,16 @@ function Jugador (props){
 
                 </div>
                 
-                :<div className={`fichasCont ${apuesta?'off':null}`}>
+                : */}
+                <div className={`fichasCont ${apuesta?'off':null}`}>
                     <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentar(100,0)}/>
                     <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentar(500,1)}/>
                     <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentar(1000,2)}/>
                     <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentar(2000,3)}/>
                    
-                </div>}
+                </div>
+
+                {/* } */}
 
                 <div className={`botonesCont ${apuesta?'off':null}`}>
                     <CustomBoton type='button' onClick={apuesta?null:clean} color='rojo' lugar='tarj' >limpiar</CustomBoton>

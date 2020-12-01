@@ -7,28 +7,28 @@ import './cuestionario.style.scss';
 
 function Cuestionario(props){
 
-    const {seccPregunta, pregunta,revelado} = props;
+    const {seccPregunta, pregunta,revelado, responder, respondio} = props;
     const [preguntas,setPreguntas] = useState(Preguntas)
 
     const seccion = preguntas[seccPregunta];
     const question = seccion.preguntas[pregunta];
     const respuestaObj = question.respuestas.filter(res => res.correcta === true);
     const respuesta = respuestaObj[0].respuesta;
-    const [a,setA] = useState('rojo') ;
-    const [b,setB] = useState('rojo') ;
-    const [c,setC] = useState('rojo') ;
-    const [d,setD] = useState('rojo') ;
+    // const [a,setA] = useState('rojo') ;
+    // const [b,setB] = useState('rojo') ;
+    // const [c,setC] = useState('rojo') ;
+    // const [d,setD] = useState('rojo') ;
 
-    useEffect(()=>{
-            switch(respuesta){
-                case 'a': setA('verde'); break;
-                case 'b': setB('verde'); break;
-                case 'c': setC('verde'); break;
-                case 'd': setD('verde'); break;
-                default: break;
-            }
-        }
-    )
+    // useEffect(()=>{
+    //         switch(respuesta){
+    //             case 'a': setA('verde'); break;
+    //             case 'b': setB('verde'); break;
+    //             case 'c': setC('verde'); break;
+    //             case 'd': setD('verde'); break;
+    //             default: break;
+    //         }
+    //     }
+    // )
 
         return(<div className='cuestionario'>
                 <div className='preguntaContainer'>
@@ -41,11 +41,11 @@ function Cuestionario(props){
                     </div>
 
                 </div>
-                <div className='respuestas'>
-                    <span className= {`rsp ${revelado ? a: null}`} key={1}>{question.respuestas[0].respuesta}</span>
-                    <span className= {`rsp ${revelado ? b: null}`} key={2}>{question.respuestas[1].respuesta}</span>
-                    <span className= {`rsp ${revelado ? c: null}`} key={3}>{question.respuestas[2].respuesta}</span>
-                    <span className= {`rsp ${revelado ? d: null}`} key={4}>{question.respuestas[3].respuesta}</span>
+                <div className={`respuestas ${respondio && !revelado ? 'off' : null}`}>
+                    <span className= {`rsp ${revelado? question.respuestas[0].correcta?'verde':'rojo': null}`} key={1} onClick={()=>responder('a')} >{question.respuestas[0].respuesta}</span>
+                    <span className= {`rsp ${revelado? question.respuestas[1].correcta?'verde':'rojo': null}`} key={2} onClick={()=>responder('b')} >{question.respuestas[1].respuesta}</span>
+                    <span className= {`rsp ${revelado? question.respuestas[2].correcta?'verde':'rojo': null}`} key={3} onClick={()=>responder('c')} >{question.respuestas[2].respuesta}</span>
+                    <span className= {`rsp ${revelado? question.respuestas[3].correcta?'verde':'rojo': null}`} key={4} onClick={()=>responder('d')} >{question.respuestas[3].respuesta}</span>
                 </div>
             </div>)
     
