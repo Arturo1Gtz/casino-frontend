@@ -239,7 +239,7 @@ const Asientos = (props) => {
                 {/* Anuncio */}
                
 
-                {/* <div className={'timerCont'}>
+                <div className={'timerCont'}>
                 {
                     enJuego?null:
                     <div className={'anuncio'}>
@@ -249,7 +249,7 @@ const Asientos = (props) => {
                         </div>
                     </div>
                 }
-                </div> */}
+                </div>
 
                 <div className={'Contenedor izq'}>
                     <div className={'Contenedor__asiento'}><Silla  align={'Izq'} img={Izq} ident={jugadores[0]} tomarAsiento={sit} revelacion= {revelado}></Silla></div>
