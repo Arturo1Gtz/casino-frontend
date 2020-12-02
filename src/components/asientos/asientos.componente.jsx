@@ -298,6 +298,7 @@ const Asientos = (props) => {
                 {/* {jugando?<span>diosmio</span>:<span>agarranosconfesados</span>} */}
             </div>
         </div>
+        
     )
 }
 
