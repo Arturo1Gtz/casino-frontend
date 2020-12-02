@@ -18,7 +18,7 @@ import { connect } from 'react-redux';
 const socket = io('localhost:8081');
 
 const tipo = "player";
-var mesa = "10";
+var mesa = "";
 
 class Croupier extends React.Component{
     
@@ -45,16 +45,17 @@ class Croupier extends React.Component{
         }
     }
 
-
+    
     componentDidMount() {
-        const { currentUser, table } = this.props;
+        mesa = this.props.match.params.mesa;
+        const { currentUser} = this.props;
         this.state.nickname = currentUser.nickname;
         this.state.avatar = currentUser.imgurl;
         this.state.saldo = currentUser.credits;
         const nickname = this.state.nickname;
         const avatar = this.state.avatar;
         const saldo = this.state.saldo;
-        console.log("mesa 2", table) 
+        console.log("mesa 2", mesa) 
         console.log("Avocato", currentUser)
         socket.emit('joinMesa', {tipo, mesa , nickname, avatar, saldo});
         console.log("Cascanueces", this.state.nickname, this.state.avatar, this.state.saldo)
