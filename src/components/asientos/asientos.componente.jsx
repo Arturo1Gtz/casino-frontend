@@ -77,7 +77,6 @@ const Asientos = (props) => {
         let newplayers = players;
         let newplayer = player;
         console.log('sit', newplayers, newplayer)
-        if(player.credits > 0){
             if(newplayer.sentado === false){
                 newplayer.asiento = players.length
                 newplayers.push({nombre:player.nombre, acumulado:player.acumulado, apuesta:0, respuesta:null, res: null})
@@ -88,8 +87,6 @@ const Asientos = (props) => {
                 sentarse()
                 
             }else{return}
-        }
-       else{return}
     }
 
     const standUp =()=>{

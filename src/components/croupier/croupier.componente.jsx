@@ -55,10 +55,8 @@ class Croupier extends React.Component{
         const nickname = this.state.nickname;
         const avatar = this.state.avatar;
         const saldo = this.state.saldo;
-        console.log("mesa 2", mesa) 
-        console.log("Avocato", currentUser)
         socket.emit('joinMesa', {tipo, mesa , nickname, avatar, saldo});
-        console.log("Cascanueces", this.state.nickname, this.state.avatar, this.state.saldo)
+
     }
 
     componentWillUnmount() {
@@ -85,8 +83,6 @@ class Croupier extends React.Component{
                 this.setState({vueltasIn:vint},() => console.log('calamares',this.state));
             });
 
-            this.setState({vueltasEx: Math.random() * (25- 10) + 10});
-            this.setState({vueltasIn: Math.random() * (25- 10) + 10});
 
             this.setState({onGame:true, onGiro:true}
              ,() => console.log('vueltas',this.state)
