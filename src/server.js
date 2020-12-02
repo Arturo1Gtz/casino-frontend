@@ -48,9 +48,13 @@ io.on('connection', socket => {
 
         console.log(`nuevo ${user.tipo} en mesa ${user.mesa}`);
 
+        socket.broadcast.to(user.mesa).emit(
+            'messages', formatMessage('Croupier', `${user.nickname} se ha unido,`)
+        );
+
         socket.on('message', (nickname, message) => {
-            io.emit("messages", formatMessage(nickname, message));
-        })
+            io.to(user.mesa).emit("messages", formatMessage(nickname, message));
+        });
 
         socket.on('disconnect', () => {
             const user = userLeave(socket.id);
@@ -73,7 +77,7 @@ io.on('connection', socket => {
                 }
             }
             console.log(`un usuario salio de mesa ${user.mesa}`);
-        })
+        });
 
         //Esperar por pregunta para todos
         socket.on('vueltas', () => {
