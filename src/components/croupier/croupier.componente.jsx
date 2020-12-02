@@ -43,11 +43,11 @@ class Croupier extends React.Component{
             avatar:'',
             saldo: 0
         }
+        mesa = this.props.match.params.mesa;
     }
 
     
     componentDidMount() {
-        mesa = this.props.match.params.mesa;
         const { currentUser} = this.props;
         this.state.nickname = currentUser.nickname;
         this.state.avatar = currentUser.imgurl;
