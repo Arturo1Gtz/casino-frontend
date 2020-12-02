@@ -189,8 +189,9 @@ class Croupier extends React.Component{
                         <Ruleta vueltasE={vueltasEx} vueltasI={vueltasIn} giro={onGiro}></Ruleta>
                         </div>
                         <div className={'ruletaCont__elem'}>
+                        <br/>
+                        <br/>
                         <span >{mesa}</span>
-
                         </div>
                     </div>
                         {/* {onPregunta?

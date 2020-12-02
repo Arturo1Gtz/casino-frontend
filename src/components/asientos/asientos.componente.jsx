@@ -77,16 +77,19 @@ const Asientos = (props) => {
         let newplayers = players;
         let newplayer = player;
         console.log('sit', newplayers, newplayer)
-        if(newplayer.sentado === false){
-            newplayer.asiento = players.length
-            newplayers.push({nombre:player.nombre, acumulado:player.acumulado, apuesta:0, respuesta:null, res: null})
-            newplayer.sentado = true;
-            setPlayers(newplayers)
-            setPlayer(newplayer)
-            console.log('sit2', newplayers, newplayer)
-            sentarse()
-            
-        }else{return}
+        if(player.credits > 0){
+            if(newplayer.sentado === false){
+                newplayer.asiento = players.length
+                newplayers.push({nombre:player.nombre, acumulado:player.acumulado, apuesta:0, respuesta:null, res: null})
+                newplayer.sentado = true;
+                setPlayers(newplayers)
+                setPlayer(newplayer)
+                console.log('sit2', newplayers, newplayer)
+                sentarse()
+                
+            }else{return}
+        }
+       else{return}
     }
 
     const standUp =()=>{
@@ -209,7 +212,7 @@ const Asientos = (props) => {
 
             newPlayers.map(function(jugador){
                 if(jugador.apuesta === 0){
-                    jugador.apuesta = 10;
+                    jugador.apuesta = 1000;
                 }
             })
             
