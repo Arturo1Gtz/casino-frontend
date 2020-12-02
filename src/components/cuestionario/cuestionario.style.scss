@@ -65,7 +65,7 @@
             color: black;
             border-radius: 5em;
             font-size: 150%;
-            opacity: 0.9;
+            opacity: 0.8;
 
             &:hover{
                 cursor: pointer;
@@ -75,10 +75,12 @@
         .verde{
             color:#ACFF10;
             border:3px solid #ACFF10;
+            opacity: 0.9;
         }
         .rojo{
             color: red;
             border: 3px solid red;
+            opacity: 0.9;
         }
     }
     .off{

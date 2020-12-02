@@ -3,8 +3,9 @@ import { Switch, Route } from 'react-router-dom';
 
 import Header from './components/header/header.component';
 import MainPage from './pages/main/main.page';
-import Admin from './components/admin/admin.componente';
-import RoomsPaige from './pages/rooms/rooms.component';
+import Croupier from './components/croupier/croupier.componente';
+// import Admin from './components/admin/admin.componente';
+import RoomsPage from './pages/rooms/rooms.component';
 import SignInAndSignUpPage from './pages/signin-signup/inicio'
 
 import './App.css';
@@ -50,8 +51,8 @@ class App extends React.Component {
             {currentUser ? 
               <div className='contenido'>
                 <Switch>
-                  <Route exact path='/' component={RoomsPaige} />
-                  <Route  path='/ruleta/:mesa' component={Admin} />
+                  <Route exact path='/' component={RoomsPage} />
+                  <Route  path='/ruleta/:mesa' component={Croupier} />
                 </Switch>
               </div>
                 :

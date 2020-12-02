@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 
 
 
-const RoomsPaige = ({history, currentUser})=> {
+const RoomsPage = ({history, currentUser})=> {
     function ruleta(mesa){
         history.push('/ruleta/'+mesa);
     }
@@ -124,4 +124,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   null
-)(RoomsPaige);
+)(RoomsPage);
