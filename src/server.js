@@ -54,7 +54,6 @@ io.on('connection', socket => {
 
         socket.on('disconnect', () => {
             const user = userLeave(socket.id);
-            
             if(user){
                 //Anuncio un jugador se ha ido
                 io.to(user.mesa).emit('message', formatMessage(chatBot, `${user.nickname} a abandonado la mesa.`));
@@ -73,7 +72,7 @@ io.on('connection', socket => {
                     });
                 }
             }
-            console.log(`un usuario salio de mesa`);
+            console.log(`un usuario salio de mesa ${user.mesa}`);
         })
 
         //Esperar por pregunta para todos

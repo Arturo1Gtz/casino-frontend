@@ -5,7 +5,7 @@ import {useParams} from 'react-router-dom';
 import './roulette.style.css';
 
 const RoulettePage =()=>{
-    const mesa = this.props.match.params.mesa;
+    const { mesa } = useParams();
     return(
         <div className='ruletaPagina' >
             <Croupier table={mesa}></Croupier>

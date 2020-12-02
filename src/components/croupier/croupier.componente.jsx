@@ -18,7 +18,7 @@ import { connect } from 'react-redux';
 const socket = io('localhost:8081');
 
 const tipo = "player";
-var mesa = "10";
+var mesa = "";
 
 class Croupier extends React.Component{
     
@@ -43,21 +43,20 @@ class Croupier extends React.Component{
             avatar:'',
             saldo: 0
         }
+        mesa = this.props.match.params.mesa;
     }
 
-
+    
     componentDidMount() {
-        const { currentUser, table } = this.props;
+        const { currentUser} = this.props;
         this.state.nickname = currentUser.nickname;
         this.state.avatar = currentUser.imgurl;
         this.state.saldo = currentUser.credits;
         const nickname = this.state.nickname;
         const avatar = this.state.avatar;
         const saldo = this.state.saldo;
-        console.log("mesa 2", table) 
-        console.log("Avocato", currentUser)
         socket.emit('joinMesa', {tipo, mesa , nickname, avatar, saldo});
-        console.log("Cascanueces", this.state.nickname, this.state.avatar, this.state.saldo)
+
     }
 
     componentWillUnmount() {
@@ -84,8 +83,6 @@ class Croupier extends React.Component{
                 this.setState({vueltasIn:vint},() => console.log('calamares',this.state));
             });
 
-            this.setState({vueltasEx: Math.random() * (25- 10) + 10});
-            this.setState({vueltasIn: Math.random() * (25- 10) + 10});
 
             this.setState({onGame:true, onGiro:true}
              ,() => console.log('vueltas',this.state)
@@ -189,8 +186,9 @@ class Croupier extends React.Component{
                         <Ruleta vueltasE={vueltasEx} vueltasI={vueltasIn} giro={onGiro}></Ruleta>
                         </div>
                         <div className={'ruletaCont__elem'}>
+                        <br/>
+                        <br/>
                         <span >{mesa}</span>
-
                         </div>
                     </div>
                         {/* {onPregunta?
