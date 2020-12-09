@@ -20,6 +20,7 @@ const socket = io(process.env.NODE_ENV === "production" ? "/" : "http://localhos
 const tipo = "player";
 var mesa = "";
 
+console.log(process.env.NODE_ENV);
 class Croupier extends React.Component{
     
     constructor (props){
