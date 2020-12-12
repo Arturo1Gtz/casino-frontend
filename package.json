@@ -33,7 +33,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "nodemon src/server.js"
+    "server": "nodemon src/server.js",
+    "server-prod": "PORT=3001 nodemon src/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"

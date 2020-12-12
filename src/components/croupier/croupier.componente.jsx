@@ -16,10 +16,11 @@ import Preguntas from '../../files/preguntas.js';
 
 import io from 'socket.io-client'
 import { connect } from 'react-redux';
-const socket = io('localhost:8081');
+const socket = io(process.env.NODE_ENV === "production" ? "/" : "http://localhost:8081");
 
 const tipo = "player";
 var mesa = "";
+
 
 class Croupier extends React.Component{
     
