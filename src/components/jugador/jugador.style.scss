@@ -1,5 +1,5 @@
 .jugador{
-    // border: 3px solid purple;
+    // border: 3px solid white;
     width: 250px;
     height:300px;
     display: flex;
@@ -7,49 +7,53 @@
     align-items: center;
 
     .ImgCont{
+        // border: 3px solid red;
         position: absolute;
-        // border: 3px solid green;
         height: 10%;
-        width: 10%;
-        margin: 0;
+        width: 100%;
+        // margin: 0;
         
         .Img{
             margin: 0;
-            height: 60px;
-            width: 60px;
+            // height: 60px;
+            // width: 60px;
+            height: 50px;
+            width: 50px;
             border: 4px solid #C8B300;
             border-radius: 50%;
             
         }
     }
     .relleno{
-        opacity: 0;
         border: 3px solid yellow;
+        opacity: 0;
         width: 50%;
-        height: 15%;
-        // opacity: 0;
+        // height: 15%;
+        height: 10%;
     }
-    .tarjeta{
+    &__tarjeta{
         width: 100%;
-        height: 90%;
-        
+        height: 100%;
+        // height: 100%;
         display: flex;
         flex-direction: column;
-        
         align-items: center;
-        justify-content: flex-end;
-
+        justify-content: center;
         border: 4px outset #C8B300;
         background-color: rgba(50,50,50,0.9);
-        border-radius: 3em;
+        // border-radius: 3em;
+        border-radius: 2em;
         &__cont{
-            // border: 3px solid yellowgreen;
-            width: 85%;
+            // border: 1px solid red;
+            width: 87%;
+            height: 17%;
+            padding: 0%;
             display: flex;
             justify-content: flex-end;
             &__salir{
+                // border: 3px solid orange;
+                height: 12px;
                 color: white;
-                // font-size: 90%;
                 opacity: 0.5;
                 &:hover{
                     cursor: pointer;
@@ -57,105 +61,100 @@
                 }
             }
         }
-        .MontoCont{
-            .Titulo{
-                font-size: 120%;
-                
+        &__MontoCont{
+            // border: 3px solid orange;
+            &__Titulo{
+                font-size: 110%;
+                // font-size: 120%;
             }
-            .Monto{
-                font-size: 200%;
-                
+            &__Monto{
+                // font-size: 200%;
+                font-size: 150%;
             }
         }
         .fichasCont{
+            // border: 1px solid palevioletred;
             width: 100%;
+            // height: 20%;
             height: 17%;
-            margin: 0.5em 0;
-            // border: 3px solid palevioletred;
             display: flex;
             justify-content: space-around;
-            // overflow: hidden;
-            // flex-wrap: wrap;
             .ficha{
-                width: 20%;
+                width: 40px;
+                opacity: 0.8;
                 &:hover{
                     cursor: pointer;
+                    opacity: 1;
                 }
             }
             
         }
-        .abcdCont{
-            width: 100%;
-            height: 17%;
-            margin: 0.5em 0;
-            // border: 3px solid palevioletred;
-            display: flex;
-            justify-content: space-around;
-            .abcd{
-                border: 3px solid #929292;
-                background-color: white;
-                text-align: center;
-                width: 20%;
-                height: 100%;
-                border-radius: 0.7em;
-                color: black;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 150%;
-                &:hover{
-                    cursor: pointer;
-                    scale: 95%;
-                }
-            }
-        }
+        
         .off{
             opacity: 0.4;
         }
         .botonesCont{
-            // border: 3px solid blue;
+            // border: 3px solid pink;
             width: 100%;
+            height: 20%;
             display: flex;
             justify-content: space-evenly;
-            margin-bottom: 1em;
+            // margin-bottom: 1em;
         }
         .apuestaCont{
             // border: 3px solid brown;
             border: 3px outset #C8B300;
-            border-radius: 2em;
+            border-radius: 1em;
+            // border-radius: 2em;
             width: 100%;
-            height: 35%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             
             .fichCont{
                 // border: 1px solid red;
-                height: 90%;
+                height: 200%;
                 display: flex;
-                overflow: hidden;
+                justify-content: space-around;
+                
+                // overflow: hidden;
                 .fichas{
-                    // border: 1px solid black;
-                    width: 25%;
-                    display: flex;
-                    flex-direction: column-reverse;
+                    // border: 1px solid orange;
+                    width: 20%;
+                    // display: flex;
+                    // flex-direction: column-reverse;
+                    
                     .fichaPeq{
                         position: absolute;
                         // perspective: 100px;
-                        width: 45px;
+                        width:30px;
+                        // width: 45px;
                     }
                 }
                 
             }
             .apuestaTotal{
                 // border:1px solid greenyellow;
-                font-size: 150%;
+                height: 35%;
+                font-size: 90%;
                 opacity: 0.6;
             }
         }
-
     }
+}
 
-
-
+@media only screen and (min-width:1400px){
+    .jugador{
+        &__tarjeta{
+            height: 85%;
+            .apuestaCont{
+                height: 80%;
+                
+                .apuestaTotal{
+                    font-size: 150%;
+                }
+            }
+        }
+    }
 }

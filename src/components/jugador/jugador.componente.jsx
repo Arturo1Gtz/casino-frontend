@@ -5,6 +5,7 @@ import CustomBoton from '../custom-boton/custom-boton.componente';
 import Icon from '../../img/userphoto.svg';
 // import Ficha1 from '../../img/fichaUno.png';
 import Ficha5 from '../../img/fichaCinco.png';
+import Salir from '../../img/SALIR.svg';
 
 import './jugador.style.scss';
 
@@ -13,44 +14,25 @@ function Jugador (props){
     var {levantarse, apostar, onGame, apuesta, monto, fichas, aumentar, clean, bet, avatar} = props;
 
     console.log("avatar", avatar)
-    // const[bet,setBet] = useState(apuesta);
-    // const[montoActual, setMonto] = useState(acumulado);
-
-    // const[chips, setChips] = useState([[],[],[],[]]);
-
-    // let bet = 0
-    // let montoActual = acumulado   
 
         return(
          <div className='jugador'>
             <div className='ImgCont'>
                 <img src={avatar} alt ='User' className='Img'/>
             </div>
+            <div className='relleno'> <span>relleno</span></div> 
 
-            <div className='relleno'> <span>relleno</span></div>
-            
-            <div className='tarjeta'>
-                <div className={'tarjeta__cont'}>
-                { onGame?null:  
-                    <span className={'tarjeta__cont__salir'} onClick={()=>levantarse()}> SALIR </span>
-                }
-                </div>
-                <div className='MontoCont'>
-                    <span className='Titulo'>Monto Actual:</span> <br/>
-                    <span className='Monto'>$ {monto}</span>
+            <div className='jugador__tarjeta'>
+                <div className={'jugador__tarjeta__cont'}>
+                    { onGame?null:  
+                        <img src={Salir} className={'jugador__tarjeta__cont__salir'} onClick={()=>levantarse()}/> 
+                    }
                 </div>
 
-
-             {/* { onGame?  
-                <div className={`abcdCont ${respuesta ?'off':null}` }>
-                    <span className='abcd' onClick={respuesta ? null : ()=>responder('a')}>A</span>
-                    <span className='abcd' onClick={respuesta ? null : ()=>responder('b')}>B</span>
-                    <span className='abcd' onClick={respuesta ? null : ()=>responder('c')}>C</span>
-                    <span className='abcd' onClick={respuesta ? null : ()=>responder('d')}>D</span>
-
+                <div className='jugador__tarjeta__MontoCont'>
+                    <span className='jugador__tarjeta__MontoCont__Titulo'>Monto Actual:</span> <br/>
+                    <span className='jugador__tarjeta__MontoCont__Monto'>$ {monto}</span>
                 </div>
-                
-                : */}
                 <div className={`fichasCont ${apuesta?'off':null}`}>
                     <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentar(100,0)}/>
                     <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentar(500,1)}/>
@@ -58,27 +40,13 @@ function Jugador (props){
                     <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentar(2000,3)}/>
                    
                 </div>
-
-                {/* } */}
-
                 <div className={`botonesCont ${apuesta?'off':null}`}>
                     <CustomBoton type='button' onClick={apuesta?null:clean} color='rojo' lugar='tarj' >limpiar</CustomBoton>
                     <CustomBoton color='amarillo' lugar='tarj' onClick={apuesta ? null : ()=> apostar()}>apostar</CustomBoton>
 
                 </div>
-            
-            
                 <div className='apuestaCont' >
                     <div className='fichCont'>
-                    {/* {chips.map(function(fila){
-                        <div className='fichas'>{
-                           fila.map((value, index)=>{
-                               return <img className='fichaPeq' style={{bottom:`${3 + index}%`}} alt='ficha' src={Ficha5}/>
-                           })}
-                        </div>
-                    })} */}
-
-                            
                         <div className='fichas'>
                            {fichas[0].map((value, index)=>{
                                return <img className='fichaPeq' style={{bottom:`${3 + index}%`}} alt='ficha' src={Ficha5}/>
@@ -100,7 +68,9 @@ function Jugador (props){
                            })}
                         </div>
                     </div>
-                    <span className='apuestaTotal'>{`$ ${bet ? bet : apuesta}`}</span>
+                    {/* <div className={''}> */}
+                        <span className='apuestaTotal'>{`$ ${bet ? bet : apuesta}`}</span>
+                    {/* </div> */}
                     
                 </div>
             </div>

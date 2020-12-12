@@ -10,25 +10,28 @@ import Cntr from '../../img/silla-individual-cntr.png';
 
 
 function Silla(props){
-    var ocupado = props.ident;
     var {align, tomarAsiento, ident, img, revelacion} = props;
+    var ocupado = ident;
+
     const [color, setColor] = useState('rojo');
     // console.log('silla', props, ocupado)
     
     if(ocupado){
         // console.log('inside if', ocupado, props)
-        var {nombre, acumulado, apuesta, res} = props.ident;
+        // var {nombre, acumulado, apuesta, res} = ident;
+        var nombre = ident[0]
+        var {acumulado, apuesta, resultado} = ident[1]
         nombre.toUpperCase()
         
     }else{
         var nombre = undefined;
         var apuesta = undefined;
         var acumulado = undefined;
-        var res = undefined;
+        var resultado = undefined;
     }
     // console.log('ident', props.ident)
     useEffect(()=>{
-        if(res){
+        if(resultado){
             setColor('verde');
         }
     }

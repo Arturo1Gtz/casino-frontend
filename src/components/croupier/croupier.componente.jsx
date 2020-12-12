@@ -11,6 +11,7 @@ import Timer from '../timer/timer.component';
 import boton from '../../img/button.png';
 import './croupier.style.scss'
 import MesaFondo from '../../img/mesa-de-inicio-mitad.png';
+import Mesa from '../../img/mesa-de-inicio.png';
 import Preguntas from '../../files/preguntas.js';
 
 import io from 'socket.io-client'
@@ -147,15 +148,15 @@ class Croupier extends React.Component{
             // }   
         }
 
-        const responder = (i,x) =>{
+        const responder = (x) =>{
             // console.log('respuesta', this.state.respuesta)
             const newjugadores = [...jugadores];
 
-            newjugadores[i].respuesta = x;
+            newjugadores[0].respuesta = x;
             if(x === this.state.respuesta){
-                newjugadores[i].resultado = true
+                newjugadores[0].resultado = true
             }else{
-                newjugadores[i].resultado = false
+                newjugadores[0].resultado = false
             }
             this.setState({jugadores:newjugadores})
 
@@ -177,30 +178,25 @@ class Croupier extends React.Component{
         return(
             
             <div className={'croupier'}>
-                <div className={'chatCont'}>
+                <div className={'croupier__chat'}>
                     <Chat socket={socket} tipo={tipo} mesa={mesa} />
                 </div>
                 <div className={'juego'}>                    
                     <div className={'ruletaCont'}>
                         <div className={'ruletaCont__elem'}>
-                        <Ruleta vueltasE={vueltasEx} vueltasI={vueltasIn} giro={onGiro}></Ruleta>
+                            <Ruleta vueltasE={vueltasEx} vueltasI={vueltasIn} giro={onGiro}></Ruleta>
                         </div>
                         <div className={'ruletaCont__elem'}>
-                        <br/>
-                        <br/>
-                        <span >{mesa}</span>
+                            <br/>
+                            <br/>
+                            <span >{mesa}</span>
                         </div>
                     </div>
-                        {/* {onPregunta?
-                        <div className='cuestionarioCont'>
-                            <Cuestionario seccPregunta={acSeccEx} apuesta={acSeccIn} pregunta={pregunta} revelado={onRevelacion} > </Cuestionario>
-                        </div>
-                        :null} */}
                     <div className='asientosCont'>
                         <Asientos juego={juego} end={endGame} seccPregunta={acSeccEx} pregunta={pregunta} replica= {respuesta} sentarse={tomarAsiento}  apostar={apostar} responder={responder} enJuego={onGame} enPregunta={onPregunta} revelado={onRevelacion} socket={socket} mesa={mesa} tipo={tipo}></Asientos>
                     </div>
                     <div className={'juego__fondo'}>                    
-                        <img src={MesaFondo} alt ='fondoJuego' className={'juego__fondo__img'} /> 
+                        <img src={Mesa} alt ='fondoJuego' className={'juego__fondo__img'} /> 
                     </div>
                     
                 </div>

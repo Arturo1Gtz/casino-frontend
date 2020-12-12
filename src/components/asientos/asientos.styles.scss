@@ -1,11 +1,11 @@
 .asientos{
-    // border: 3px solid white;
+    // border: 3px solid black;
     height: 100%;
     display: flex;
     flex-direction: column;
 
-    .jugadoresCont{
-        // border: 3px solid black;
+    &__jugadores{
+        // border: 3px solid grey;
         height: 90%;
         width: 100%;
         display: flex;
@@ -13,7 +13,7 @@
         align-items: flex-end;
         
         .timerCont{
-            // border:3px solid black;
+            // border:3px solid orange;
             position: absolute;
             width: 100%;
             height: 30%;
@@ -25,9 +25,10 @@
                 color: black;
                 border: 3px solid #929292;
                 background-color: white;
-                border-radius: 3em;
-                width: 45%;
-                height: 75%;
+                border-radius: 2em;
+                // width: 45%;
+                width: 50%;
+                height: 60%;
                 display: flex;
                 flex-direction: column;
                 justify-content: space-evenly;
@@ -35,55 +36,86 @@
                 font-size: 150%;
                 &__timer{
                     color: red;
-                    font-size: 300%;
+                    // font-size: 300%;
+                    font-size: 200%;
                 }
             }
+
         }
-    
+        
+        &__cuest{
+            // border: 3px solid white;
+            position: absolute;
+            width: 100%;
+            height: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3;
+        }
         
 
         .Contenedor{
-            // border: 3px solid grey;
+            // border: 3px solid orange;
             width: 25%;
             height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
+            z-index: 1;
             &__anuncio{
-                // border: 3px solid red;
+                // border: 3px solid turquoise;
                 // position: absolute;
                 width: 100%;
-                height: 20%;
-                font-size: 400%;
+                height: 10%;
+                // font-size: 400%;
+                font-size: 200%;
                 display: flex;
-                align-items: center;
+                // align-items: center;
+                align-items: flex-start;
                 justify-content: center;
-                // align-items: flex-start;
                 color: white;
                 text-shadow: 0px 0px 9px black;
             }
-            &__cuest{
-                // border: 3px solid orange;
-                height: 80%;
-            }
+            // &__cuest{
+            //     border: 3px solid orange;
+            //     height: 90%;
+            // }
 
             &__asiento{
-                // border: 3px solid black;
+                // border: 3px solid yellow;
+                height: 100%;
+                width: 100%;
             }
             
         }
         .cntr{
-            // border: 3px solid white;
+            // border: 3px solid red;
             width: 50%;
             justify-content: space-between;
         }
+       
     }
     
     .jugadorCont{
-        // border: 3px solid black;
+        // border: 3px solid grey;
         width: 100%;
         height: 40%;
         display: flex;
         justify-content: center;
+    }
+}
+@media only screen and (min-width:1000px){
+    .asientos{
+        &__jugadores{
+            .Contenedor{
+                &__anuncio{
+                    align-items: center;
+                    height: 15%;
+                    font-size: 450%;
+                    
+                }
+            }
+        }
     }
 }

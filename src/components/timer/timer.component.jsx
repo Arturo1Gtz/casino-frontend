@@ -10,6 +10,7 @@ class Timer extends React.Component{
     componentDidMount(){
         this.myInterval = setInterval(() => {
             const { segundos} = this.state;
+            const {jugadores} = this.props
 
             if(segundos > 0){
                 this.setState(({segundos})=>({segundos : segundos - 1}))
@@ -18,7 +19,7 @@ class Timer extends React.Component{
             if(segundos === 0){
                 if(this.props.accion){
                     console.log('timer',this.props)
-                    if(this.props.jugadores.length){
+                    if(Object.keys(jugadores).length){
                         this.props.accion()
                         clearInterval(this.myInterval)
                     }else(this.setState({segundos: this.props.time}))

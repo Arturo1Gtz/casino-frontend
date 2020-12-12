@@ -29,18 +29,19 @@ const Asientos = (props) => {
     }, [])*/
    
     
-    var pleiers = [];
+    var pleiers = {};
     socket.on("mesaPlayers", players => {
         pleiers = players;
     });
     
     const [player, setPlayer] = useState({nombre:currentUser.nickname, acumulado: currentUser.credits, sentado: false, asiento:null});
     const [players, setPlayers] = useState(pleiers);
-    const jugadores = players.filter(jugador=>jugador.nickname !== player.nickname);
+    let jugadores= Object.entries(players).filter(jugador=>jugador[0] !== currentUser.nickname); 
+    const [sentado,setSentado] = useState(false);
     // let sentado =  false;
     
     console.log('mesa' , players)
-    // console.log( sentado, 'sentado')
+    
     //jugador state
     const[bet,setBet] = useState(0);
     const[montoActual, setMonto] = useState(player.acumulado);
@@ -71,106 +72,85 @@ const Asientos = (props) => {
         
     }
 
-
-    // Messaunctions 
+    // MessaFunctions 
     const sit =()=>{
         let newplayers = players;
-        let newplayer = player;
-        console.log('sit', newplayers, newplayer)
-            if(newplayer.sentado === false){
-                newplayer.asiento = players.length
-                newplayers.push({nombre:player.nombre, acumulado:player.acumulado, apuesta:0, respuesta:null, res: null})
-                newplayer.sentado = true;
-                setPlayers(newplayers)
-                setPlayer(newplayer)
-                console.log('sit2', newplayers, newplayer)
-                sentarse()
-                
-            }else{return}
+        if(!players[currentUser.nickname]){
+            newplayers[currentUser.nickname] = {acumulado:currentUser.credits, apuesta:0, respuesta:null, resultado: null};
+            setPlayers(newplayers)
+            setSentado(true)
+            sentarse()
+        }else{return}
     }
 
     const standUp =()=>{
-        // console.log('stand')
-        // const newPlayers = players;
         socket.emit("disconnect");
 
-        const newplayer = player;
-        
-        let newplayers = players.filter(function(jugador){
-            if(jugador.nombre !== player.nombre){
-                console.log(jugador)
-                return jugador
-            }else{
-                return
-            }
-        });
-
-        newplayer.sentado = false;
+        let newplayers = players;
+        delete newplayers[currentUser.nickname];
         setPlayers(newplayers)
-        setPlayer(newplayer)
-        console.log('stand', players, player)
-        // const newJu
+        setSentado(false)
+        console.log('stand', newplayers, players)
     }
 
     const answer = (y)=>{
         const newplayers = players;
 
-        newplayers.map(function(jugador){
-            if(jugador.nombre === player.nombre){
-                if(!jugador.respuesta){
-                    jugador.respuesta = y;
-                }
-            } 
-        })
-        // newplayers[player.asiento].respuesta = y;
+        if(!newplayers[currentUser.nickname].respuesta){
+            newplayers[currentUser.nickname].respuesta = y;
+        }
+       
         setPlayers(newplayers)
-        // respuesta(player.asiento,y);
-        if(players[player.asiento].respuesta === replica){
-            players[player.asiento].res = true
+        if(players[currentUser.nickname].respuesta === replica){
+            players[currentUser.nickname].resultado = true;
         }else{ 
-            players[player.asiento].res = false
+            players[currentUser.nickname].resultado = false;
         }
         responder(player.asiento, y)
-
         console.log('answer', players)
     }
 
     const apuesta = () =>{
-        players[player.asiento].apuesta = bet;
-    
+        let newPlayers = players;
+        if(!newPlayers[currentUser.nickname].apuesta){
+
+            newPlayers[currentUser.nickname].apuesta = bet;
+        }
+            
         let apuestasTotal = 0;
-        players.map(function(jugador){
-            if(jugador.apuesta){
+        for(var item in newPlayers){
+            if(newPlayers[item].apuesta){
                 apuestasTotal += 1;
             }
-        } )
-        if(apuestasTotal === players.length){
+        }
+        
+        setPlayers(newPlayers);
+        if(apuestasTotal === Object.keys(players).length){
             game()
         }   
-        console.log('asientos apuesta', players)
+        console.log('asientos apuesta', players, apuestasTotal, players.length)
     }; 
 
     const pago = () =>{
         let newPlayers = players;
-        let newJugador = player;
+        // let newJugador = player;
 
-        if(players[player.asiento].res){
-            newJugador.acumulado += players[player.asiento].apuesta;
-        }else{
-            newJugador.acumulado -= players[player.asiento].apuesta;
+        // if(players[currentUser.nickname].resultado){
+        //     newJugador.acumulado += players[player.asiento].apuesta;
+        // }else{
+        //     newJugador.acumulado -= players[player.asiento].apuesta;
 
-        }
+        // }
 
-        newPlayers.map(function(jugador){
-            if(jugador.res){
-                console.log(jugador.nombre,'gano');
-                jugador.acumulado += (jugador.apuesta );
+        for(var jugador in newPlayers){
+            if(newPlayers[jugador].resultado){
+                console.log(jugador,'gano');
+                newPlayers[jugador].acumulado += (newPlayers[jugador].apuesta);
             }else{
-                jugador.acumulado -= (jugador.apuesta );
-                console.log(jugador.nombre,'perdio');
+                newPlayers[jugador].acumulado -= (newPlayers[jugador].apuesta );
+                console.log(newPlayers[jugador].nombre,'perdio');
             }
-        })
-        setPlayer(newJugador)
+        }
         setPlayers(newPlayers);
         setMonto(player.acumulado);
 
@@ -179,15 +159,15 @@ const Asientos = (props) => {
     const finalizar = () =>{
         let newPlayers = players;
 
-        newPlayers[player.asiento].apuesta = 0;
-        newPlayers[player.asiento].respuesta = null;
-        newPlayers[player.asiento].res = null;
+        newPlayers[currentUser.nickname].apuesta = 0;
+        newPlayers[currentUser.nickname].respuesta = null;
+        newPlayers[currentUser.nickname].res = null;
         
-        // newPlayers.map(function(jugador){
+        // for(jugador in newPlayers){
         //     jugador.apuesta= 0;
         //     jugador.respuesta= null;
         //     jugador.res= null;
-        // })
+        // }
 
         setBet(0)
         setChips([[],[],[],[]])
@@ -205,19 +185,17 @@ const Asientos = (props) => {
     
     const checkApuestas = () => {
         let newPlayers = players;
-        if(newPlayers.length){
-
-            newPlayers.map(function(jugador){
-                if(jugador.apuesta === 0){
-                    jugador.apuesta = 1000;
-                }
-            })
+        for(var jugador in newPlayers){
+            if(newPlayers[jugador].apuesta === 0 && bet === 0){
+                newPlayers[jugador].apuesta = 1000;
+            }else if(newPlayers[jugador].apuesta === 0 && bet!=0){
+                newPlayers[jugador].apuesta = bet;
+            }
+        }        
+        setPlayers(newPlayers)
+        game()
             
-            setPlayers(newPlayers)
-
-            game()
-            
-        }else{return}
+       
     }
     const game = ()=>{
         juego()
@@ -226,18 +204,22 @@ const Asientos = (props) => {
     };
 
     // useEffect(()=>{
-    //     players.map(function(jugador){
-    //         if(jugador.nombre == player.nombre){
-    //             sentado = true;
-    //         }
+    //     let newjugadores = Object.entries(players);
 
-    //     })
-    // })
+        
+    //     console.log(jugadores, 'JUGADORES', players,sentado)
+    // },[pleiers]);
+
     return(
         <div className={'asientos'}>
-            <div className={'jugadoresCont'}>
+            <div className={'asientos__jugadores'}>
                 {/* Anuncio */}
-               
+                {enPregunta?
+                    <div className={'asientos__jugadores__cuest'}>
+                        <Cuestionario respondio={players[currentUser.nickname].respuesta} responder={answer} seccPregunta={seccPregunta} pregunta={pregunta} revelado={revelado} > </Cuestionario>
+
+                    </div>
+                :null}
 
                 <div className={'timerCont'}>
                 {
@@ -259,31 +241,19 @@ const Asientos = (props) => {
                 </div>
 
                 <div className={'Contenedor cntr'}>
-                    {/* <div> */}
+
                     <div className={'Contenedor__anuncio'}>
-                    {player.sentado && revelado ?
-                         players[player.asiento].res ?
+                         {/* {true?
+                         true? */}
+                    {sentado && revelado ?
+                         players[currentUser.nickname].resultado ?
                             <span>¡ GANASTE !</span>
                         :
                             <span>PERDISTE</span>
                         
                         : null}
                     </div>
-                    {enPregunta?
-                        <div className={'Contenedor__cuest'}>
-                            <Cuestionario respondio={players[player.asiento].respuesta} responder={answer} seccPregunta={seccPregunta} pregunta={pregunta} revelado={revelado} > </Cuestionario>
-                        </div>
-                    :null}
                     
-
-                    {/* {enPregunta?
-                    <div className={'Contenedor__respuestas'}>
-                        <span className={`rsp ${revelado? respuestasArr[0].correcta?'verde':'rojo': null}`} key={1} onClick={()=>answer('a')} >{respuestasArr[0].respuesta}</span>
-                        <span className={`rsp ${revelado? respuestasArr[1].correcta?'verde':'rojo': null}`} key={2} onClick={()=>answer('b')} >{respuestasArr[1].respuesta}</span>
-                        <span className={`rsp ${revelado? respuestasArr[2].correcta?'verde':'rojo': null}`} key={3} onClick={()=>answer('c')} >{respuestasArr[2].respuesta}</span>
-                        <span className={`rsp ${revelado? respuestasArr[3].correcta?'verde':'rojo': null}`} key={4} onClick={()=>answer('d')} >{respuestasArr[3].respuesta}</span>
-                    </div>
-                    :null} */}
                 </div>
 
                 <div className={'Contenedor der'}>
@@ -294,7 +264,7 @@ const Asientos = (props) => {
                 </div>
             </div>
             <div className={'jugadorCont'}>
-                {player.sentado ?<Jugador levantarse={standUp}  apuesta={players[player.asiento].apuesta} bet={bet} monto={montoActual} fichas={chips} aumentar={aumentaApuesta} clean={limpiar} onGame={enJuego} apostar= {apuesta}  avatar={currentUser.imgurl}></Jugador>:<Silla align={'Cntr'} img={Cntr} ident={jugadores[6] } tomarAsiento={sit} revelacion= {revelado} ></Silla>}
+                {sentado?<Jugador levantarse={standUp}  apuesta={players[currentUser.nickname].apuesta} bet={bet} monto={montoActual} fichas={chips} aumentar={aumentaApuesta} clean={limpiar} onGame={enJuego} apostar= {apuesta}  avatar={currentUser.imgurl}></Jugador>:<Silla align={'Cntr'} img={Cntr} ident={jugadores[6] } tomarAsiento={sit} revelacion= {revelado} ></Silla>}
                 {/* {jugando?<span>diosmio</span>:<span>agarranosconfesados</span>} */}
             </div>
         </div>

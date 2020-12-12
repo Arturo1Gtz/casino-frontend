@@ -1,42 +1,39 @@
 .croupier{
     // border: 3px solid black;
-    display: flex;
+    height: 200vh;
     margin: 0px;
-    height: 100vh;
     padding: 0;
+    display: flex;
+    flex-direction: column-reverse;
     
-    .chatCont{
+    &__chat{
+        display: flex;
+        justify-content: center;
         // border:3px solid red;
-        width: 30%;
+        // height: 100vh;
+        width: 100%;
+        height: 100%;
+        // width:30%;
     }
     .juego{
-        // border: 3px solid cyan;
+        // border: 3px solid grey;
+    //    overflow: hidden;
         // position: absolute;
         // justify-items: center;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 70%;
+        // width: 70%;
         height: 100%;
         top: 0;     
         padding: 0;
         margin: 0;
      
-        // .cuestionarioCont{
-        //     border: 3px solid red;
-        //     position: absolute;
-        //     top: 0;
-        //     width: 70%;
-        //     height: 70%;
-        //     justify-content: center;
-        //     justify-content: center;
-        //     z-index: 3;
-            
-        // }
+        
         .ruletaCont{
+            // border: 3px solid grey;
             position: relative;
-            // border: 3px solid blue;
             width: 100%;
             height: 100%;
             z-index: 1;
@@ -44,33 +41,28 @@
             flex-direction: column;
             
             &__elem{
-                // border: 3px solid pink;
+                // border: 3px solid white;
                 width: 100%;
                 height: 50%;
-                font-size: 800%;
+                // font-size: 800%;
+                font-size: 500%;
             }
         }
         .asientosCont{
-            // border: 3px solid greenyellow;
-            // display: flex;
-            // justify-content: center;
+            // border: 3px solid white;
             position: absolute;
-            width: 70%;
-            height: 100%;
+            width: 100%;
+            // width: 70%;
+            height: 50%;
             z-index: 2;
             
         }
         &__fondo{
-            // border: 3px solid black;
+            // border: 3px solid white;
             position: absolute;
             z-index: 0;
-            width: 70%;
-            height: 100%;
-            // scale: 150%;
-            // top: -60%;
-            &__img{
-                height: 70%;
-            }
+            top: -10%;
+            width: 100%;
         }
     }
 
@@ -86,3 +78,46 @@
         }
     }
 }
+
+@media only screen and ( min-width:1000px){
+    .croupier{
+        height: 100vh;
+        flex-direction: row;
+        &__chat{
+            width: 30%;
+        }
+        .juego{
+            // border: 3px solid violet;
+            width: 70%;
+            .asientosCont{
+                // border: 3px solid red;
+                height: 100%;
+                width: 70%;
+            }
+            &__fondo{
+                // border: 3px solid purple;
+                top: -18%;
+            }
+        }
+    }
+}
+// @media only screen and ( min-width: 1400px){
+//     .croupier{
+//         .juego{
+            
+//         }
+//     }
+// }
+@media only screen and ( min-width: 1600px){
+    .croupier{
+        .juego{
+            &__fondo{
+                top: -55%;
+                &__img{
+                    width: 40%;
+                } 
+            }
+        }
+    }
+}
+

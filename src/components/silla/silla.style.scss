@@ -1,19 +1,63 @@
 .silla{
-    // border: 3px solid grey;
+    // border: 3px solid black;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    &__fondo{
+    height: 100%;
+
+    .imgContainer{
         // border: 3px solid white;
+        
+        z-index: 2;
+        .Img{
+            height: auto;
+            width: 70px;
+            &:hover{
+                opacity: 0.7;
+                cursor: pointer;
+            }
+        }
+        .verde{
+            border: 5px solid #ACFF10;
+            border-radius: 100%;
+            
+        }
+        .rojo{
+            border: 5px solid red;
+            border-radius: 100%;
+
+        }
+    }
+    
+    .datosContainer{
+        // border: 3px solid red;
+        display: flex;
+        flex-direction: column;
+        z-index: 1;
+        &__nombre{
+            font-size: 150%;
+            color: #E6AD25;
+        }
+        &__subtitle{
+            font-size: 70%;
+        }
+
+    }
+
+    &__fondo{
+        // border: 3px solid grey;
         position: absolute;
         z-index: 0;
         width: 20%;
         display: flex;
+        &__Img{
+            width: 70px;
+        }
     }
 
     &.Izq{
-        // border:3px solid green;
+        // border:3px solid turquoise;
         flex-direction: row-reverse;
         .datosContainer{
             align-items: flex-end;
@@ -27,8 +71,9 @@
         }
     }
     &.Der{
+        // border: 3px solid red;
         .datosContainer{
-            align-items: flex-start;
+            align-items: flex-end;
         }
         .silla__fondo{
             // border: 3px solid blue;
@@ -47,6 +92,9 @@
             // border: 3px solid blue;
             // flex-direction: row-reverse;
             justify-content: center;
+            &__Img{
+                width: 100px;
+            }
            
         }
     }
@@ -58,40 +106,7 @@
         }
     }
 
-    .imgContainer{
-        z-index: 2;
-        .Img{
-            height: auto;
-            width: 60%;
-            &:hover{
-                opacity: 0.7;
-                cursor: pointer;
-            }
-        }
-        .verde{
-            border: 5px solid #ACFF10;
-            border-radius: 100%;
-            
-        }
-        .rojo{
-            border: 5px solid red;
-            border-radius: 100%;
-
-        }
-    }
-    .datosContainer{
-        // border: 3px solid red;
-        display: flex;
-        flex-direction: column;
-        z-index: 1;
-        &__nombre{
-            font-size: 150%;
-            color: #E6AD25;
-        }
-        &__subtitle{
-            font-size: 70%;
-        }
-
-    }
+    
+    
     
 }
