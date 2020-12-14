@@ -61,7 +61,7 @@
             // border: 3px solid white;
             position: absolute;
             z-index: 0;
-            top: -10%;
+            top: -65%;
             width: 100%;
         }
     }
@@ -75,6 +75,73 @@
             cursor: pointer;
             scale: 105%;
             opacity: 0.7;
+        }
+    }
+}
+@media only screen and ( min-width:800px){
+    .croupier{
+        height: 100vh;
+        flex-direction: row;
+        &__chat{
+            width: 30%;
+        }
+        .juego{
+            // border: 3px solid violet;
+            width: 70%;
+            .asientosCont{
+                // border: 3px solid red;
+                height: 100%;
+                width: 70%;
+            }
+            &__fondo{
+                // border: 3px solid purple;
+                top: -65%;
+            }
+        }
+    }
+}
+
+@media only screen and ( min-width:200px){
+    .croupier{
+        height: 100vh;
+        flex-direction: row;
+        &__chat{
+            width: 30%;
+        }
+        .juego{
+            // border: 3px solid violet;
+            width: 70%;
+            .asientosCont{
+                // border: 3px solid red;
+                height: 100%;
+                width: 70%;
+            }
+            &__fondo{
+                // border: 3px solid purple;
+                top: -65%;
+            }
+        }
+    }
+}
+@media only screen and ( min-width:650px){
+    .croupier{
+        height: 100vh;
+        flex-direction: row;
+        &__chat{
+            width: 30%;
+        }
+        .juego{
+            // border: 3px solid violet;
+            width: 70%;
+            .asientosCont{
+                // border: 3px solid red;
+                height: 100%;
+                width: 70%;
+            }
+            &__fondo{
+                // border: 3px solid purple;
+                top: -80%;
+            }
         }
     }
 }
@@ -96,7 +163,7 @@
             }
             &__fondo{
                 // border: 3px solid purple;
-                top: -18%;
+                top: -65%;
             }
         }
     }
@@ -112,7 +179,7 @@
     .croupier{
         .juego{
             &__fondo{
-                top: -55%;
+                top: -80%;
                 &__img{
                     width: 40%;
                 } 

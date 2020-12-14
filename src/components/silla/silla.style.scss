@@ -104,9 +104,16 @@
         .datosContainer{
             opacity: 0;
         }
-    }
+    }    
+}
 
-    
-    
-    
+@media only screen and (min-width:1000px){
+    .silla{
+       .imgContainer{
+           &__Img{
+               width: 1000px;
+               height: 1000px;
+           }
+       }
+    }
 }

@@ -28,6 +28,10 @@ function getMesaPlayers(mesa) {
   return users.filter(user => user.mesa === mesa && user.tipo === "player");
 }
 
+function getPlayers(){
+  return users.filter(user => user.tipo === "player");
+}
+
 // Get mesa spectator
 function getMesaSpectators(mesa) {
     return users.filter(user => user.mesa === mesa && user.tipo === "spectator");
@@ -38,5 +42,6 @@ module.exports = {
   userLeave,
   getMesaPlayers,
   getMesaSpectators,
-  getCurrentUser
+  getCurrentUser,
+  getPlayers
 };

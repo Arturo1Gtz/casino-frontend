@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import './mini-croupier.style.scss';
 import MesaFondo from '../../img/mesa-de-inicio.png';
@@ -7,10 +7,26 @@ import Disp from '../../img/lugar-disponible.png';
 import Sillon from '../../img/silla-individual.png';
 import SillonDer from '../../img/silla-individual-der.png';
 import SillonCntr from '../../img/silla-individual-cntr.png';
+import io from 'socket.io-client'
+
+const socket = io(process.env.NODE_ENV === "production" ? "/" : "http://localhost:8081");
 
 const MiniCroupier =(props)=>{
-    const arr = [1,1,1]
+    const [jugadores, setJugadores] = useState([]);
     const {num} = props;
+    // socket.emit('getMesasPlayers');
+    // socket.on('mesasPlayers', players => {
+    //     setJugadores({jugadores: players.filter(jugador => jugador.mesa === num)}, () => console.log("pepinos", jugadores));
+    // })
+    // var arr = [];
+    // if(jugadores === undefined){
+    //     console.log('Sin jugadores')
+    // } else {
+    //     arr = jugadores;
+    // }
+    const arr = []
+    
+    
     return(
         <div className={'mini'}>
 

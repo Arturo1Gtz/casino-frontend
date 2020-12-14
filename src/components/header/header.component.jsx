@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
 import menu from '../../img/menuIcon.svg';
 import logo from '../../img/logo.png';
+import logoIsuzu from '../../img/logo-casino-isuzu.png'
 import SidebarA from '../../components/sidebar/sidebar.component';
 import './header.style.css';
 import SidebarUser from '../sidebar/sidebarb.component';
@@ -14,7 +15,7 @@ const Header = ({currentUser}) => {
     return(
         <div className='header'>
             <Link className='logoContainer' to="/" >
-                <img src={logo} alt='logo' className='logo' ></img>
+                <img src={logoIsuzu} alt='logo' className='logo' ></img>
                 {/* <Logo className='logo'/> */}
             </Link>
             <div className='menuContainer'>
