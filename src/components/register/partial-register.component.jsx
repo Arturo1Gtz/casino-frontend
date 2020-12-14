@@ -68,7 +68,7 @@ const PartialRegister = ({currentUser}) => {
     }
 
     return(
-        <SignUpContainer>
+        <div className='signUp'>
             <SignUpTitle>Faltaron unos datos</SignUpTitle>
             <form className = 'formularioR' onSubmit ={handleSubmit}>
                 <FormInput type="text" label='Nickname' required onChange={handleChange} name = "nickname" value = {nickname} autofocus/>                
@@ -80,7 +80,7 @@ const PartialRegister = ({currentUser}) => {
                     <CustomButton type="submit">Enviar</CustomButton>
                 </ButtonsBarContainer>
             </form>
-        </SignUpContainer>
+        </div>
     )
 }
 const mapStateToProps = state => ({

@@ -1,5 +1,5 @@
 .App {
-  /* border: 3px solid red; */
+  /* border: 3px solid black; */
   display: flex;
   flex-direction: column;
 
@@ -20,6 +20,7 @@
   position: relative;
   /* height: 100vh; */
   width: 100%;
+  height: 100%;
   overflow: hidden;
 }
 
