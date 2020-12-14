@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import FormInput from '../custom-input/input.component'
 import CustomButton from '../custom-button/button.component'
-import { SignUpContainer, SignUpTitle, ButtonsBarContainer } from './register.styles';
+import { SignUpTitle, ButtonsBarContainer } from './register.styles';
 import './register.style.scss'
 import { auth, createUserProfileDocument2, firestore } from '../../firebase/firebase.utils';
 
@@ -88,7 +88,7 @@ const Register = () => {
     };
     
     return(
-        <SignUpContainer>
+        <div className={'signUp'}>
             <SignUpTitle>Crea una cuenta nueva</SignUpTitle>
             <form className='formularioR' onSubmit={handleSubmit}>
                 <FormInput type="email" label='Email' required onChange={handleChange} name = "email" value = {email} autofocus/>
@@ -99,11 +99,11 @@ const Register = () => {
                 <FormInput type="text" label='Apellido' required onChange={handleChange} name = "lastname" value = {lastname} autofocus/>                
                 <FormInput type="text" label='Empresa' required onChange={handleChange} name = "enterprise" value = {enterprise} autofocus/>
                 <FormInput type="text" label='Departamento' required onChange={handleChange} name = "department" value = {department} autofocus/>
-                <ButtonsBarContainer>            
+                <div class={'signUp__btn'}>            
                     <CustomButton type="submit">Registro</CustomButton>
-                </ButtonsBarContainer>
+                </div>
             </form>
-        </SignUpContainer>
+        </div>
     )
 }
 

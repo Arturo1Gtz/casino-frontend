@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import CustomButton from '../custom-button/button.component'
 import PartialRegister from '../register/partial-register.component'
-import './register.style.scss';
+import './imagereader.styles.scss';
 import { SignInAndSignUpContainer } from '../../pages/signin-signup/inicio-styles'
-import { SignUpTitle, SignUpContainer, ButtonsBarContainer } from './register.styles'
+import { SignUpTitle, ButtonsBarContainer } from './register.styles'
 import { storage, firestore } from '../../firebase/firebase.utils'
 
  
@@ -54,16 +54,18 @@ const ImageInput  = ({currentUser}) =>{
   }
   if(currentUser.firstname === ""){
     return(
-      <SignInAndSignUpContainer>
+      <div className='signUp'>
         <PartialRegister/>
-      </SignInAndSignUpContainer>
+      </div>
     )
   }else{
     return (
       <div className='readerContent'>
         <div className='formreader'>
+
           <div className='form'>
-            <SignUpContainer>
+
+            <div className='sigUp'>
               <SignUpTitle>Solo falta un paso <br/> para disfrutar</SignUpTitle>
                 <form className='fromularioR' onSubmit={handleFirebaseUpload}>
                   <ButtonsBarContainer>
@@ -71,10 +73,14 @@ const ImageInput  = ({currentUser}) =>{
                     <label htmlFor="file">Elegir foto</label>
                     <CustomButton type='submit'>Subir foto</CustomButton>
                   </ButtonsBarContainer>
-              </form>
-            </SignUpContainer>
+                </form>
+
+            </div>
+
           </div>
+
         </div>
+
         <div className='imagePreview'>
           {
             imagePreview ? <img src={imagePreview} className='preview'/> : <img/>
