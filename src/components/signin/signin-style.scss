@@ -1,16 +1,30 @@
 
-.formCont{
-    width:100%;
-    height: 100%;
-    padding:0;
-    margin: 0;
-    .formularioS{
-        border:2px solid red;
+.signIn{
+    // border: 2px solid red;
+    width: 100%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    &__title{
+        margin: 10px 0;
+    }
+    &__formularioS{
+        // border:2px solid red;
         color: white;
         display: flex;
         flex-direction: column;
-        height: 50%;
+        height: 100%;
         justify-content: space-around;
-        
+    }
+    &__btn{
+        display: flex;
+        justify-content: center;
+    }
+}
+@media only screen and ( min-width: 600px){
+    .signIn{
+        &__btn{
+            justify-content: flex-start;
+        }
     }
 }

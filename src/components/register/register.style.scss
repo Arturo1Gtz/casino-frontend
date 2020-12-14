@@ -18,4 +18,10 @@
     justify-content: center;
   }
 }
-
+@media only screen and ( min-width: 600px){
+  .signUp{
+      &__btn{
+          justify-content: flex-start;
+      }
+  }
+}
