@@ -4,10 +4,10 @@ import CustomBoton from '../custom-boton/custom-boton.componente';
 
 import Icon from '../../img/userphoto.svg';
 // import Ficha1 from '../../img/fichaUno.png';
-import Ficha50 from '../../img/casino50.png';
-import Ficha100 from '../../img/casino100.png';
-import Ficha500 from '../../img/casino500.png';
-import Ficha1000 from '../../img/casino1000.png';
+import Ficha50 from '../../img/50.png';
+import Ficha100 from '../../img/100.png';
+import Ficha500 from '../../img/500.png';
+import Ficha1000 from '../../img/1000.png';
 import Ficha5 from '../../img/fichaCinco.png';
 import Salir from '../../img/SALIR.svg';
 
