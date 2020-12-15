@@ -1,11 +1,11 @@
-.signUp{
-    border:3px solid red;
+.imageForm{
+    //border:3px solid red;
     display: flex;
     flex-direction: column;
     width:100%;
   
-    .formularioR{
-      border: 3px solid orange;
+    .formI{
+      //border: 3px solid orange;
         color: white;
         display: flex;
         flex-direction: column;
@@ -14,7 +14,8 @@
         justify-content: space-around;        
     }
     
-  }
+}
+
 .readerContent{
     width: 100%;
     height: 100%;
@@ -35,12 +36,13 @@
       }
     }
     .imagePreview{
-      width: auto;
+      border: 3px solid yellow;
+      width: 50vw;
       height: 50vh;
       justify-content: center;
       .preview{
-        width: 350px;
-        height: 350px;
+        //width: 350px;
+        //height: 350px;
         border: none;
       }
     }

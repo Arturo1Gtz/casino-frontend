@@ -43,21 +43,23 @@ class App extends React.Component {
     const {currentUser} = this.props;
     return (
       <div className="App">
+      <div className='margen'>
         <Header className='encabezado' /> 
-
         <div className='mainContainer'>
-          {currentUser ? 
-            <div className='contenido'>
-              <Switch>
-                <Route exact path='/' component={RoomsPage} />
-                <Route  path='/ruleta/:mesa' component={Croupier} />
-              </Switch>
-            </div>
-              :
-            <SignInAndSignUpPage/>
-          }
-          
-        </div>
+            
+            {/* {true ?  */}
+            {currentUser ? 
+              <div className='contenido'>
+                <Switch>
+                  <Route exact path='/' component={RoomsPage} />
+                  <Route  path='/ruleta/:mesa' component={Croupier} />
+                </Switch>
+              </div>
+                :
+              <SignInAndSignUpPage/>
+            }
+    </div>
+      </div>
       </div>
     );
   }
