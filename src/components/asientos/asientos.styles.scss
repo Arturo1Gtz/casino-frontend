@@ -39,8 +39,9 @@
                     // font-size: 300%;
                     font-size: 200%;
                 }
-                .tomar_lugar{
-                    font-size: 95%;
+                &__tomar{
+                    font-size: 60%;
+                    line-height: 90%;
                     opacity: .9;
                 }
             }

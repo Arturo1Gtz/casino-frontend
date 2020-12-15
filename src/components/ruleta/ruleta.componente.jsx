@@ -16,6 +16,12 @@ const Circulo = styled.img`
         width: 300px;
         transform:rotate(${props => props.vueltas}turn);
         transition: transform ${ props => props.giro ? `${props.tamano ? 5 : 7}s ease-out`: 'none'};
+        @media only screen and (min-width:500px){
+            width: 400px
+        }
+        @media only screen and (min-width:1200px){
+            width: 450px
+        }
         `;
 
 

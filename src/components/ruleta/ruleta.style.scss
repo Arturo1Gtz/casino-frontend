@@ -1,5 +1,4 @@
 .ruleta{
-    // position: relative;
     // border: 3px solid blue;
     height: 100%;
     display: flex;
@@ -7,38 +6,24 @@
     align-items: center;
     justify-content: center;
     
-    // .elemento{
-    //     // position: absolute;
-    //     width: 400px;
-    // }
-    
     &__selector{
         position: absolute;
         width: 300px;
         transform: rotate(-90deg);
     }
 }
-
-@media only screen and (min-width: 10000px){
+@media only screen and (min-width:500px){
     .ruleta{
-        // position: relative;
-        // border: 3px solid blue;
-        height: 1600px;
-        width: 1600px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        
-        // .elemento{
-        //     // position: absolute;
-        //     width: 400px;
-        // }
-        
         &__selector{
-            position: absolute;
-            width: 300px;
-            transform: rotate(-90deg);
+            width: 400px;
+        }
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    .ruleta{
+        &__selector{
+            width: 450px;
         }
     }
     

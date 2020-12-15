@@ -32,7 +32,7 @@
     
     .datosContainer{
         // border: 3px solid red;
-        display: flex;
+        display: none;
         flex-direction: column;
         z-index: 1;
         &__nombre{
@@ -93,7 +93,8 @@
             // flex-direction: row-reverse;
             justify-content: center;
             &__Img{
-                width: 100px;
+                width: auto;
+                height: 70px;
             }
            
         }
@@ -107,13 +108,33 @@
     }    
 }
 
-@media only screen and (min-width:1000px){
+@media only screen and (min-width:500px){
     .silla{
-       .imgContainer{
+       &__fondo{
            &__Img{
-               width: 1000px;
-               height: 1000px;
+               width: 80px;
+           }
+       }
+       &.Cntr{
+           .silla__fondo{
+               &__Img{
+                   height: 90px;
+               }
            }
        }
     }
+}
+@media only screen and (min-width:1000px){
+    .silla{
+        .datosContainer{
+            display: flex;
+        }
+       &__fondo{
+           &__Img{
+               width: 100px;
+            //    height: 1000px;
+           }
+       }
+    }
+    
 }
