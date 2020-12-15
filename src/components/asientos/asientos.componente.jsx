@@ -31,6 +31,7 @@ const Asientos = (props) => {
     
     var pleiers = {};
     socket.on("mesaPlayers", players => {
+        console.log(players)
         pleiers = players;
     });
     
@@ -226,6 +227,7 @@ const Asientos = (props) => {
                     enJuego?null:
                     <div className={'anuncio'}>
                        <span>ESPERANDO APUESTAS</span>
+                       <span class='anuncio__tomar'>No olvide tomar su lugar antes de que el contador termine.</span>
                        <div className={'anuncio__timer'}>
                         <Timer time={20} jugadores={players} accion= {checkApuestas}></Timer>
                         </div>

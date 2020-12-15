@@ -36,17 +36,17 @@ const SignIn = () => {
     }
 
     return (
-        <SignInContainer>
-            <SignInTitle>Ingresa con tu correo y contraseña</SignInTitle>
-            <form onSubmit={sendData} className='formularioS'>
+        <div className={'signIn'}>
+            <h2 className={'signIn__title'}>Ingresa con tu correo y contraseña</h2>
+            <form onSubmit={sendData} className={'signIn__formularioS'}>
                 <FormInput type="email" required onChange={handleChange} name = "email" value = {email} label = 'Email'/>
                 <FormInput type="password" required onChange={handleChange} name="password" value = {password} label = 'Password'/>
-                <ButtonsBarContainer>
+                <div className={'signIn__btn'}>
                     <CustomButton type="submit">Iniciar Sesión</CustomButton>
                     {/* <CustomButton type="button" onClick = {signInWithGoogle} isGoogleSignIn >Google</CustomButton> */}
-                </ButtonsBarContainer>
+                </div>
             </form>
-        </SignInContainer>
+        </div>
     );
 }
 

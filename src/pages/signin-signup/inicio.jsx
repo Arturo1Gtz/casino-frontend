@@ -14,15 +14,20 @@ const SignInAndSignUpPage = () => {
 
     <div className='sign'>
         <div className='sign__form1'>
-            <SignIn />
-            <Register />
+            <div className={'sign__form1__cont'}>
+                <SignIn />
+            </div>
+            <div className={'sign__form1__cont'}>
+                <Register />
+                
+            </div>
         </div>
         <div className='sign__form2'>
         {formulario ?<SignIn />
             :<Register />
             }
         <div className={'sign__form2__btn'}>
-            <span className={'sign__form2__btn__spn'} onClick={changeform}>{formulario?'REGISTRATE':'ACCEDE'} </span>
+            <span className={'sign__form2__btn__spn'} onClick={changeform}>{formulario?'REGISTRATE':'ACCEDER'} </span>
         </div>
         </div>
         

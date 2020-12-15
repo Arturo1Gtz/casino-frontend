@@ -4,6 +4,10 @@ import CustomBoton from '../custom-boton/custom-boton.componente';
 
 import Icon from '../../img/userphoto.svg';
 // import Ficha1 from '../../img/fichaUno.png';
+import Ficha50 from '../../img/casino50.png';
+import Ficha100 from '../../img/casino100.png';
+import Ficha500 from '../../img/casino500.png';
+import Ficha1000 from '../../img/casino1000.png';
 import Ficha5 from '../../img/fichaCinco.png';
 import Salir from '../../img/SALIR.svg';
 
@@ -34,10 +38,10 @@ function Jugador (props){
                     <span className='jugador__tarjeta__MontoCont__Monto'>$ {monto}</span>
                 </div>
                 <div className={`fichasCont ${apuesta?'off':null}`}>
-                    <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentar(100,0)}/>
-                    <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentar(500,1)}/>
-                    <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentar(1000,2)}/>
-                    <img className='ficha' alt='ficha' src={Ficha5} onClick={apuesta?null:()=>aumentar(2000,3)}/>
+                    <img className='ficha' alt='ficha' src={Ficha50} onClick={apuesta?null:()=>aumentar(50,0)}/>
+                    <img className='ficha' alt='ficha' src={Ficha100} onClick={apuesta?null:()=>aumentar(100,1)}/>
+                    <img className='ficha' alt='ficha' src={Ficha500} onClick={apuesta?null:()=>aumentar(500,2)}/>
+                    <img className='ficha' alt='ficha' src={Ficha1000} onClick={apuesta?null:()=>aumentar(1000,3)}/>
                    
                 </div>
                 <div className={`botonesCont ${apuesta?'off':null}`}>

@@ -11,7 +11,8 @@ const {
     userLeave,
     getMesaPlayers,
     getMesaSpectators,
-    getCurrentUser
+    getCurrentUser,
+    getPlayers,
 } = require('./utils/manageusers');
 
 
@@ -89,8 +90,15 @@ io.on('connection', socket => {
         io.to(user.mesa).emit("vext", vint);
         io.to(user.mesa).emit("vint", vint);
         })
+
+        
     });
 
+    socket.on('getMesasPlayers', () => {
+        io.emit('mesasPlayers', {
+            players: getPlayers(),
+        });
+    })
 
    });
 
