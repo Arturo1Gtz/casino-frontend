@@ -77,7 +77,7 @@ const Asientos = (props) => {
     const sit =()=>{
         let newplayers = players;
         if(!players[currentUser.nickname]){
-            newplayers[currentUser.nickname] = {acumulado:currentUser.credits, apuesta:0, respuesta:null, resultado: null};
+            newplayers[currentUser.nickname]  = {acumulado:currentUser.credits, apuesta:0, respuesta:null, resultado: null};
             setPlayers(newplayers)
             setSentado(true)
             sentarse()
@@ -153,7 +153,7 @@ const Asientos = (props) => {
             }
         }
         setPlayers(newPlayers);
-        setMonto(player.acumulado);
+        setMonto(players[currentUser.nickname].acumulado);
 
     }
 
@@ -162,7 +162,7 @@ const Asientos = (props) => {
 
         newPlayers[currentUser.nickname].apuesta = 0;
         newPlayers[currentUser.nickname].respuesta = null;
-        newPlayers[currentUser.nickname].res = null;
+        newPlayers[currentUser.nickname].resultado = null;
         
         // for(jugador in newPlayers){
         //     jugador.apuesta= 0;
@@ -205,8 +205,8 @@ const Asientos = (props) => {
     };
 
     // useEffect(()=>{
-    //     let newjugadores = Object.entries(players);
-
+    //     // let newjugadores = Object.entries(players);
+    //     let jugadores= Object.entries(players).filter(jugador=>jugador[0] !== currentUser.nickname); 
         
     //     console.log(jugadores, 'JUGADORES', players,sentado)
     // },[pleiers]);
@@ -225,6 +225,7 @@ const Asientos = (props) => {
                 <div className={'timerCont'}>
                 {
                     enJuego?null:
+
                     <div className={'anuncio'}>
                        <span>ESPERANDO APUESTAS</span>
                        <span class='anuncio__tomar'>No olvide tomar su lugar antes de que el contador termine.</span>
