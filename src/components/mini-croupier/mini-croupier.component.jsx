@@ -26,7 +26,6 @@ const MiniCroupier =(props)=>{
     // }
     const arr = []
     
-    
     return(
         <div className={'mini'}>
 

@@ -34,9 +34,24 @@ const googleSignInStyles = css`
   }
 `;
 
+const backButtonStyles = css`
+background-color: white;
+color: black;
+border: 1px solid black;
+
+&:hover {
+  background-color: black;
+  color: white;
+  border: none;
+}
+`;
+
 const getButtonStyles = props => {
   if (props.isGoogleSignIn) {
     return googleSignInStyles;
+  }
+  if (props.isBackButton) {
+    return backButtonStyles;
   }
 
   return props.inverted ? invertedButtonStyles : buttonStyles;

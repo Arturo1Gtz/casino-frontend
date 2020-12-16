@@ -7,37 +7,18 @@
     justify-content: flex-start;
     &__cont{
         // border: 3px solid cyan;
-        height: 50%;
+        height: 100%;
         color: white;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-evenly;
         &__icon{
-            // border: 3px solid yellow;
+            border: 5px solid white;
             width: 200px;
+            border-radius: 50%;
         }
-        &__form{
-            // border:3px solid purple;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            &__group{
-                // border: 3px solid pink;
-                height: 70%;
-                display: flex;
-                flex-direction: column;
-                justify-content: space-evenly;
-                &__select{
-                    color: black;
-                }
-            }
-        }
-
     }
-   
-
 }
 
 

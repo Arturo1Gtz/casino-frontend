@@ -104,7 +104,7 @@ const ImageInput  = ({currentUser}) =>{
               zoomable={false}
               autoCropArea={0.6}
               highlight={false}
-              cropBoxResizable={false}
+              cropBoxResizable={true}
               dragMode={"none"}
               responsive
               background={false}

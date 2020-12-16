@@ -16,11 +16,14 @@ import Preguntas from '../../files/preguntas.js';
 
 import io from 'socket.io-client'
 import { connect } from 'react-redux';
+
+import { browserHistory } from 'react-router';
+import CustomButton from '../custom-button/button.component'
+
 const socket = io(process.env.NODE_ENV === "production" ? "/" : "http://localhost:8081");
 
 const tipo = "player";
 var mesa = "";
-
 
 class Croupier extends React.Component{
     
@@ -47,7 +50,6 @@ class Croupier extends React.Component{
         }
         mesa = this.props.match.params.mesa;
     }
-
     
     componentDidMount() {
         const { currentUser} = this.props;
@@ -58,7 +60,6 @@ class Croupier extends React.Component{
         const avatar = this.state.avatar;
         const saldo = this.state.saldo;
         socket.emit('joinMesa', {tipo, mesa , nickname, avatar, saldo});
-
     }
 
     componentWillUnmount() {
@@ -87,10 +88,9 @@ class Croupier extends React.Component{
 
 
             this.setState({onGame:true, onGiro:true}
-             ,() => console.log('vueltas',this.state)
-
-            
+             ,() => console.log('vueltas',this.state)           
         );}
+
         const sinGiro =()=>{
             const actualDegE = this.state.vueltasEx - Math.floor(this.state.vueltasEx);
             const actualDegI = this.state.vueltasIn - Math.floor(this.state.vueltasIn);
@@ -113,9 +113,9 @@ class Croupier extends React.Component{
 
             this.setState({acSeccEx:actualSeccEx, acSeccIn:actualSeccIn, pregunta: preguntaNumero, respuesta:answer}
                 ,()=>console.log('cuestionario', this.state)
-                );
-                
+                );                
         }
+
         const showQuestion=()=>{
             this.setState({onPregunta: true});
         }
@@ -132,9 +132,9 @@ class Croupier extends React.Component{
                 // setAsiento(newJugadores.length);
                 this.setState({jugadores:newJugadores}
                     // ,()=>console.log('tomarAsiento', this.state)
-                )
-            
+                )           
         }
+
         const apostar =(i, b)=>{
             jugadores[i].apuesta = b
             // console.log('apuesta', this.state)        
@@ -179,6 +179,9 @@ class Croupier extends React.Component{
         return(
             
             <div className={'croupier'}>
+                <div className={'croupier__back-btn'}>
+                    <CustomButton>Ir a las mesas</CustomButton>
+                </div>
                 <div className={'croupier__chat'}>
                     <Chat socket={socket} tipo={tipo} mesa={mesa} />
                 </div>
